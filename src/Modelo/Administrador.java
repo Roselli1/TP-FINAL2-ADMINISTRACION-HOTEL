@@ -1,3 +1,5 @@
+package Modelo;
+
 public class Administrador extends UsuarioBase
 {
     //Constructor
@@ -28,13 +30,13 @@ public class Administrador extends UsuarioBase
         ///guardar en archivo JSON
     }
 
-   /* public boolean crearUsuario(UsuarioBase usuario) throws UsuarioYaExisteException
+   /* public boolean crearUsuario(Modelo.UsuarioBase usuario) throws Exceptions.UsuarioYaExisteException
     {
         if (usuario== null) return false;
 
         if (//Logica de donde se guarda(hotel o gestora ))
                 {
-                        throw new UsuarioYaExisteException("El usuario con el nombre " + usuario.getUsername() + " ya existe");
+                        throw new Exceptions.UsuarioYaExisteException("El usuario con el nombre " + usuario.getUsername() + " ya existe");
                 }
 
                 //metodo agregar usuario
@@ -55,7 +57,7 @@ public class Administrador extends UsuarioBase
 
     @Override
     public String toString() {
-        return "Administrador{" +
+        return "Modelo.Administrador{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", rol=" + rol +

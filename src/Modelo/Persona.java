@@ -1,3 +1,5 @@
+package Modelo;
+
 public abstract class Persona
 {
     //Atributos
@@ -42,7 +44,7 @@ public abstract class Persona
     @Override
     public String toString()
     {
-        return "Persona{" +
+        return "Modelo.Persona{" +
                 "nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 ", dni='" + dni + '\'' +

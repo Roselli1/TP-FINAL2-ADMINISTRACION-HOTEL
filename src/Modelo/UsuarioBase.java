@@ -1,3 +1,7 @@
+package Modelo;
+
+import Enums.Rol;
+
 public abstract class UsuarioBase
 {
     //Atributos
@@ -32,7 +36,7 @@ public abstract class UsuarioBase
 
     @Override
     public String toString() {
-        return "UsuarioBase{" +
+        return "Modelo.UsuarioBase{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", rol=" + rol +

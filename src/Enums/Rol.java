@@ -1,7 +1,9 @@
+package Enums;
+
 public enum Rol
 {
-    ADMINISTRADOR("Administrador"),
-    RECEPCIONISTA("Recepcionista"),;
+    ADMINISTRADOR("Modelo.Administrador"),
+    RECEPCIONISTA("Modelo.Recepcionista"),;
 
     private String rol;
 

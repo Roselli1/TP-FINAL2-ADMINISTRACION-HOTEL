@@ -1,3 +1,5 @@
+package Modelo;
+
 public class Habitacion
 {
     //Atributos
@@ -42,7 +44,7 @@ public class Habitacion
 
     @Override
     public String toString() {
-        return "Habitacion{" +
+        return "Modelo.Habitacion{" +
                 "numero=" + numero +
                 ", tipoHabitacion=" + tipoHabitacion +
                 ", precioPorNoche=" + precioPorNoche +

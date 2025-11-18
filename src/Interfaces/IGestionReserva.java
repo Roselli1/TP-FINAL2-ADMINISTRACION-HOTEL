@@ -1,3 +1,5 @@
+package Interfaces;
+
 public interface IGestionReserva
 {
     boolean crearReserva (Reserva reserva);

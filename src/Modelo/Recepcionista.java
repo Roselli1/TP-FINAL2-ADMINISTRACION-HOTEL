@@ -1,3 +1,7 @@
+package Modelo;
+
+import Interfaces.IGestionReserva;
+
 public class Recepcionista  extends UsuarioBase implements IGestionReserva
 {
     private Hotel hotel;
