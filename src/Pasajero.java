@@ -11,7 +11,7 @@ public class Pasajero extends Persona
 
 
     //Constructor
-    public Pasajero(String nombre, String apellido, String dni, String domicilio, String origen, String telefono, String email List<RegistroEstadia> historiaHotel) {
+    public Pasajero(String nombre, String apellido, String dni, String domicilio, String origen, String telefono, String email) {
         super(nombre, apellido, dni, domicilio, origen);
         this.telefono = telefono;
         this.email = email;
@@ -40,5 +40,5 @@ public class Pasajero extends Persona
 
 
 
-    }
 }
+
