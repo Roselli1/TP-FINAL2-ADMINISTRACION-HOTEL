@@ -1,4 +1,4 @@
-package Modelo.Usuario;
+package Modelo.Persona;
 
 import Enums.Rol;
 import Interfaces.IGestionReserva;
