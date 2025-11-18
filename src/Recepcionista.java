@@ -20,11 +20,18 @@ public class Recepcionista  extends UsuarioBase implements IGestionReserva
 
     @Override
     public boolean hacerCheckIn(Reserva reserva) {
-        throw new UnsupportedOperationException("El pasajero no puede hacer check-in.");
+        /// IMPLEMENTAR CODIGO
+        return reserva != null;
     }
 
     @Override
     public boolean hacerCheckOut(Habitacion habitacion) {
-        throw new UnsupportedOperationException("El pasajero no puede hacer check-out.");
+        return habitacion != null; ///IMPLEMENTARCODIGO
+    }
+
+
+    @Override
+    public boolean autenticar(String username, String password) {
+        return false;
     }
 }
