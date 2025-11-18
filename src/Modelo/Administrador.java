@@ -1,5 +1,7 @@
 package Modelo;
 
+import Enums.Rol;
+
 public class Administrador extends UsuarioBase
 {
     //Constructor

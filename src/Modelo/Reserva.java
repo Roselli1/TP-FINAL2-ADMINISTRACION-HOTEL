@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class Reserva
 {
     private static int contador = 0;
-    private  int nroReserva;
+    private final int nroReserva;
     private Habitacion habitacion;
     private Pasajero pasajero;
     private LocalDate fechaIngreso;
@@ -54,7 +54,7 @@ public class Reserva
     @Override
     public String toString() {
         return "Modelo.Reserva{" +
-                "habitacion=" + habitacion +
+                "habitación=" + habitacion +
                 ", pasajero=" + pasajero +
                 ", fechaIngreso=" + fechaIngreso +
                 ", fechaEgreso=" + fechaEgreso +

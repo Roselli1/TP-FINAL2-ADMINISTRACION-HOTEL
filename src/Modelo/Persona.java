@@ -1,5 +1,7 @@
 package Modelo;
 
+import java.util.Objects;
+
 public abstract class Persona
 {
     //Atributos
@@ -53,5 +55,14 @@ public abstract class Persona
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Persona persona)) return false;
+        return Objects.equals(dni, persona.dni);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(dni);
+    }
 }

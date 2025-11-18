@@ -1,5 +1,8 @@
 package Interfaces;
 
+import Modelo.Habitacion;
+import Modelo.Reserva;
+
 public interface IGestionReserva
 {
     boolean crearReserva (Reserva reserva);

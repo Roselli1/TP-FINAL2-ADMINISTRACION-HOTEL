@@ -1,4 +1,5 @@
 package Modelo;
+import Enums.TipoHabitacion;
 
 public class Habitacion
 {

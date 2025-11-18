@@ -1,5 +1,6 @@
 package Modelo;
 
+import Enums.Rol;
 import Interfaces.IGestionReserva;
 
 public class Recepcionista  extends UsuarioBase implements IGestionReserva

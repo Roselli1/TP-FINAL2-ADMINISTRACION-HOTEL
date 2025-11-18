@@ -2,6 +2,8 @@ package Modelo;
 
 import Enums.Rol;
 
+import java.util.Objects;
+
 public abstract class UsuarioBase
 {
     //Atributos
@@ -41,5 +43,16 @@ public abstract class UsuarioBase
                 ", password='" + password + '\'' +
                 ", rol=" + rol +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof UsuarioBase that)) return false;
+        return Objects.equals(username, that.username) && Objects.equals(password, that.password);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(username, password);
     }
 }
