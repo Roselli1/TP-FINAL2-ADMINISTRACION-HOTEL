@@ -1,4 +1,4 @@
-package Modelo;
+package Gestores;
 
 public class RegistroEstadia {
 }

@@ -1,7 +1,10 @@
-package Modelo;
+package Modelo.Usuario;
 
 import Enums.Rol;
 import Interfaces.IGestionReserva;
+import Modelo.Hotel.Habitacion;
+import Modelo.Hotel.Hotel;
+import Modelo.Hotel.Reserva;
 
 public class Recepcionista  extends UsuarioBase implements IGestionReserva
 {

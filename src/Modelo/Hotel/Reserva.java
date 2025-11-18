@@ -1,4 +1,6 @@
-package Modelo;
+package Modelo.Hotel;
+
+import Modelo.Persona.Pasajero;
 
 import java.time.LocalDate;
 
@@ -53,7 +55,7 @@ public class Reserva
 
     @Override
     public String toString() {
-        return "Modelo.Reserva{" +
+        return "Modelo.Hotel.Reserva{" +
                 "habitación=" + habitacion +
                 ", pasajero=" + pasajero +
                 ", fechaIngreso=" + fechaIngreso +

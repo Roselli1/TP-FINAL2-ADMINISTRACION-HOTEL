@@ -1,4 +1,4 @@
-package Modelo;
+package Modelo.Hotel;
 import Enums.TipoHabitacion;
 
 public class Habitacion
@@ -45,7 +45,7 @@ public class Habitacion
 
     @Override
     public String toString() {
-        return "Modelo.Habitacion{" +
+        return "Modelo.Hotel.Habitacion{" +
                 "numero=" + numero +
                 ", tipoHabitacion=" + tipoHabitacion +
                 ", precioPorNoche=" + precioPorNoche +

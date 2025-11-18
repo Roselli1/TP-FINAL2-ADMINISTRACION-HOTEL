@@ -1,7 +1,7 @@
 package Interfaces;
 
-import Modelo.Habitacion;
-import Modelo.Reserva;
+import Modelo.Hotel.Habitacion;
+import Modelo.Hotel.Reserva;
 
 public interface IGestionReserva
 {

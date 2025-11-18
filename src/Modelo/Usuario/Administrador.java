@@ -1,4 +1,4 @@
-package Modelo;
+package Modelo.Usuario;
 
 import Enums.Rol;
 
@@ -32,7 +32,7 @@ public class Administrador extends UsuarioBase
         ///guardar en archivo JSON
     }
 
-   /* public boolean crearUsuario(Modelo.UsuarioBase usuario) throws Exceptions.UsuarioYaExisteException
+   /* public boolean crearUsuario(Modelo.Usuario.UsuarioBase usuario) throws Exceptions.UsuarioYaExisteException
     {
         if (usuario== null) return false;
 
@@ -59,7 +59,7 @@ public class Administrador extends UsuarioBase
 
     @Override
     public String toString() {
-        return "Modelo.Administrador{" +
+        return "Modelo.Usuario.Administrador{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", rol=" + rol +

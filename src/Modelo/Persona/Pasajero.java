@@ -1,4 +1,6 @@
-package Modelo;
+package Modelo.Persona;
+
+import Gestores.RegistroEstadia;
 
 import java.util.ArrayList;
 import java.util.List;
