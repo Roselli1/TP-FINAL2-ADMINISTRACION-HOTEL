@@ -43,6 +43,9 @@ public class Hotel
     }
 
     public boolean realizarReserva(Reserva reserva, int nroHabitacion) {
-        return  true;
+        if (buscarHabitacionDisponible(nroHabitacion)) {
+            return reservas.add(reserva);
+        }
+        return false;
     }
 }
