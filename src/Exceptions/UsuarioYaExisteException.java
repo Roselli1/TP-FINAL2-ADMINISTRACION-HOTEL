@@ -1,6 +1,6 @@
 package Exceptions;
 
-public class UsuarioYaExisteException extends RuntimeException
+public class UsuarioYaExisteException extends Exception
 {
     public UsuarioYaExisteException(String message) {
         super(message);
