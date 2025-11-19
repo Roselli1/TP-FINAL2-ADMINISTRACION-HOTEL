@@ -1,7 +1,5 @@
-package Gestores;
+package Modelo.Hotel;
 
-import Modelo.Hotel.Habitacion;
-import Modelo.Hotel.Servicio;
 import Modelo.Persona.Pasajero;
 
 import java.time.LocalDate;

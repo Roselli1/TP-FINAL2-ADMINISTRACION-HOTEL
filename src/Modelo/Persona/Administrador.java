@@ -1,6 +1,7 @@
 package Modelo.Persona;
 
 import Enums.Rol;
+import Exceptions.UsuarioYaExisteException;
 
 public class Administrador extends UsuarioBase
 {
@@ -18,8 +19,11 @@ public class Administrador extends UsuarioBase
 
     //Implementacion del metodo abstracto
     @Override
-    public boolean autenticar(String username, String password) {
-        return this.username.equals(username) && this.password.equals(password);
+    public boolean autenticar(String username, String password)throws UsuarioYaExisteException {
+        if (username.equals(this.username) && password.equals(this.password)) {
+            throw new UsuarioYaExisteException("Este usuario ya existe.");
+        }
+        return true;
     }
 
 

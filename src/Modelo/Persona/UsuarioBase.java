@@ -1,6 +1,7 @@
 package Modelo.Persona;
 
 import Enums.Rol;
+import Exceptions.UsuarioYaExisteException;
 
 import java.util.Objects;
 
@@ -33,7 +34,7 @@ public abstract class UsuarioBase
 
 
     //Metodo Abstracto
-    public abstract boolean autenticar(String username, String password);
+    public abstract boolean autenticar(String username, String password)throws UsuarioYaExisteException;
 
 
     @Override

@@ -1,6 +1,7 @@
 package Modelo.Persona;
 
 import Enums.Rol;
+import Exceptions.UsuarioYaExisteException;
 import Interfaces.IGestionReserva;
 import Modelo.Hotel.Habitacion;
 import Gestores.GestorHotel;
@@ -39,7 +40,10 @@ public class Recepcionista  extends UsuarioBase implements IGestionReserva
 
 
     @Override
-    public boolean autenticar(String username, String password) {
-        return false;
+    public boolean autenticar(String username, String password)throws UsuarioYaExisteException {
+        if (username.equals(this.username) && password.equals(this.password)) {
+            throw new UsuarioYaExisteException("Este usuario ya existe.");
+        }
+        return true;
     }
 }
