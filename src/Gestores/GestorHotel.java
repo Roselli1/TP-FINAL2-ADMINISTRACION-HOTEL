@@ -1,5 +1,6 @@
 package Gestores;
 
+import Exceptions.HabitacionNoDisponibleException;
 import Modelo.Hotel.Habitacion;
 import Modelo.Hotel.Reserva;
 import Modelo.Persona.UsuarioBase;
@@ -37,17 +38,19 @@ public class GestorHotel
 
     public boolean buscarHabitacionDisponible(int nroHabitacion) {
         for (Map.Entry<Integer, Habitacion> entry : habitaciones.entrySet()) {
-            if (entry.getValue().isDisponible()){
-                return true;
+            if (entry.getKey() == nroHabitacion) {
+                if (entry.getValue().isDisponible()) {
+                    return true;
+                }
             }
         }
         return false;
     }
 
-    public boolean realizarReserva(Reserva reserva, int nroHabitacion) {
-        if (buscarHabitacionDisponible(nroHabitacion)) {
-            return reservas.add(reserva);
+    public boolean realizarReserva(Reserva reserva, int nroHabitacion)throws HabitacionNoDisponibleException {
+        if (!buscarHabitacionDisponible(nroHabitacion)) {
+            throw new HabitacionNoDisponibleException("La habitación que solicita no está disponible en este momento.");
         }
-        return false;
+        return reservas.add(reserva);
     }
 }
