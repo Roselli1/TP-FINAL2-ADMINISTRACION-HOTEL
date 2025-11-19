@@ -3,14 +3,14 @@ package Modelo.Persona;
 import Enums.Rol;
 import Interfaces.IGestionReserva;
 import Modelo.Hotel.Habitacion;
-import Modelo.Hotel.Hotel;
+import Gestores.GestorHotel;
 import Modelo.Hotel.Reserva;
 
 public class Recepcionista  extends UsuarioBase implements IGestionReserva
 {
-    private Hotel hotel;
+    private GestorHotel hotel;
 
-    public Recepcionista(String username, String password, Hotel hotel)
+    public Recepcionista(String username, String password, GestorHotel hotel)
     {
         super(username, password, Rol.RECEPCIONISTA);
         this.hotel = hotel;

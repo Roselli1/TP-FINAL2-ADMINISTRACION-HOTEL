@@ -1,5 +1,7 @@
-package Modelo.Hotel;
+package Gestores;
 
+import Modelo.Hotel.Habitacion;
+import Modelo.Hotel.Reserva;
 import Modelo.Persona.UsuarioBase;
 
 import java.util.ArrayList;
@@ -7,13 +9,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Hotel
+public class GestorHotel
 {
-    private Map<Integer,Habitacion> habitaciones;
+    private Map<Integer, Habitacion> habitaciones;
     private List<Reserva> reservas;
     private Map<String, UsuarioBase> usuarios;
 
-    public Hotel() {
+    public GestorHotel() {
         this.habitaciones = new HashMap<>();
         this.reservas = new ArrayList<>();
         this.usuarios = new HashMap<>();
