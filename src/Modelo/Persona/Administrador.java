@@ -36,13 +36,13 @@ public class Administrador extends UsuarioBase
         ///guardar en archivo JSON
     }
 
-   /* public boolean crearUsuario(Modelo.Persona.UsuarioBase usuario) throws Exceptions.UsuarioYaExisteException
+   /* public boolean crearUsuario(UsuarioBase usuario) throws UsuarioYaExisteException
     {
         if (usuario== null) return false;
 
         if (//Logica de donde se guarda(hotel o gestora ))
                 {
-                        throw new Exceptions.UsuarioYaExisteException("El usuario con el nombre " + usuario.getUsername() + " ya existe");
+                        throw new UsuarioYaExisteException("El usuario con el nombre " + usuario.getUsername() + " ya existe");
                 }
 
                 //metodo agregar usuario

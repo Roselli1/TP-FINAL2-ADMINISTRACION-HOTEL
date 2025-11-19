@@ -1,6 +1,7 @@
 package Gestores;
 
 import Exceptions.HabitacionNoDisponibleException;
+import Exceptions.ReservaInvalidaException;
 import Modelo.Hotel.Habitacion;
 import Modelo.Hotel.Reserva;
 import Modelo.Persona.UsuarioBase;
@@ -47,14 +48,24 @@ public class GestorHotel
         return false;
     }
 
-    public boolean realizarReserva(Reserva reserva, int nroHabitacion)throws HabitacionNoDisponibleException {
+    public boolean realizarReserva(Reserva reserva, int nroHabitacion)throws HabitacionNoDisponibleException, ReservaInvalidaException {
+        for (Reserva res : reservas) {
+            if (reserva.equals(res)) {
+                throw new ReservaInvalidaException("Esta reserva ya existe.");
+            }
+        }
         if (!buscarHabitacionDisponible(nroHabitacion)) {
             throw new HabitacionNoDisponibleException("La habitación que solicita no está disponible en este momento.");
         }
         return reservas.add(reserva);
     }
 
-    public void cancelarReserva(Reserva reserva) {
-        reservas.remove(reserva);
+    public boolean cancelarReserva(Reserva reserva,int nroHabitacion) {
+        for (Reserva res :  reservas) {
+            if (res.getHabitacion().getNumero() == nroHabitacion) {
+                return reservas.remove(res);
+            }
+        }
+        return false;
     }
 }

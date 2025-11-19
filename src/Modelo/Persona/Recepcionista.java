@@ -1,6 +1,8 @@
 package Modelo.Persona;
 
 import Enums.Rol;
+import Exceptions.HabitacionNoDisponibleException;
+import Exceptions.ReservaInvalidaException;
 import Exceptions.UsuarioYaExisteException;
 import Interfaces.IGestionReserva;
 import Modelo.Hotel.Habitacion;
@@ -18,24 +20,28 @@ public class Recepcionista  extends UsuarioBase implements IGestionReserva
     }
 
     @Override
-    public boolean crearReserva(Reserva reserva) {
+    public boolean crearReserva(Reserva reserva, int nroHabitacion) {
         return reserva != null;
     }
 
     @Override
-    public boolean cancelarReserva(Reserva reserva) {
+    public boolean cancelarReserva(Reserva reserva, int nroHabitacion) {
         return reserva != null;
     }
 
     @Override
-    public boolean hacerCheckIn(Reserva reserva) {
-        /// IMPLEMENTAR CODIGO
-        return reserva != null;
+    public boolean hacerCheckIn(Reserva reserva, int nroHabitacion) {
+        try{
+            return hotel.realizarReserva(reserva,nroHabitacion);
+        } catch (HabitacionNoDisponibleException | ReservaInvalidaException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 
     @Override
-    public boolean hacerCheckOut(Habitacion habitacion) {
-        return habitacion != null; ///IMPLEMENTARCODIGO
+    public boolean hacerCheckOut(Reserva reserva, int nroHabitacion) {
+        return hotel.cancelarReserva(reserva,nroHabitacion);
     }
 
 
