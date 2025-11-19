@@ -53,4 +53,8 @@ public class GestorHotel
         }
         return reservas.add(reserva);
     }
+
+    public void cancelarReserva(Reserva reserva) {
+        reservas.remove(reserva);
+    }
 }

@@ -1,10 +1,12 @@
 package Modelo.Hotel;
 
+import Interfaces.iToJSON;
 import Modelo.Persona.Pasajero;
+import org.json.JSONObject;
 
 import java.time.LocalDate;
 
-public class Reserva
+public class Reserva implements iToJSON
 {
     private static int contador = 0;
     private final int nroReserva;
@@ -63,5 +65,19 @@ public class Reserva
                 ", nroReserva=" + nroReserva +
                 ", estado=" + estado +
                 '}';
+    }
+
+    @Override
+    public JSONObject toJSON() {
+        JSONObject json = new JSONObject();
+
+        json.put("nroReserva", nroReserva);
+        json.put("habitacion", habitacion);
+        json.put("pasajero", pasajero);
+        json.put("fechaIngreso", fechaIngreso);
+        json.put("fechaEgreso", fechaEgreso);
+        json.put("estado", estado);
+
+        return json;
     }
 }

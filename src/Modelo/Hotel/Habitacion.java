@@ -1,8 +1,10 @@
 package Modelo.Hotel;
 import Enums.EstadoHabitacion;
 import Enums.TipoHabitacion;
+import Interfaces.iToJSON;
+import org.json.JSONObject;
 
-public class Habitacion
+public class Habitacion implements iToJSON
 {
     //Atributos
     private int numero;
@@ -59,5 +61,18 @@ public class Habitacion
                 ", disponible=" + disponible +
                 ", estadoHabitacion=" + estadoHabitacion.getEstado() +
                 '}';
+    }
+
+    @Override
+    public JSONObject toJSON() {
+        JSONObject json = new JSONObject();
+
+        json.put("numero", numero);
+        json.put("tipoHabitacion", tipoHabitacion.getTipoHabitacion());
+        json.put("precioPorNoche", precioPorNoche);
+        json.put("disponible", disponible);
+        json.put("estadoHabitacion", estadoHabitacion.getEstado());
+
+        return json;
     }
 }
