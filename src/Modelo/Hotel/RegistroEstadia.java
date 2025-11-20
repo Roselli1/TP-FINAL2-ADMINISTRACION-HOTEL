@@ -40,4 +40,8 @@ public class RegistroEstadia {
     public List<Servicio> getConsumos() {
         return consumos;
     }
+
+    public void setCheckOut(LocalDate checkOut) {
+        this.checkOut = checkOut;
+    }
 }

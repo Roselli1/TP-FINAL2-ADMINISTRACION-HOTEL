@@ -87,5 +87,17 @@ public class GestorHotel
         registrosEstadias.add(registroEstadia);
     }
 
+    public RegistroEstadia buscarEstadiaActiva(int nroHabitacion)
+    {
+        for (RegistroEstadia registroEstadia : registrosEstadias) {
+            if (registroEstadia.getHabitacion().getNumero() == nroHabitacion && registroEstadia.getCheckOut() == null)
+            {
+                return registroEstadia;
+            }
+        }
+        return null;
+
+    }
+
 
 }
