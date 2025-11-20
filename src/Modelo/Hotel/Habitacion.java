@@ -78,4 +78,13 @@ public class Habitacion implements iToJSON
 
         return json;
     }
+
+    public Habitacion (JSONObject jsonObject)
+    {
+        this.numero = jsonObject.getInt("numero");
+        this.tipoHabitacion = TipoHabitacion.valueOf(jsonObject.getString("tipoHabitacion").toUpperCase());
+        this.precioPorNoche = jsonObject.getDouble("precioPorNoche");
+        this.disponible = jsonObject.getBoolean("disponible");
+        this.estadoHabitacion = EstadoHabitacion.valueOf(jsonObject.getString("estadoHabitacion").toUpperCase());
+    }
 }
