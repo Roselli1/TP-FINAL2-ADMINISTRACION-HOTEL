@@ -1,11 +1,13 @@
 package Modelo.Persona;
 
+import Interfaces.iToJSON;
 import Modelo.Hotel.RegistroEstadia;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Pasajero extends Persona
+public class Pasajero extends Persona implements iToJSON
 {
     //Atributos
     private List<RegistroEstadia> historiaHotel;
@@ -51,6 +53,33 @@ public class Pasajero extends Persona
             return true;
         }
         return false;
+    }
+
+    @Override
+    public JSONObject toJSON() {
+        JSONObject json = new JSONObject();
+
+        json.put("nombre", getNombre());
+        json.put("apellido", getApellido());
+        json.put("dni", getDni());
+        json.put("domicilio", getDomicilio());
+        json.put("origen", getOrigen());
+        json.put("telefono", getTelefono());
+        json.put("email", getEmail());
+        json.put("solicitarReserva", solicitarReserva);
+
+        return json;
+    }
+
+    public Pasajero(JSONObject obj) {
+        super(obj.getString("nombre"),
+                obj.getString("apellido"),
+                obj.getString("dni"),
+                obj.getString("domicilio"),
+                obj.getString("origen"));
+        this.telefono = obj.getString("telefono");
+        this.email = obj.getString("email");
+        this.solicitarReserva = obj.getBoolean("solicitarReserva");
     }
 }
 

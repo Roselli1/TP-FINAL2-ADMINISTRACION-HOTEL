@@ -2,10 +2,12 @@ package Modelo.Persona;
 
 import Enums.Rol;
 import Exceptions.UsuarioYaExisteException;
+import Interfaces.iToJSON;
+import org.json.JSONObject;
 
 import java.util.Objects;
 
-public abstract class UsuarioBase
+public abstract class UsuarioBase implements iToJSON
 {
     //Atributos
     protected String username;
@@ -55,5 +57,22 @@ public abstract class UsuarioBase
     @Override
     public int hashCode() {
         return Objects.hash(username, password);
+    }
+
+    @Override
+    public JSONObject toJSON() {
+        JSONObject json = new JSONObject();
+
+        json.put("username", username);
+        json.put("password", password);
+        json.put("rol", rol.toString());
+
+        return json;
+    }
+
+    public UsuarioBase(JSONObject obj) {
+        username = obj.getString("username");
+        password = obj.getString("password");
+        rol = Rol.valueOf(obj.getString("rol"));
     }
 }

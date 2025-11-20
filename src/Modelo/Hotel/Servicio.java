@@ -1,8 +1,11 @@
 package Modelo.Hotel;
 
+import Interfaces.iToJSON;
+import org.json.JSONObject;
+
 import java.time.LocalDate;
 
-public class Servicio {
+public class Servicio implements iToJSON {
     private String descripcion;
     private double precio;
     private LocalDate fecha;
@@ -23,5 +26,22 @@ public class Servicio {
 
     public LocalDate getFecha() {
         return fecha;
+    }
+
+    @Override
+    public JSONObject toJSON() {
+        JSONObject json = new JSONObject();
+
+        json.put("descripcion", descripcion);
+        json.put("precio", precio);
+        json.put("fecha", fecha);
+
+        return json;
+    }
+
+    public Servicio(JSONObject obj) {
+        this.descripcion = obj.getString("descripcion");
+        this.precio = obj.getDouble("precio");
+        this.fecha = (LocalDate) obj.get("fecha");
     }
 }

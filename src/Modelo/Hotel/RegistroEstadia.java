@@ -1,12 +1,14 @@
 package Modelo.Hotel;
 
+import Interfaces.iToJSON;
 import Modelo.Persona.Pasajero;
+import org.json.JSONObject;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RegistroEstadia {
+public class RegistroEstadia implements iToJSON {
     private Pasajero pasajero;
     private Habitacion habitacion;
     private LocalDate checkIn;
@@ -43,5 +45,26 @@ public class RegistroEstadia {
 
     public void setCheckOut(LocalDate checkOut) {
         this.checkOut = checkOut;
+    }
+
+    @Override
+    public JSONObject toJSON() {
+        JSONObject json = new JSONObject();
+
+        json.put("pasajero", pasajero);
+        json.put("habitacion", habitacion);
+        json.put("checkIn", checkIn);
+        json.put("checkOut", checkOut);
+        json.put("consumos", consumos);
+
+        return json;
+    }
+
+    public RegistroEstadia(JSONObject obj) {
+        pasajero = (Pasajero) obj.get("pasajero");
+        habitacion = (Habitacion) obj.get("habitacion");
+        checkIn = (LocalDate) obj.get("checkIn");
+        checkOut = (LocalDate) obj.get("checkOut");
+        consumos = (List<Servicio>) obj.get("consumos");
     }
 }
