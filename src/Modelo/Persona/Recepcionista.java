@@ -27,13 +27,13 @@ public class Recepcionista  extends UsuarioBase implements IGestionReserva
     }
 
     @Override
-    public boolean cancelarReserva(Reserva reserva, int nroHabitacion) {
+    public boolean cancelarReserva(Reserva reserva) {
         return reserva != null;
     }
 
 
     @Override
-    public boolean hacerCheckIn(Reserva reserva, int nroHabitacion)
+    public boolean hacerCheckIn(Reserva reserva)
     {
         //EL CHECK-IN valida la reserva, ocupa la habitacion, crea un registro de estadia y lo guarda en el registro de estadias del pasajero y del hotel
         try {
@@ -112,7 +112,7 @@ public class Recepcionista  extends UsuarioBase implements IGestionReserva
         } catch (Exception e)
         {
             System.out.println("Error inesperado en el check-out" + e.getMessage());
-
+            return false;
         }
 
 

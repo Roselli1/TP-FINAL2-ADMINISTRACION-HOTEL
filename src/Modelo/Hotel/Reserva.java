@@ -57,7 +57,7 @@ public class Reserva implements iToJSON
 
     @Override
     public String toString() {
-        return "Modelo.Hotel.Reserva{" +
+        return "Reserva{" +
                 "habitación=" + habitacion +
                 ", pasajero=" + pasajero +
                 ", fechaIngreso=" + fechaIngreso +
@@ -79,5 +79,14 @@ public class Reserva implements iToJSON
         json.put("estado", estado);
 
         return json;
+    }
+
+    public Reserva(JSONObject obj) {
+        this.nroReserva = obj.getInt("nroReserva");
+        this.habitacion = (Habitacion) obj.get("habitacion");
+        this.pasajero = (Pasajero) obj.get("pasajero");
+        this.fechaIngreso = (LocalDate) obj.get("fechaIngreso");
+        this.fechaEgreso = (LocalDate) obj.get("fechaEgreso");
+        this.estado = (boolean) obj.get("estado");
     }
 }

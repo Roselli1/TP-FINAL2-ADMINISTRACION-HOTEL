@@ -63,7 +63,7 @@ public class Administrador extends UsuarioBase
 
     @Override
     public String toString() {
-        return "Modelo.Persona.Administrador{" +
+        return "Administrador{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", rol=" + rol +

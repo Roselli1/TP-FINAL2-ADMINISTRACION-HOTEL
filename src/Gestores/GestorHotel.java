@@ -68,9 +68,9 @@ public class GestorHotel
         return reservas.add(reserva);
     }
 
-    public boolean cancelarReserva(Reserva reserva,int nroHabitacion) {
+    public boolean cancelarReserva(Reserva reserva) {
         for (Reserva res :  reservas) {
-            if (res.getHabitacion().getNumero() == nroHabitacion) {
+            if (res.getHabitacion() == reserva.getHabitacion()) {
                 return reservas.remove(res);
             }
         }
