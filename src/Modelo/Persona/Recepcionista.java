@@ -8,6 +8,7 @@ import Modelo.Hotel.Habitacion;
 import Gestores.GestorHotel;
 import Modelo.Hotel.RegistroEstadia;
 import Modelo.Hotel.Reserva;
+import org.json.JSONObject;
 
 import java.time.LocalDate;
 
@@ -18,6 +19,11 @@ public class Recepcionista  extends UsuarioBase implements IGestionReserva
     public Recepcionista(String username, String password, GestorHotel hotel)
     {
         super(username, password, Rol.RECEPCIONISTA);
+        this.hotel = hotel;
+    }
+
+    public Recepcionista(JSONObject obj, GestorHotel hotel) {
+        super(obj);
         this.hotel = hotel;
     }
 

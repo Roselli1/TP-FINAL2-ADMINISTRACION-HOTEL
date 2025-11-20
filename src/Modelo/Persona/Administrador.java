@@ -2,16 +2,18 @@ package Modelo.Persona;
 
 import Enums.Rol;
 import Exceptions.UsuarioYaExisteException;
+import org.json.JSONObject;
 
 public class Administrador extends UsuarioBase
 {
     //Constructor
-    public Administrador(String username, String password) {
-        super(username, password, Rol.ADMINISTRADOR);
+    public Administrador(String username, String password, Rol rol) {
+        super(username, password, rol);
     }
 
-
-
+    public Administrador(JSONObject obj) {
+        super(obj);
+    }
 
     /// ACA PODEMOS PONER 2 EXCEPTION Usuario y Contrasenia
     /// pero que si la contrasenia esta bn y el usuario mal diga q usuario/contrasenia incorrecta algo asi
