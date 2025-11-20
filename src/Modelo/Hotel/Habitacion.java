@@ -51,6 +51,9 @@ public class Habitacion implements iToJSON
         this.disponible = disponible;
     }
 
+    public void setEstadoHabitacion(EstadoHabitacion estadoHabitacion) {
+        this.estadoHabitacion = estadoHabitacion;
+    }
 
     @Override
     public String toString() {

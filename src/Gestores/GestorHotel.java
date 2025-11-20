@@ -1,8 +1,10 @@
 package Gestores;
 
 import Exceptions.HabitacionNoDisponibleException;
+import Exceptions.RegistroEstadiaException;
 import Exceptions.ReservaInvalidaException;
 import Modelo.Hotel.Habitacion;
+import Modelo.Hotel.RegistroEstadia;
 import Modelo.Hotel.Reserva;
 import Modelo.Persona.UsuarioBase;
 
@@ -16,11 +18,13 @@ public class GestorHotel
     private Map<Integer, Habitacion> habitaciones;
     private List<Reserva> reservas;
     private Map<String, UsuarioBase> usuarios;
+    private List<RegistroEstadia> registrosEstadias;
 
     public GestorHotel() {
         this.habitaciones = new HashMap<>();
         this.reservas = new ArrayList<>();
         this.usuarios = new HashMap<>();
+        this.registrosEstadias = new ArrayList<>();
     }
 
     public Map<Integer, Habitacion> getHabitaciones() {
@@ -33,6 +37,10 @@ public class GestorHotel
 
     public Map<String, UsuarioBase> getUsuarios() {
         return usuarios;
+    }
+
+    public List<RegistroEstadia> getRegistrosEstadias() {
+        return registrosEstadias;
     }
 
     /// METODOS
@@ -68,4 +76,16 @@ public class GestorHotel
         }
         return false;
     }
+
+    public void agregarRegistro(RegistroEstadia registroEstadia) throws RegistroEstadiaException
+    {
+        if (registroEstadia== null)
+        {
+            throw new RegistroEstadiaException("El registro de estadia no puede ser nulo");
+        }
+
+        registrosEstadias.add(registroEstadia);
+    }
+
+
 }

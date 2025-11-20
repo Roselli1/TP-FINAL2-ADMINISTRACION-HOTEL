@@ -1,12 +1,12 @@
 package Modelo.Persona;
 
+import Enums.EstadoHabitacion;
 import Enums.Rol;
-import Exceptions.HabitacionNoDisponibleException;
-import Exceptions.ReservaInvalidaException;
-import Exceptions.UsuarioYaExisteException;
+import Exceptions.*;
 import Interfaces.IGestionReserva;
 import Modelo.Hotel.Habitacion;
 import Gestores.GestorHotel;
+import Modelo.Hotel.RegistroEstadia;
 import Modelo.Hotel.Reserva;
 
 public class Recepcionista  extends UsuarioBase implements IGestionReserva
@@ -29,14 +29,42 @@ public class Recepcionista  extends UsuarioBase implements IGestionReserva
         return reserva != null;
     }
 
+
     @Override
-    public boolean hacerCheckIn(Reserva reserva, int nroHabitacion) {
-        try{
-            return hotel.realizarReserva(reserva,nroHabitacion);
-        } catch (HabitacionNoDisponibleException | ReservaInvalidaException e) {
-            System.out.println(e.getMessage());
+    public boolean hacerCheckIn(Reserva reserva, int nroHabitacion)
+    {
+        //EL CHECK-IN valida la reserva, ocupa la habitacion, crea un registro de estadia y lo guarda en el registro de estadias del pasajero y del hotel
+        try {
+
+
+            //obtiene la habitacion asociada a la reserva
+            Habitacion habitacion = reserva.getHabitacion();
+
+            //si la habitacion no esta disponible no se puede hacer check in
+            if (!habitacion.isDisponible()) {
+                throw new CheckInException("La habitacion no esta disponible para hacer check-in.");
+            }
+            //marcar la habitación como OCUPADA y no disponible
+            habitacion.setEstadoHabitacion(EstadoHabitacion.OCUPADA);
+            habitacion.setDisponible(false);
+
+            //crear un RegistroEstadia con la info de la reserva
+            RegistroEstadia registroEstadia = new RegistroEstadia(reserva.getPasajero(), reserva.getHabitacion(), reserva.getFechaIngreso(), reserva.getFechaEgreso());
+
+            //guarda el registro en el historial del pasjero
+            reserva.getPasajero().agregarHistoriaHotel(registroEstadia);
+            //Agregar registro en el gestorHotel
+            hotel.agregarRegistro(registroEstadia);
+
+            //si el checkin fue exitoso devuelve true
+            return true;
+        }
+        catch (CheckInException  |RegistroEstadiaException e)
+        {
+            System.out.println("Error en el check-in: "+ e.getMessage());
             return false;
         }
+
     }
 
     @Override
