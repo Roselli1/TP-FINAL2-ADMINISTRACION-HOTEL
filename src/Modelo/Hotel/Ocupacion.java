@@ -35,6 +35,6 @@ public class Ocupacion implements iToJSON {
     }
 
     public Ocupacion(JSONObject obj) {
-        this.reserva = (Reserva) obj.get("reserva");
+        this.reserva = new Reserva(obj.getJSONObject("reserva"));
     }
 }
