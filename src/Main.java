@@ -93,7 +93,13 @@ public class Main {
             System.err.println("Fallo el Check-Out de H101.");
         }
 
+        // Esto cargará las habitaciones y mostrará el estado después de la última carga.
+        System.out.println("\n--- PRUEBA DE CARGA ---");
+        gestoraHabitaciones.cargarHabitacion(ARCHIVO_HABITACIONES);
+        System.out.println("Habitaciones cargadas desde JSON. Total: " + gestoraHabitaciones.getElementos().size());
 
+        // La H101 debería aparecer con su estado final (DISPONIBLE) si el constructor JSON está corregido
+        System.out.println("H101 después de recargar: " + gestoraHabitaciones.getElementos().get(0));
 
     }
 }
