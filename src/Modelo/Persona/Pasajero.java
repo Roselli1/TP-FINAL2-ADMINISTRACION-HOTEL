@@ -1,12 +1,8 @@
 package Modelo.Persona;
 
-import Enums.EstadoHabitacion;
-import Exceptions.HabitacionNoDisponibleException;
-import Exceptions.ReservaInvalidaException;
 import Gestores.GestorHotel;
 import Interfaces.IGestionReserva;
 import Interfaces.iToJSON;
-import Modelo.Hotel.Habitacion;
 import Modelo.Hotel.RegistroEstadia;
 import Modelo.Hotel.Reserva;
 import org.json.JSONObject;
