@@ -42,6 +42,6 @@ public class Servicio implements iToJSON {
     public Servicio(JSONObject obj) {
         this.descripcion = obj.getString("descripcion");
         this.precio = obj.getDouble("precio");
-        this.fecha = (LocalDate) obj.get("fecha");
+        this.fecha = LocalDate.parse(obj.getString("fecha"));
     }
 }

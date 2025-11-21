@@ -93,9 +93,9 @@ public class Reserva implements iToJSON
         this.nroReserva = obj.getInt("nroReserva");
         this.habitacion = new Habitacion(obj.getJSONObject("habitacion"));
         this.pasajero = new Pasajero(obj.getJSONObject("pasajero"));
-        this.fechaIngreso = (LocalDate) obj.get("fechaIngreso");
-        this.fechaEgreso = (LocalDate) obj.get("fechaEgreso");
-        this.estado = (boolean) obj.get("estado");
-        this.precioPorDia = (long) obj.get("precioPorDia");
+        this.fechaIngreso = LocalDate.parse(obj.getString("fechaIngreso"));
+        this.fechaEgreso = LocalDate.parse(obj.getString("fechaEgreso"));
+        this.estado = obj.getBoolean("estado");
+        this.precioPorDia = obj.getLong("precioPorDia");
     }
 }

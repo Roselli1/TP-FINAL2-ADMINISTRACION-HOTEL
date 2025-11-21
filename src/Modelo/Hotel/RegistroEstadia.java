@@ -74,8 +74,8 @@ public class RegistroEstadia implements iToJSON {
     public RegistroEstadia(JSONObject obj) {
         pasajero = new Pasajero(obj.getJSONObject("pasajero"));
         habitacion = new Habitacion(obj.getJSONObject("habitacion"));
-        checkIn = (LocalDate) obj.get("checkIn");
-        checkOut = (LocalDate) obj.get("checkOut");
+        checkIn = LocalDate.parse(obj.getString("checkIn"));
+        checkOut = LocalDate.parse(obj.getString("checkOut"));
         consumos = (List<Servicio>) obj.get("consumos");
     }
 }
