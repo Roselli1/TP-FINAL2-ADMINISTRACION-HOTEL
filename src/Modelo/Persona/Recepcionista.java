@@ -2,6 +2,7 @@ package Modelo.Persona;
 
 import Enums.EstadoHabitacion;
 import Exceptions.*;
+import Interfaces.IGestionEstadia;
 import Interfaces.IGestionReserva;
 import Modelo.Hotel.Habitacion;
 import Gestores.GestorHotel;
@@ -11,7 +12,7 @@ import org.json.JSONObject;
 
 import java.time.LocalDate;
 
-public class Recepcionista  extends Persona implements IGestionReserva
+public class Recepcionista  extends Persona implements IGestionReserva, IGestionEstadia
 {
     private GestorHotel hotel;
 
@@ -27,12 +28,63 @@ public class Recepcionista  extends Persona implements IGestionReserva
 
     @Override
     public boolean crearReserva(Reserva reserva, int nroHabitacion) {
-        return reserva != null;
+        if (reserva == null || hotel == null) {
+            System.err.println("Error: El objeto Reserva o el GestorHotel son nulos.");
+            return false;
+        }
+        try {
+            boolean reservaExitosa = hotel.realizarReserva(reserva, nroHabitacion);
+
+            if (reservaExitosa) {
+                Habitacion habitacion = reserva.getHabitacion();
+                habitacion.setEstadoHabitacion(EstadoHabitacion.RESERVADA);
+
+                System.out.println("Reserva creada con éxito para la habitación " + nroHabitacion + ".");
+            }
+
+            return reservaExitosa;
+
+        } catch (HabitacionNoDisponibleException | ReservaInvalidaException e) {
+            System.err.println("Error al crear la reserva: " + e.getMessage());
+            return false;
+        }
     }
 
     @Override
     public boolean cancelarReserva(Reserva reserva) {
-        return reserva != null;
+        if (reserva == null || hotel == null) {
+            System.err.println("Error: La reserva o el GestorHotel son nulos.");
+            return false;
+        }
+
+        Habitacion habitacion = reserva.getHabitacion();
+
+        try {
+            reserva.cancelarReserva();
+
+            if (hotel.getReservas().remove(reserva)) {
+                System.out.println("Reserva Nro " + reserva.getNroReserva() + " eliminada del sistema.");
+
+                if (habitacion.getEstadoHabitacion() == EstadoHabitacion.RESERVADA) {
+                    habitacion.setEstadoHabitacion(EstadoHabitacion.DISPONIBLE);
+                    habitacion.setDisponible(true);
+                    System.out.println("Estado de Habitación " + habitacion.getNumero() + " actualizado a DISPONIBLE.");
+                } else {
+                    System.out.println("Advertencia: La habitación " + habitacion.getNumero() +
+                            " no estaba en estado RESERVADA. No se modificó el estado de la habitación (actual: " +
+                            habitacion.getEstadoHabitacion().getEstado() + ").");
+                }
+
+                return true;
+            } else {
+                System.err.println("Error: La reserva no se encontró en la lista activa del hotel o ya fue cancelada.");
+                return false;
+            }
+
+        } catch (Exception e) {
+            System.err.println("Error inesperado al cancelar reserva: " + e.getMessage());
+            return false;
+        }
     }
 
 

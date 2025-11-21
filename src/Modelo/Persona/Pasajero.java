@@ -1,7 +1,12 @@
 package Modelo.Persona;
 
+import Enums.EstadoHabitacion;
+import Exceptions.HabitacionNoDisponibleException;
+import Exceptions.ReservaInvalidaException;
+import Gestores.GestorHotel;
 import Interfaces.IGestionReserva;
 import Interfaces.iToJSON;
+import Modelo.Hotel.Habitacion;
 import Modelo.Hotel.RegistroEstadia;
 import Modelo.Hotel.Reserva;
 import org.json.JSONObject;
@@ -16,15 +21,16 @@ public class Pasajero extends Persona implements iToJSON, IGestionReserva
     private String telefono;
     private String email;
     private boolean solicitarReserva; //indica si el pasajero pide cancelar reserva
-
+    private GestorHotel hotel;
 
     //Constructor
-    public Pasajero(String nombre, String apellido, String dni, String domicilio, String origen, String telefono, String email, boolean solicitarReserva) {
+    public Pasajero(String nombre, String apellido, String dni, String domicilio, String origen, String telefono, String email, boolean solicitarReserva, GestorHotel hotel) {
         super(nombre, apellido, dni, domicilio, origen);
         this.telefono = telefono;
         this.email = email;
         this.solicitarReserva = solicitarReserva;
         this.historiaHotel = new ArrayList<>();
+        this.hotel = hotel;
     }
 
     //Getters
@@ -48,13 +54,6 @@ public class Pasajero extends Persona implements iToJSON, IGestionReserva
 
     public void agregarHistoriaHotel(RegistroEstadia estadia){
         this.historiaHotel.add(estadia);
-    }
-
-    public boolean solicitarCancelacionReserva(){
-        if (!solicitarReserva){
-            return true;
-        }
-        return false;
     }
 
     @Override
@@ -84,24 +83,17 @@ public class Pasajero extends Persona implements iToJSON, IGestionReserva
         this.solicitarReserva = obj.getBoolean("solicitarReserva");
     }
 
-    /// FALTAN DESARROLLAR METODOS
+    /// FALTA DESARROLLAR METODOS
+
+    //Solicita una reserva
     @Override
     public boolean crearReserva(Reserva reserva, int nroHabitacion) {
         return false;
     }
 
+    //Solicita cancelar una reserva
     @Override
     public boolean cancelarReserva(Reserva reserva) {
-        return false;
-    }
-
-    @Override
-    public boolean hacerCheckIn(Reserva reserva) {
-        return false;
-    }
-
-    @Override
-    public boolean hacerCheckOut(Reserva reserva, int nroHabitacion) {
         return false;
     }
 }

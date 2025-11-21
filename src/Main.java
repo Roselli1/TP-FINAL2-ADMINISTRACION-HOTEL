@@ -36,7 +36,7 @@ public class Main {
         System.out.println("Habitaciones creadas y agregadas.");
 
         // Pasajero
-        Pasajero pasajero1 = new Pasajero("Juan", "Perez", "12345678", "Calle Falsa 123", "Argentina", "1122334455", "juan@mail.com", false);
+        Pasajero pasajero1 = new Pasajero("Juan", "Perez", "12345678", "Calle Falsa 123", "Argentina", "1122334455", "juan@mail.com", false, hotel);
 
         // Recepcionista (Necesita el GestorHotel)
         Recepcionista recepcionista = new Recepcionista("Ana", "Gomez", "98765432", "Domicilio Rec", "Chile", hotel);

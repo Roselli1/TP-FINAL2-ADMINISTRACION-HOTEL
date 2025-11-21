@@ -55,6 +55,10 @@ public class Reserva implements iToJSON
         return precioPorDia;
     }
 
+    public int getNroReserva() {
+        return nroReserva;
+    }
+
     //Metodos
     public void cancelarReserva()
     {
