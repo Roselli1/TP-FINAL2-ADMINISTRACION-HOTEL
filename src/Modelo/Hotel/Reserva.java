@@ -15,6 +15,7 @@ public class Reserva implements iToJSON
     private LocalDate fechaIngreso;
     private LocalDate fechaEgreso;
     private boolean estado;
+    private long precioPorDia;
 
     public Reserva(Habitacion habitacion, Pasajero pasajero, LocalDate fechaIngreso, LocalDate fechaEgreso, boolean estado) {
         this.habitacion = habitacion;
@@ -23,6 +24,7 @@ public class Reserva implements iToJSON
         this.fechaEgreso = fechaEgreso;
         this.estado = estado;
         this.nroReserva = contador++;
+        this.precioPorDia = 5000;
     }
     //Getters
     public Habitacion getHabitacion() {
@@ -49,6 +51,10 @@ public class Reserva implements iToJSON
         return estado;
     }
 
+    public long getPrecioPorDia() {
+        return precioPorDia;
+    }
+
     //Metodos
     public void cancelarReserva()
     {
@@ -64,6 +70,7 @@ public class Reserva implements iToJSON
                 ", fechaEgreso=" + fechaEgreso +
                 ", nroReserva=" + nroReserva +
                 ", estado=" + estado +
+                ", precioPorDia=" + precioPorDia +
                 '}';
     }
 
@@ -77,6 +84,7 @@ public class Reserva implements iToJSON
         json.put("fechaIngreso", fechaIngreso);
         json.put("fechaEgreso", fechaEgreso);
         json.put("estado", estado);
+        json.put("precioPorDia", precioPorDia);
 
         return json;
     }
@@ -88,5 +96,6 @@ public class Reserva implements iToJSON
         this.fechaIngreso = (LocalDate) obj.get("fechaIngreso");
         this.fechaEgreso = (LocalDate) obj.get("fechaEgreso");
         this.estado = (boolean) obj.get("estado");
+        this.precioPorDia = (long) obj.get("precioPorDia");
     }
 }

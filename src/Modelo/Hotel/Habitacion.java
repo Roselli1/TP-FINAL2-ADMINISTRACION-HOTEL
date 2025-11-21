@@ -57,7 +57,7 @@ public class Habitacion implements iToJSON
 
     @Override
     public String toString() {
-        return "Modelo.Hotel.Habitacion{" +
+        return "Habitacion{" +
                 "numero=" + numero +
                 ", tipoHabitacion=" + tipoHabitacion.getTipoHabitacion() +
                 ", precioPorNoche=" + precioPorNoche +

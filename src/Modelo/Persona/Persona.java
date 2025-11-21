@@ -1,8 +1,11 @@
 package Modelo.Persona;
 
+import Interfaces.iToJSON;
+import org.json.JSONObject;
+
 import java.util.Objects;
 
-public abstract class Persona
+public abstract class Persona implements iToJSON
 {
     //Atributos
     //Son datos que nunca cambian
@@ -46,7 +49,7 @@ public abstract class Persona
     @Override
     public String toString()
     {
-        return "Modelo.Persona.Persona{" +
+        return "Persona{" +
                 "nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 ", dni='" + dni + '\'' +
@@ -64,5 +67,26 @@ public abstract class Persona
     @Override
     public int hashCode() {
         return Objects.hashCode(dni);
+    }
+
+    @Override
+    public JSONObject toJSON() {
+        JSONObject json = new JSONObject();
+
+        json.put("dni", dni);
+        json.put("nombre", nombre);
+        json.put("apellido", apellido);
+        json.put("domicilio", domicilio);
+        json.put("origen", origen);
+
+        return json;
+    }
+
+    public Persona(JSONObject obj) {
+        this.dni = obj.getString("dni");
+        this.nombre = obj.getString("nombre");
+        this.apellido = obj.getString("apellido");
+        this.domicilio = obj.getString("domicilio");
+        this.origen = obj.getString("origen");
     }
 }

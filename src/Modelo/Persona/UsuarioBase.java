@@ -7,7 +7,7 @@ import org.json.JSONObject;
 
 import java.util.Objects;
 
-public abstract class UsuarioBase implements iToJSON
+public class UsuarioBase implements iToJSON
 {
     //Atributos
     protected String username;
@@ -35,13 +35,17 @@ public abstract class UsuarioBase implements iToJSON
     }
 
 
-    //Metodo Abstracto
-    public abstract boolean autenticar(String username, String password)throws UsuarioYaExisteException;
+    public boolean autenticar(String username, String password)throws UsuarioYaExisteException {
+        if (username.equals(this.username) && password.equals(this.password)) {
+            throw new UsuarioYaExisteException("Este usuario ya existe.");
+        }
+        return true;
+    }
 
 
     @Override
     public String toString() {
-        return "Modelo.Persona.UsuarioBase{" +
+        return "UsuarioBase{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", rol=" + rol +
@@ -65,7 +69,7 @@ public abstract class UsuarioBase implements iToJSON
 
         json.put("username", username);
         json.put("password", password);
-        json.put("rol", rol.toString());
+        json.put("rol", rol.getRol());
 
         return json;
     }

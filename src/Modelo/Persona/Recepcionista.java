@@ -1,7 +1,6 @@
 package Modelo.Persona;
 
 import Enums.EstadoHabitacion;
-import Enums.Rol;
 import Exceptions.*;
 import Interfaces.IGestionReserva;
 import Modelo.Hotel.Habitacion;
@@ -12,13 +11,12 @@ import org.json.JSONObject;
 
 import java.time.LocalDate;
 
-public class Recepcionista  extends UsuarioBase implements IGestionReserva
+public class Recepcionista  extends Persona implements IGestionReserva
 {
     private GestorHotel hotel;
 
-    public Recepcionista(String username, String password, GestorHotel hotel)
-    {
-        super(username, password, Rol.RECEPCIONISTA);
+    public Recepcionista(String nombre, String apellido, String dni, String domicilio, String origen, GestorHotel hotel) {
+        super(nombre, apellido, dni, domicilio, origen);
         this.hotel = hotel;
     }
 
@@ -122,14 +120,5 @@ public class Recepcionista  extends UsuarioBase implements IGestionReserva
         }
 
 
-    }
-
-
-    @Override
-    public boolean autenticar(String username, String password)throws UsuarioYaExisteException {
-        if (username.equals(this.username) && password.equals(this.password)) {
-            throw new UsuarioYaExisteException("Este usuario ya existe.");
-        }
-        return true;
     }
 }

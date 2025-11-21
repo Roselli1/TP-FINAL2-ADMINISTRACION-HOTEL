@@ -1,14 +1,14 @@
 package Modelo.Persona;
 
-import Enums.Rol;
 import Exceptions.UsuarioYaExisteException;
 import org.json.JSONObject;
 
-public class Administrador extends UsuarioBase
+public class Administrador extends Persona
 {
+
     //Constructor
-    public Administrador(String username, String password, Rol rol) {
-        super(username, password, rol);
+    public Administrador(String nombre, String apellido, String dni, String domicilio, String origen) {
+        super(nombre, apellido, dni, domicilio, origen);
     }
 
     public Administrador(JSONObject obj) {
@@ -19,23 +19,11 @@ public class Administrador extends UsuarioBase
     /// pero que si la contrasenia esta bn y el usuario mal diga q usuario/contrasenia incorrecta algo asi
 
 
-    //Implementacion del metodo abstracto
-    @Override
-    public boolean autenticar(String username, String password)throws UsuarioYaExisteException {
-        if (username.equals(this.username) && password.equals(this.password)) {
-            throw new UsuarioYaExisteException("Este usuario ya existe.");
-        }
-        return true;
-    }
-
-
-
 
     //Metodos
     public void realizarBackup()
     {
-        ///Implementar logica parte JSON
-        ///guardar en archivo JSON
+        JSONObject json = super.toJSON();
     }
 
    /* public boolean crearUsuario(UsuarioBase usuario) throws UsuarioYaExisteException
@@ -61,14 +49,4 @@ public class Administrador extends UsuarioBase
 
 
 
-
-
-    @Override
-    public String toString() {
-        return "Administrador{" +
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", rol=" + rol +
-                '}';
-    }
 }

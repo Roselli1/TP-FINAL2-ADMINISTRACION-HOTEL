@@ -3,6 +3,8 @@ package Modelo.Hotel;
 import Interfaces.iToJSON;
 import org.json.JSONObject;
 
+import java.time.temporal.ChronoUnit;
+
 public class Ocupacion implements iToJSON {
     private Reserva reserva;
 
@@ -14,12 +16,13 @@ public class Ocupacion implements iToJSON {
         return reserva;
     }
 
-    public void calcularCosto(){
-
+    public long calcularCosto(){
+        long cantDias = calcularDias();
+        return reserva.getPrecioPorDia() * cantDias;
     }
 
-    public void calcularDias(){
-
+    public long calcularDias(){
+        return ChronoUnit.DAYS.between(reserva.getFechaIngreso(),reserva.getFechaEgreso());
     }
 
     @Override
