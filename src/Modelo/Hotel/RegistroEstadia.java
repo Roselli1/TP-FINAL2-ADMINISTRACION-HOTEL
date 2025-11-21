@@ -48,6 +48,17 @@ public class RegistroEstadia implements iToJSON {
     }
 
     @Override
+    public String toString() {
+        return "RegistroEstadia{" +
+                "pasajero=" + pasajero +
+                ", habitacion=" + habitacion +
+                ", checkIn=" + checkIn +
+                ", checkOut=" + checkOut +
+                ", consumos=" + consumos +
+                '}';
+    }
+
+    @Override
     public JSONObject toJSON() {
         JSONObject json = new JSONObject();
 
