@@ -3,17 +3,21 @@ package Gestores;
 import Exceptions.HabitacionNoDisponibleException;
 import Exceptions.RegistroEstadiaException;
 import Exceptions.ReservaInvalidaException;
+import Exceptions.UsuarioYaExisteException;
+import Interfaces.iToJSON;
 import Modelo.Hotel.Habitacion;
 import Modelo.Hotel.RegistroEstadia;
 import Modelo.Hotel.Reserva;
 import Modelo.Persona.UsuarioBase;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class GestorHotel
+public class GestorHotel implements iToJSON
 {
     private Map<Integer, Habitacion> habitaciones;
     private List<Reserva> reservas;
@@ -41,6 +45,37 @@ public class GestorHotel
 
     public List<RegistroEstadia> getRegistrosEstadias() {
         return registrosEstadias;
+    }
+
+    @Override
+    public JSONObject toJSON() {
+        JSONObject json = new JSONObject();
+
+        JSONArray habArray = new JSONArray();
+        for (Habitacion h : habitaciones.values()) {
+            habArray.put(h.toJSON());
+        }
+        json.put("habitaciones", habArray);
+
+        JSONArray resArray = new JSONArray();
+        for (Reserva r : reservas) {
+            resArray.put(r.toJSON());
+        }
+        json.put("reservas", resArray);
+
+        JSONArray regArray = new JSONArray();
+        for (RegistroEstadia reg : registrosEstadias) {
+            regArray.put(reg.toJSON());
+        }
+        json.put("registrosEstadias", regArray);
+
+        JSONArray userArray = new JSONArray();
+        for (UsuarioBase u : usuarios.values()) {
+            userArray.put(u.toJSON());
+        }
+        json.put("usuarios", userArray);
+
+        return json;
     }
 
     /// METODOS
@@ -99,5 +134,16 @@ public class GestorHotel
 
     }
 
+    public boolean agregarUsuario(UsuarioBase usuario) throws UsuarioYaExisteException {
+        if (usuario == null) {
+            throw new IllegalArgumentException("El usuario no puede ser nulo.");
+        }
 
+        if (usuarios.containsKey(usuario.getUsername())) {
+            throw new UsuarioYaExisteException("El usuario con el nombre de usuario '" + usuario.getUsername() + "' ya existe en el sistema.");
+        }
+
+        usuarios.put(usuario.getUsername(), usuario);
+        return true;
+    }
 }
