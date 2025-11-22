@@ -4,10 +4,11 @@ import Enums.Rol;
 import Exceptions.UsuarioYaExisteException;
 import Gestores.GestorHotel;
 import Gestores.JsonUtiles;
+import Interfaces.iToJSON;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class Administrador extends Persona
+public class Administrador extends Persona implements iToJSON
 {
     private GestorHotel hotel;
     private UsuarioBase credenciales;
@@ -16,12 +17,22 @@ public class Administrador extends Persona
     public Administrador(String nombre, String apellido, String dni, String domicilio, String origen, GestorHotel hotel, String username, String password) {
         super(nombre, apellido, dni, domicilio, origen);
         this.hotel = hotel;
-        this.credenciales = new UsuarioBase(username, password, Rol.RECEPCIONISTA);
+        this.credenciales = new UsuarioBase(username, password, Rol.ADMINISTRADOR);
     }
 
     public Administrador(JSONObject obj,GestorHotel hotel) {
         super(obj);
         this.hotel = hotel;
+        this.credenciales = new UsuarioBase(obj.getJSONObject("usuario"));
+    }
+
+    @Override
+    public JSONObject toJSON() {
+        //la clase padre se encarga de mostrar sus propios atributos
+        JSONObject json = super.toJSON();
+        json.put("usuario", credenciales.toJSON());
+
+        return json;
     }
 
     /// ACA PODEMOS PONER 2 EXCEPTION Usuario y Contrasenia

@@ -5,6 +5,7 @@ import Enums.Rol;
 import Exceptions.*;
 import Interfaces.IGestionEstadia;
 import Interfaces.IGestionReserva;
+import Interfaces.iToJSON;
 import Modelo.Hotel.Habitacion;
 import Gestores.GestorHotel;
 import Modelo.Hotel.RegistroEstadia;
@@ -13,7 +14,7 @@ import org.json.JSONObject;
 
 import java.time.LocalDate;
 
-public class Recepcionista  extends Persona implements IGestionReserva, IGestionEstadia
+public class Recepcionista  extends Persona implements IGestionReserva, IGestionEstadia, iToJSON
 {
     private GestorHotel hotel;
     private UsuarioBase credenciales;
@@ -27,6 +28,16 @@ public class Recepcionista  extends Persona implements IGestionReserva, IGestion
     public Recepcionista(JSONObject obj, GestorHotel hotel) {
         super(obj);
         this.hotel = hotel;
+
+        this.credenciales = new UsuarioBase(obj.getJSONObject("usuario"));
+    }
+
+
+    @Override
+    public JSONObject toJSON() {
+        JSONObject json = super.toJSON();
+        json.put("usuario", credenciales.toJSON());
+        return json;
     }
 
     @Override

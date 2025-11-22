@@ -35,11 +35,12 @@ public class UsuarioBase implements iToJSON
     }
 
 
-    public boolean autenticar(String username, String password)throws UsuarioYaExisteException {
+    public boolean autenticar(String username, String password)
+    {
         if (username.equals(this.username) && password.equals(this.password)) {
-            throw new UsuarioYaExisteException("Este usuario ya existe.");
+            return true;
         }
-        return true;
+        return false;
     }
 
 
