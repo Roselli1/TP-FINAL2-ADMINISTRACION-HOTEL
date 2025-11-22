@@ -1,4 +1,6 @@
+import Enums.EstadoHabitacion;
 import Enums.Rol;
+import Enums.TipoHabitacion;
 import Exceptions.DatosIncorrectosException;
 import Exceptions.UsuarioYaExisteException;
 import Gestores.GestorHotel;
@@ -596,7 +598,37 @@ public class Main
         }
     }
 
-    //
+    // --- Iniciar Datos ---
+    private static void inicializarDatos(GestorHotel hotel)
+    {
+        try
+        {
+            // HABITACIONES (30 habitaciones)
+            //Piso 1: Simples
+            for (int i=101; i<=110;i++)
+            {
+                hotel.getHabitaciones().put(i, new Habitacion(i, TipoHabitacion.SIMPLE, 5000, EstadoHabitacion.DISPONIBLE));
+            }
+
+            //Piso 2: Doble
+            for (int i=201; i<=210; i++)
+            {
+                hotel.getHabitaciones().put(i, new Habitacion(i, TipoHabitacion.DOBLE, 9000, EstadoHabitacion.DISPONIBLE));
+            }
+
+            //Piso 3: Suite
+            for (int i=301; i<=310; i++)
+            {
+                hotel.getHabitaciones().put(i, new Habitacion(i, TipoHabitacion.SUITE, 15000, EstadoHabitacion.DISPONIBLE));
+            }
+        } catch (Exception e)
+        {
+            System.out.println("Error al inicializar los datos: " + e.getMessage());
+        }
+
+        /// FALTA CREAR 10 ADMIN, 10 RECEPCIONISTAS Y 10 PASAJEROS
+        /// como minimo si son mas mejor
+    }
 
 
 
