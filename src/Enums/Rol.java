@@ -3,7 +3,8 @@ package Enums;
 public enum Rol
 {
     ADMINISTRADOR("Administrador"),
-    RECEPCIONISTA("Recepcionista"),;
+    RECEPCIONISTA("Recepcionista"),
+    PASAJERO("Pasajero");
 
     private String rol;
 

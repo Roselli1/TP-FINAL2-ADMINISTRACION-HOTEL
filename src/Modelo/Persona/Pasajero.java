@@ -1,6 +1,7 @@
 package Modelo.Persona;
 
 import Enums.EstadoHabitacion;
+import Enums.Rol;
 import Exceptions.CheckInException;
 import Exceptions.CheckOutException;
 import Exceptions.RegistroEstadiaException;
@@ -25,15 +26,17 @@ public class Pasajero extends Persona implements iToJSON, IGestionReserva, IGest
     private String email;
     private boolean solicitarReserva; //indica si el pasajero pide cancelar reserva
     private GestorHotel hotel;
+    private UsuarioBase credenciales;
 
     //Constructor
-    public Pasajero(String nombre, String apellido, String dni, String domicilio, String origen, String telefono, String email, boolean solicitarReserva, GestorHotel hotel) {
+    public Pasajero(String nombre, String apellido, String dni, String domicilio, String origen, String telefono, String email, boolean solicitarReserva, GestorHotel hotel, String username, String password){
         super(nombre, apellido, dni, domicilio, origen);
         this.telefono = telefono;
         this.email = email;
         this.solicitarReserva = solicitarReserva;
         this.historiaHotel = new ArrayList<>();
         this.hotel = hotel;
+        this.credenciales= new UsuarioBase(username, password, Rol.PASAJERO);
     }
 
     //Getters
@@ -61,29 +64,34 @@ public class Pasajero extends Persona implements iToJSON, IGestionReserva, IGest
 
     @Override
     public JSONObject toJSON() {
-        JSONObject json = new JSONObject();
+        JSONObject json = super.toJSON();
 
-        json.put("nombre", getNombre());
-        json.put("apellido", getApellido());
-        json.put("dni", getDni());
-        json.put("domicilio", getDomicilio());
-        json.put("origen", getOrigen());
-        json.put("telefono", getTelefono());
-        json.put("email", getEmail());
+        json.put("usuario", this.credenciales.toJSON());
+        json.put("telefono", telefono);
+        json.put("email", email);
         json.put("solicitarReserva", solicitarReserva);
-
+        json.put("historiaHotel", historiaHotel);
         return json;
     }
 
     public Pasajero(JSONObject obj) {
-        super(obj.getString("nombre"),
-                obj.getString("apellido"),
-                obj.getString("dni"),
-                obj.getString("domicilio"),
-                obj.getString("origen"));
+        super(obj);
         this.telefono = obj.getString("telefono");
         this.email = obj.getString("email");
         this.solicitarReserva = obj.getBoolean("solicitarReserva");
+        this. historiaHotel= new ArrayList<>();
+        this.credenciales= new UsuarioBase(obj.getJSONObject("usuario"));
+    }
+
+    //Metodos usuario
+    public boolean autenticar(String username, String password)
+    {
+        return this.credenciales.autenticar(username, password);
+    }
+
+    public String getUsername()
+    {
+        return this.credenciales.getUsername();
     }
 
     /// FALTA DESARROLLAR METODOS

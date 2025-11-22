@@ -108,6 +108,13 @@ public class Main
         }
     }
 
+    // --- Menu Pasajero --- (Solo puede ver, nada mas)
+    private static void menuPasajero(GestorHotel hotel)
+    {
+        System.out.println("\n--- MENU PASAJERO ---");
+
+    }
+
     // --- Menu Administrador ---
     private static void menuAdministrador(Scanner scanner, GestorHotel hotel, UsuarioBase administrador) {
         int opcion=-1;
