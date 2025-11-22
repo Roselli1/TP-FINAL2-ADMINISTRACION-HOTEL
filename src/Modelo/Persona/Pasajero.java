@@ -190,5 +190,8 @@ public class Pasajero extends Persona implements iToJSON, IGestionReserva, IGest
             return false;
         }
     }
+
+    public UsuarioBase getCredenciales() {
+    return this.credenciales;}
 }
 

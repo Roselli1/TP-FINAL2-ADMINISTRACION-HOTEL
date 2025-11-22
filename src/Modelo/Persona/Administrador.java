@@ -49,14 +49,9 @@ public class Administrador extends Persona implements iToJSON
                 return false;
             }
 
-            JSONObject backupData = hotel.toJSON();
+            hotel.guardarTodosLosDatos();
 
-            JSONArray arrayFinal = new JSONArray();
-            arrayFinal.put(backupData);
-
-            JsonUtiles.grabarUnJson(arrayFinal, nombreArchivo + ".json");
-
-            System.out.println("Backup del sistema realizado con éxito en: " + nombreArchivo + ".json");
+            System.out.println("Backup realizado correctamente.");
             return true;
 
         } catch (Exception e) {

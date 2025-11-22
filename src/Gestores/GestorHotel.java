@@ -220,11 +220,22 @@ public class GestorHotel
         }
 
         if (usuarios.containsKey(usuario.getUsername())) {
-            throw new UsuarioYaExisteException("El usuario con el nombre de usuario '" + usuario.getUsername() + "' ya existe en el sistema.");
+            throw new UsuarioYaExisteException("El nombre de usuario '" + usuario.getUsername() + "' ya esta en uso.");
         }
 
         usuarios.put(usuario.getUsername(), usuario);
         return true;
+    }
+
+    public void registrarPasajero(Pasajero pasajero) throws UsuarioYaExisteException {
+        if (pasajero == null) return;
+
+        if (usuarios.containsKey(pasajero.getUsername())) {
+            throw new UsuarioYaExisteException("El nombre de usuario '" + pasajero.getUsername() + "' ya está en uso.");
+        }
+
+        this.pasajeros.add(pasajero);
+        this.usuarios.put(pasajero.getUsername(), pasajero.getCredenciales());
     }
 
     public void listarHabitaciones() {
