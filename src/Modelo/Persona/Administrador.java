@@ -1,5 +1,6 @@
 package Modelo.Persona;
 
+import Enums.Rol;
 import Exceptions.UsuarioYaExisteException;
 import Gestores.GestorHotel;
 import Gestores.JsonUtiles;
@@ -9,11 +10,13 @@ import org.json.JSONObject;
 public class Administrador extends Persona
 {
     private GestorHotel hotel;
+    private UsuarioBase credenciales;
 
     //Constructor
-    public Administrador(String nombre, String apellido, String dni, String domicilio, String origen,GestorHotel hotel) {
+    public Administrador(String nombre, String apellido, String dni, String domicilio, String origen, GestorHotel hotel, String username, String password) {
         super(nombre, apellido, dni, domicilio, origen);
         this.hotel = hotel;
+        this.credenciales = new UsuarioBase(username, password, Rol.RECEPCIONISTA);
     }
 
     public Administrador(JSONObject obj,GestorHotel hotel) {
@@ -71,6 +74,10 @@ public class Administrador extends Persona
 
     }
 
+
+    public boolean autenticar(String username, String password) throws UsuarioYaExisteException {
+        return this.credenciales.autenticar(username, password);
+    }
 
 
 }
