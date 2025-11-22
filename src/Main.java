@@ -199,15 +199,12 @@ public class Main
             // Busca al pasajero que quiere realizar la reserva
             System.out.println("Ingrese el username del pasajero para la reserva: ");
             String usernamePasajero = scanner.nextLine();
-            UsuarioBase usuario = hotel.getUsuarios().get(usernamePasajero);
+            Pasajero pasajero= hotel.buscarPasajeroPorUsername(usernamePasajero);
 
-            if (usuario == null || !(usuario.getRol() == Rol.PASAJERO)) {
-                System.out.println("Error: Pasajero con username '" + usernamePasajero + "' no encontrado o no es un pasajero.");
-                System.out.println("Por favor, regístrelo en el Menú Principal si es necesario.");
+            if (pasajero == null){
+                System.out.println("Error pasajero no encontrado.");
                 return;
             }
-            iToJSON p = usuario;
-            Pasajero pasajero = (Pasajero) p;
 
             // Fechas de ingreso y egreso
             System.out.println("Ingrese la fecha de ingreso (YYYY-MM-DD): ");
@@ -327,7 +324,26 @@ public class Main
 
     // --- Check-Out Interactivo ---
     /// FALTA EL CODIGO
-    private static void checkOutInteractivo(Scanner scanner, GestorHotel hotel, Recepcionista recepcionista){}
+    private static void checkOutInteractivo(Scanner scanner, GestorHotel hotel, Recepcionista recepcionista){
+        try
+        {
+            System.out.println("\n--- REALIZAR CHECK-OUT ---");
+            System.out.println("Ingrese el número de habitación a liberar: ");
+            int nroHabitacion = Integer.parseInt(scanner.nextLine());
+
+            boolean checkOutExitoso= recepcionista.hacerCheckOut(null, nroHabitacion);
+
+            if (checkOutExitoso)
+            {
+                System.out.println("Check-Out exitoso.");
+            }
+        } catch (NumberFormatException e)
+        {
+            System.out.println("Ingrese un número válido.");
+        } catch (Exception e) {
+            System.out.println("Error en Check-Out: " + e.getMessage());
+        }
+    }
 
     // ---Crear Usuario Staff ---
     /// FALTA PROBARLO
@@ -394,6 +410,7 @@ public class Main
 
 
 
+
     /// FALTA TODA LA PARTE DE MENUPASAJERO
 
 
@@ -443,13 +460,6 @@ public class Main
                     case 2:
                     {
                         crearNuevoUsuarioStaff(scanner,hotel);
-                        /*System.out.println("Ingrese el nombre del usuario: ");
-                        String nombreUsuario= scanner.nextLine();
-                        System.out.println("Ingrese el rol del usuario: ");
-                        String rolUsuario= scanner.nextLine();
-                        System.out.println("Ingrese el password del usuario: ");
-                        String passwordUsuario= scanner.nextLine();*/
-
                         break;
                     }
                     case 3:
@@ -531,7 +541,7 @@ public class Main
                     }
                     case 6:
                     {
-                        //checkOutInteractivo(scanner,hotel,recepcionista);
+                        checkOutInteractivo(scanner,hotel,recepcionista);
                         break;
                     }
                     case 0:

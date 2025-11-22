@@ -254,5 +254,14 @@ public class GestorHotel
         }
     }
 
+    public Pasajero buscarPasajeroPorUsername(String username) {
+        // Recorremos la lista interna de pasajeros
+        for (Pasajero p : pasajeros) {
+            if (p.getUsername().equals(username)) {
+                return p;
+            }
+        }
+        return null; // Si no lo encuentra
+    }
 
 }
