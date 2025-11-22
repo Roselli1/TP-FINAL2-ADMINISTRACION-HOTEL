@@ -24,6 +24,12 @@ public class Main
         Scanner scanner= new Scanner(System.in);
         int opcion= -1;
 
+        //Si es la primera vez
+        if (hotel.getUsuarios().isEmpty())
+        {
+            hotel.guardarTodosLosDatos();
+        }
+
 
         System.out.println("--- BIENVENIDO AL SISTEMA DE GESTION HOTELERA ---");
         do
@@ -393,19 +399,9 @@ public class Main
             }
 
             // Crea la instancia apropiada
-            iToJSON nuevoStaff = null;
-            if (rol == Rol.ADMINISTRADOR) {
-                nuevoStaff = new Administrador(nombre, apellido, dni, direccion, origen, hotel, username, password);
-            } else if (rol == Rol.RECEPCIONISTA) {
-                nuevoStaff = new Recepcionista(nombre, apellido, dni, direccion, origen, hotel, username, password);
-            }
-
-            // Se agrega al hotel
-            if (nuevoStaff != null) {
-                UsuarioBase nuevo = (UsuarioBase) nuevoStaff;
-                hotel.agregarUsuario(nuevo);
-                System.out.println("Usuario staff '" + username + "' con rol " + rol.getRol() + " creado con éxito.");
-            }
+            UsuarioBase creedenciales= new UsuarioBase(username, password, rol);
+            hotel.agregarStaff(creedenciales, nombre, apellido, dni, direccion, origen);
+            System.out.println("Usuario staff creado y guardado con exito.");
 
         } catch (UsuarioYaExisteException e) {
             System.out.println("Error: " + e.getMessage());
@@ -600,8 +596,7 @@ public class Main
         }
     }
 
-
-    /// FALTA TODA LA PARTE DE MENUPASAJERO
+    //
 
 
 
