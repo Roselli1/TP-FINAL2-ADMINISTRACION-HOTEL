@@ -1,4 +1,5 @@
 import Enums.Rol;
+import Exceptions.DatosIncorrectosException;
 import Gestores.GestorHotel;
 import Modelo.Persona.UsuarioBase;
 
@@ -11,47 +12,100 @@ public class Main
         //Iniciar el gestor de hotel (carga automatica de datos)
         GestorHotel hotel= new GestorHotel();
         Scanner scanner= new Scanner(System.in);
-        int opcion;
+        int opcion= -1;
 
 
         System.out.println("--- BIENVENIDO AL SISTEMA DE GESTION HOTELERA ---");
         do
         {
+            System.out.println("\n--- MENU PRINCIPAL ---");
+            System.out.println("1. Iniciar Sesion.");
+            System.out.println("2. Menu de Pasajeros");
+            System.out.println("0. Salir del Sistema.");
+            System.out.print("Elija una opcion: ");
             //ANTES DE ESTO ESTARIA BUENO PONER 3 OPCIONES INICIAR SESION, VISTA DE PASAJERO(SERIA UN MENU DE PASAJERO PERO SIN LOGUEAR) Y SALIR
             try
             {
-                //Solicitar datos de inicio de sesion
-                System.out.println("\n--- INICIO DE SESION ---");
-                System.out.println("Username: ");
-                String username= scanner.nextLine();
-                System.out.println("Password: ");
-                String password= scanner.nextLine();
+                opcion= Integer.parseInt(scanner.nextLine());
 
-                UsuarioBase usuarioLogueado= hotel.getUsuarios().get(username);
-
-                if (usuarioLogueado != null && usuarioLogueado.autenticar(username,password))
+                switch (opcion)
                 {
-                    System.out.println("Ingreso exitoso. Rol: "+ usuarioLogueado.getRol());
-
-                    //Si es administrador
-                    if (usuarioLogueado.getRol()== Rol.ADMINISTRADOR)
+                    case 1:
                     {
-                        menuAdministrador(scanner,hotel,usuarioLogueado);
+                        iniciarSesion(scanner,hotel);
+                        break;
                     }
-                    //Si es recepcionista
-                    else if (usuarioLogueado.getRol()==Rol.RECEPCIONISTA)
+                    case 2:
                     {
-                        menuRecepcionista(scanner,hotel,usuarioLogueado);
+                        //menuPasajero(hotel);
+                        break;
+                    }
+                    case 0:
+                    {
+                        System.out.println("Saliendo del Sistema...");
+                        hotel.guardarTodosLosDatos();
+                        break;
+                    }
+                    default:
+                    {
+                        System.out.println("Opcion no valida.");
                     }
                 }
+            }catch (NumberFormatException e)
+            {
+                System.out.println("Ingrese un numero valido.");
             }catch (Exception e)
             {
                 System.out.println("Error en el sistema: " + e.getMessage());
             }
+        }while (opcion!=0);
+    }
 
 
+    // --- Metodo de Login ---
+    private static void iniciarSesion(Scanner scanner, GestorHotel hotel){
+        try {
+            //Solicitar datos de inicio de sesion
+            System.out.println("\n--- INICIO DE SESION ---");
+            System.out.println("Username: ");
+            String username= scanner.nextLine();
+            System.out.println("Password: ");
+            String password= scanner.nextLine();
 
-        }while (true);
+            UsuarioBase usuarioLogueado= hotel.getUsuarios().get(username);
+
+            if (usuarioLogueado != null && usuarioLogueado.autenticar(username,password))
+            {
+                System.out.println("Ingreso exitoso. Rol: "+ usuarioLogueado.getRol());
+
+                //Si es administrador
+                if (usuarioLogueado.getRol()== Rol.ADMINISTRADOR)
+                {
+                menuAdministrador(scanner,hotel,usuarioLogueado);
+                }
+                //Si es recepcionista
+                else if (usuarioLogueado.getRol()==Rol.RECEPCIONISTA)
+                {
+                menuRecepcionista(scanner,hotel,usuarioLogueado);
+                }
+                else
+                {
+                    System.out.println("El usuario no tiene un rol asignado valido.");
+                }
+            }
+            else
+            {
+                throw new DatosIncorrectosException("Usuario o contrasenia incorrectos.");
+            }
+
+        }catch (DatosIncorrectosException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        catch (Exception e)
+        {
+            System.out.println("Error en el sistema: " + e.getMessage());
+        }
     }
 
     // --- Menu Administrador ---
