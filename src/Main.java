@@ -3,6 +3,7 @@ import Exceptions.DatosIncorrectosException;
 import Exceptions.UsuarioYaExisteException;
 import Gestores.GestorHotel;
 import Modelo.Persona.Pasajero;
+import Modelo.Persona.Recepcionista;
 import Modelo.Persona.UsuarioBase;
 
 import java.util.Scanner;
@@ -71,6 +72,7 @@ public class Main
         }while (opcion!=0);
     }
 
+    /// METODOS
 
     // --- Metodo de Login ---
     private static void iniciarSesion(Scanner scanner, GestorHotel hotel){
@@ -123,9 +125,8 @@ public class Main
         }
     }
 
-    // -- Metodo de RegistrarPasajero ---
-    private static void registrarPasajero(Scanner scanner, GestorHotel hotel)
-    {
+    // --- Metodo de RegistrarPasajero ---
+    private static void registrarPasajero(Scanner scanner, GestorHotel hotel) {
         try
         {
             System.out.println("--- REGISTRO DE PASAJERO ---");
@@ -172,7 +173,39 @@ public class Main
         }
     }
 
+    // --- Metodo Realizar Reserva Interactivo ---
+    /// FALTA EL CODIGO
+    private static void realizarReservaInteractivo(Scanner scanner, GestorHotel hotel, Recepcionista recepcionista){}
+
+    // --- Metodo Cancelar Reserva Interactivo ---
+    /// FALTA EL CODIGO
+    private static void cancelarReservaInteractivo(Scanner scanner, GestorHotel hotel, Recepcionista recepcionista){}
+
+    /// FALTA EL CODIGO
+    private static void verReservasActivas(){}
+
+    // --- Check-In Interactivo ---
+    /// FALTA EL CODIGO
+    private static void checkInInteractivo(Scanner scanner, GestorHotel hotel, UsuarioBase recepcionista){}
+
+    // --- Check-Out Interactivo ---
+    /// FALTA EL CODIGO
+    private static void checkOutInteractivo(Scanner scanner, GestorHotel hotel, UsuarioBase recepcionista){}
+
+    // ---Crear Usuario Staff ---
+    /// FALTA EL CODIGO
+    private static void crearNuevoUsuarioStaff(Scanner scanner, GestorHotel hotel){}
+
+
+
+
+    /// FALTA TODA LA PARTE DE MENUPASAJERO
+
+
+
+
     // --- Menu Pasajero --- (Solo puede ver, nada mas)
+    /// FALTA TERMINAR
     private static void menuPasajero(GestorHotel hotel) {
         System.out.println("\n--- MENU PASAJERO ---");
         System.out.println("1. Mis Reservas/ Historial.");
@@ -187,6 +220,7 @@ public class Main
     }
 
     // --- Menu Administrador ---
+    /// FALTA CASE 2 (CREAR USUARIO STAFF)
     private static void menuAdministrador(Scanner scanner, GestorHotel hotel, UsuarioBase administrador) {
         int opcion=-1;
         do
@@ -211,7 +245,7 @@ public class Main
                     }
                     case 2:
                     {
-                        //metodo crearNuevoUsuarioStaff(scanner,hotel);
+                        //crear metodo: crearNuevoUsuarioStaff(scanner,hotel);
                         System.out.println("Ingrese el nombre del usuario: ");
                         String nombreUsuario= scanner.nextLine();
                         System.out.println("Ingrese el rol del usuario: ");
@@ -251,6 +285,7 @@ public class Main
     }
 
     // --- Menu Recepcionista ---
+    /// FALTA TERMINAR
     private static void menuRecepcionista(Scanner scanner, GestorHotel hotel, UsuarioBase recepcionista) {
         int opcion=-1;
         do
