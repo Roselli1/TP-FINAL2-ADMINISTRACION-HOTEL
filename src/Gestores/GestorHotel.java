@@ -4,10 +4,10 @@ import Exceptions.HabitacionNoDisponibleException;
 import Exceptions.RegistroEstadiaException;
 import Exceptions.ReservaInvalidaException;
 import Exceptions.UsuarioYaExisteException;
-import Interfaces.iToJSON;
 import Modelo.Hotel.Habitacion;
 import Modelo.Hotel.RegistroEstadia;
 import Modelo.Hotel.Reserva;
+import Modelo.Persona.Pasajero;
 import Modelo.Persona.UsuarioBase;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -17,18 +17,33 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class GestorHotel implements iToJSON
+public class GestorHotel
 {
     private Map<Integer, Habitacion> habitaciones;
     private List<Reserva> reservas;
     private Map<String, UsuarioBase> usuarios;
     private List<RegistroEstadia> registrosEstadias;
+    private List<Pasajero> pasajeros;
 
-    public GestorHotel() {
+    private GestoraHabitaciones gestoraHabitaciones;
+    private GestorReservas gestoraReservas;
+    private GestoraUsuarios gestoraUsuarios;
+    private GestoraEstadias gestoraEstadias;
+    private GestoraPasajeros gestoraPasajeros;
+
+    public GestorHotel()
+    {
         this.habitaciones = new HashMap<>();
         this.reservas = new ArrayList<>();
         this.usuarios = new HashMap<>();
         this.registrosEstadias = new ArrayList<>();
+        this.pasajeros= new ArrayList<>();
+
+        this.gestoraHabitaciones= new GestoraHabitaciones("habitaciones");
+        this.gestoraReservas= new GestorReservas("reservas");
+        this.gestoraUsuarios= new GestoraUsuarios("usuarios");
+        this.gestoraEstadias= new GestoraEstadias("registrosEstadias");
+        this.gestoraPasajeros= new GestoraPasajeros("pasajeros");
     }
 
     public Map<Integer, Habitacion> getHabitaciones() {
