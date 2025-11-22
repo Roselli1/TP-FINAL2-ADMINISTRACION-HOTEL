@@ -59,6 +59,10 @@ public class Reserva implements iToJSON
         return nroReserva;
     }
 
+    public void setHabitacion(Habitacion habitacion) {
+        this.habitacion = habitacion;
+    }
+
     //Metodos
     public void cancelarReserva()
     {
