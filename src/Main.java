@@ -78,6 +78,10 @@ public class Main
         }while (opcion!=0);
     }
 
+
+
+
+
     /// METODOS
 
     // --- Metodo de Login ---
@@ -418,24 +422,76 @@ public class Main
 
     // --- Menu Pasajero --- (Solo puede ver, nada mas)
     /// FALTA TERMINAR
-    private static void menuPasajero(GestorHotel hotel) {
-        System.out.println("\n--- MENU PASAJERO ---");
-        System.out.println("1. Mis Reservas/ Historial.");
-        System.out.println("2. Solicitar Nueva Reserva.");
-        System.out.println("3. Cancelar Reserva.");
-        System.out.println("4. Realizar Check-In(Ingreso).");
-        System.out.println("5. Realizar Check-Out(Salida).");
-        System.out.println("6. Ver habitaciones disponibles.");
-        System.out.println("0. Cerrar Sesion.");
-        System.out.print("Elija una opcion: ");
+    private static void menuPasajero(Scanner scanner, GestorHotel hotel, Pasajero pasajero) {
+        int opcion=-1;
 
+        do
+        {
+
+            System.out.println("\n--- MENU PASAJERO ---");
+            System.out.println("1. Mis Reservas/ Historial.");
+            System.out.println("2. Solicitar Nueva Reserva.");
+            System.out.println("3. Cancelar Reserva.");
+            System.out.println("4. Realizar Check-In(Ingreso).");
+            System.out.println("5. Realizar Check-Out(Salida).");
+            System.out.println("6. Ver habitaciones disponibles.");
+            System.out.println("0. Cerrar Sesion.");
+            System.out.print("Elija una opcion: ");
+
+            try
+            {
+                opcion= Integer.parseInt(scanner.nextLine());
+
+                switch (opcion)
+                {
+                    case 1:
+                    {
+                        //ver historia;
+                        break;
+                    }
+                    case 2:
+                    {
+                        //realizar reserva;
+                        break;
+                    }
+                    case 3:
+                    {
+                        //cancelar reserva;
+                        break;
+                    }
+                    case 4:
+                    {
+                        //realizar check-in;
+                        break;
+                    }
+                    case 5:
+                    {
+                        //realizar check-out;
+                        break;
+                    }
+                    case 6:
+                    {
+                        hotel.mostrarHabitacionesDisponibles();
+                        break;
+                    }
+                    case 0:
+                    {
+                        System.out.println("Cerrando sesion...");
+                        break;
+                    }
+                }
+
+            } catch (Exception e)
+            {
+                System.out.println("Error en el sistema: " + e.getMessage());
+            }
+
+        }while (opcion!=0);
     }
 
     // --- Menu Administrador ---
     private static void menuAdministrador(Scanner scanner, GestorHotel hotel, UsuarioBase admin) {
         int opcion=-1;
-        iToJSON a = admin;
-        Administrador administrador = (Administrador) a;
 
         do
         {
@@ -494,8 +550,9 @@ public class Main
     /// FALTA TERMINAR
     private static void menuRecepcionista(Scanner scanner, GestorHotel hotel, UsuarioBase recepcion) {
         int opcion=-1;
-        iToJSON r = recepcion;
-        Recepcionista recepcionista = (Recepcionista) r;
+
+        //Instancia temporal para acceder a los metodos ya que usuarioBase no tiene acceso a los metodos de gestion
+        Recepcionista recepcionista = new Recepcionista("Staff", "Turno", "000", "Hotel", "Arg", hotel, recepcion.getUsername(), recepcion.getPassword());
 
         do
         {
