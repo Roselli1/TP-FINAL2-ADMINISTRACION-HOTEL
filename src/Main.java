@@ -17,6 +17,7 @@ public class Main
         System.out.println("--- BIENVENIDO AL SISTEMA DE GESTION HOTELERA ---");
         do
         {
+            //ANTES DE ESTO ESTARIA BUENO PONER 3 OPCIONES INICIAR SESION, VISTA DE PASAJERO(SERIA UN MENU DE PASAJERO PERO SIN LOGUEAR) Y SALIR
             try
             {
                 //Solicitar datos de inicio de sesion
@@ -35,14 +36,17 @@ public class Main
                     //Si es administrador
                     if (usuarioLogueado.getRol()== Rol.ADMINISTRADOR)
                     {
-                        //hacer un menun de administrador
+                        menuAdministrador(scanner,hotel,usuarioLogueado);
                     }
                     //Si es recepcionista
                     else if (usuarioLogueado.getRol()==Rol.RECEPCIONISTA)
                     {
-                        //menu recepcionista
+                        menuRecepcionista(scanner,hotel,usuarioLogueado);
                     }
                 }
+            }catch (Exception e)
+            {
+                System.out.println("Error en el sistema: " + e.getMessage());
             }
 
 
@@ -50,10 +54,9 @@ public class Main
         }while (true);
     }
 
-
-    private static void menuAdministrador(Scanner scanner, GestorHotel hotel, UsuarioBase administrador)
-    {
-        int opcion;
+    // --- Menu Administrador ---
+    private static void menuAdministrador(Scanner scanner, GestorHotel hotel, UsuarioBase administrador) {
+        int opcion=-1;
         do
         {
             System.out.println("\n--- MENU ADMINISTRADOR ---");
@@ -83,11 +86,14 @@ public class Main
                         System.out.println("Ingrese el password del usuario: ");
                         String passwordUsuario= scanner.nextLine();
 
+                        break;
+
                     }
                     case 3:
                     {
                         System.out.println("Listado de habitaciones:");
                         hotel.listarHabitaciones();
+                        break;
                     }
                     case 0:
                     {
@@ -102,9 +108,68 @@ public class Main
             }catch (NumberFormatException e)
             {
                 System.out.println("Ingrese un numero valido.");
+            }catch (Exception e)
+            {
+                System.out.println("Error en el sistema: " + e.getMessage());
             }
 
         }while (opcion!=0);
 
     }
+
+    // --- Menu Recepcionista ---
+    private static void menuRecepcionista(Scanner scanner, GestorHotel hotel, UsuarioBase recepcionista) {
+        int opcion=-1;
+        do
+        {
+            System.out.println("\n--- MENU RECEPCIONISTA ---");
+            System.out.println("1. Ver Habitaciones Disponibles.");
+            System.out.println("2. Crear Reserva.");
+            System.out.println("3. Cancelar Reserva.");
+            System.out.println("4. Realizar Check-In.");
+            System.out.println("5. Realizar Check-Out.");
+            System.out.println("0. Cerrar Sesion.");
+
+            try
+            {
+                opcion= Integer.parseInt(scanner.nextLine());
+
+                switch (opcion)
+                {
+                    case 1:
+                    {
+                        hotel.mostrarHabitacionesDisponibles();
+                        break;
+                    }
+                    case 2:
+                    {
+                        //realizarReservaInteractivo(scanner,hotel,recepcionista);
+                        break;
+                    }
+                    case 3:
+                    {
+                        //cancelarReservaInteractivo(scanner,hotel,recepcionista);
+                        break;
+                    }
+                    case 4:
+                    {
+                        //checkInInteractivo(scanner,hotel,recepcionista);
+                        break;
+                    }
+                    case 5:
+                    {
+                        //checkOutInteractivo(scanner,hotel,recepcionista);
+                        break;
+                    }
+                    case 0:
+                        System.out.println("Cerrando sesion...");
+                }
+            }catch (Exception e)
+            {
+                System.out.println("Error en el sistema: " + e.getMessage());
+            }
+
+        }while (opcion!=0);
+    }
+
 }
