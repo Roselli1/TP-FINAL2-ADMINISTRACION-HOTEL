@@ -4,6 +4,7 @@ import Exceptions.UsuarioYaExisteException;
 import Gestores.GestorHotel;
 import Interfaces.iToJSON;
 import Modelo.Hotel.Habitacion;
+import Modelo.Hotel.RegistroEstadia;
 import Modelo.Hotel.Reserva;
 import Modelo.Persona.Administrador;
 import Modelo.Persona.Pasajero;
@@ -185,7 +186,6 @@ public class Main
 
     // --- Metodo Realizar Reserva Interactivo ---
     /// FALTA PROBARLO
-    /// HABRIA QUE VERIFICAR SI ESTÁ BIEN LO DE LA LINEA DE CODIGO 206 Y 207
     private static void realizarReservaInteractivo(Scanner scanner, GestorHotel hotel, Recepcionista recepcionista){
         try {
             System.out.println("\n--- CREAR RESERVA ---");
@@ -411,6 +411,82 @@ public class Main
         }
     }
 
+    /// METODOS PASAJERO
+
+    // --- Ver Historial ---
+    private static void verHistorial(Pasajero pasajero)
+    {
+        System.out.println("\n--- HISTORIAL DE ESTADIAS ---");
+        if (pasajero.getHistoriaHotel().isEmpty())
+        {
+            System.out.println("El pasajero no tiene estadias registradas.");
+        } else
+        {
+            for (RegistroEstadia registroEstadia: pasajero.getHistoriaHotel() )
+            {
+                System.out.println(registroEstadia.toString());
+            }
+        }
+    }
+
+    // --- Realizar Reserva (Pasajero)
+    private static void pasajeroRealizarReserva (Scanner scanner, GestorHotel hotel, Pasajero pasajero )
+    {
+        try
+        {
+            System.out.println("\n--- SOLICITAR NUEVA RESERVA ---");
+
+            //mostramos habitaciones disponibles
+            hotel.mostrarHabitacionesDisponibles();
+
+            System.out.println("Ingrese el numero de la habitacion que desea reservar: ");
+            int nroHabitacion = Integer.parseInt(scanner.nextLine());
+
+            Habitacion habitacion = hotel.getHabitaciones().get(nroHabitacion);
+            if (habitacion == null)
+            {
+                System.out.println("Error: La habitacion " + nroHabitacion + " no existe.");
+                return;
+            }
+
+            System.out.println("Ingrese la fecha de ingreso (YYYY-MM-DD): ");
+            LocalDate fechaIngreso = LocalDate.parse(scanner.nextLine());
+            System.out.println("Ingrese la fecha de egreso (YYYY-MM-DD): ");
+            LocalDate fechaEgreso = LocalDate.parse(scanner.nextLine());
+
+            if (fechaIngreso.isBefore(LocalDate.now()))
+            {
+                System.out.println("Error: La fecha ya paso.");
+                return;
+            }
+            if (!fechaEgreso.isAfter(fechaIngreso))
+            {
+                System.out.println("Error: La fecha de egreso debe ser posterior a la de ingreso.");
+                return;
+            }
+
+            //Creamos la reserva
+            Reserva nuevaReserva = new Reserva(habitacion, pasajero, fechaIngreso, fechaEgreso, true);
+
+            boolean exito= pasajero.crearReserva(nuevaReserva, nroHabitacion);
+
+            if (exito)
+            {
+                //Ya se imprime directo del metodo crearReserva
+            } else
+            {
+                System.out.println("Error: No se pudo crear la reserva.");
+            }
+
+        }catch (IllegalArgumentException e)
+        {
+            System.out.println("Error: " + e.getMessage());
+        } catch (Exception e)
+            {
+            System.out.println("Error inesperado al crear la reserva: " + e.getMessage());
+            }
+    }
+
 
 
 
@@ -446,7 +522,7 @@ public class Main
                 {
                     case 1:
                     {
-                        //ver historia;
+                        verHistorial(pasajero);
                         break;
                     }
                     case 2:

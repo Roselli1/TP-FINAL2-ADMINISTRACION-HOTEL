@@ -2,9 +2,7 @@ package Modelo.Persona;
 
 import Enums.EstadoHabitacion;
 import Enums.Rol;
-import Exceptions.CheckInException;
-import Exceptions.CheckOutException;
-import Exceptions.RegistroEstadiaException;
+import Exceptions.*;
 import Gestores.GestorHotel;
 import Interfaces.IGestionEstadia;
 import Interfaces.IGestionReserva;
@@ -99,13 +97,48 @@ public class Pasajero extends Persona implements iToJSON, IGestionReserva, IGest
     //Solicita una reserva
     @Override
     public boolean crearReserva(Reserva reserva, int nroHabitacion) {
-        return false;
+        try
+        {
+            boolean resultado= hotel.realizarReserva(reserva, nroHabitacion);
+
+            if (resultado)
+            {
+                reserva.getHabitacion().setEstadoHabitacion(EstadoHabitacion.RESERVADA);
+                System.out.println("Solicitud de reserva con exito.");
+            }
+            return resultado;
+
+        } catch (ReservaInvalidaException e) {
+            throw new RuntimeException(e);
+        } catch (HabitacionNoDisponibleException e) {
+            throw new RuntimeException(e);
+        }catch (Exception e) {
+            System.out.println("Error al crear la reserva: " + e.getMessage());
+            return false;
+        }
     }
 
     //Solicita cancelar una reserva
     @Override
     public boolean cancelarReserva(Reserva reserva) {
-        return false;
+        try
+        {
+            boolean resultado= hotel.cancelarReserva(reserva);
+
+            if (resultado)
+            {
+                System.out.println("Solicitud de cancelacion de reserva con exito.");
+            }else
+            {
+                System.out.println("No se pudo cancelar la reserva.");
+            }
+            return resultado;
+
+        }catch (Exception e)
+        {
+            System.out.println("Error al cancelar la reserva: " + e.getMessage());
+            return false;
+        }
     }
 
     @Override
@@ -117,19 +150,24 @@ public class Pasajero extends Persona implements iToJSON, IGestionReserva, IGest
         }
         try {
             //obtiene la habitacion asociada a la reserva y el pasajero
-            Habitacion habitacion = reserva.getHabitacion();
-            Pasajero pasajero = reserva.getPasajero();
+            int nroHabitacion = reserva.getHabitacion().getNumero();
+            Habitacion habitacion = hotel.getHabitaciones().get(nroHabitacion);
+
+            if (habitacion == null) {
+                throw new CheckInException("La habitación " + nroHabitacion + " no existe en el sistema.");
+            }
 
             //si la habitacion no esta disponible no se puede hacer check in
             if (habitacion.getEstadoHabitacion() != EstadoHabitacion.RESERVADA && habitacion.getEstadoHabitacion() != EstadoHabitacion.DISPONIBLE) {
                 throw new CheckInException("La habitacion no esta disponible para hacer check-in.");
             }
+
             //marcar la habitación como OCUPADA y no disponible
             habitacion.setEstadoHabitacion(EstadoHabitacion.OCUPADA);
             habitacion.setDisponible(false);
 
             //crear un RegistroEstadia con la info de la reserva
-            RegistroEstadia registroEstadia = new RegistroEstadia(pasajero, habitacion, LocalDate.now(), reserva.getFechaEgreso());
+            RegistroEstadia registroEstadia = new RegistroEstadia(this, habitacion, LocalDate.now(), reserva.getFechaEgreso());
 
             //guarda el registro en el historial del pasajero
             this.agregarHistoriaHotel(registroEstadia);
@@ -152,13 +190,13 @@ public class Pasajero extends Persona implements iToJSON, IGestionReserva, IGest
 
     @Override
     public boolean hacerCheckOut(Reserva reserva, int nroHabitacion) {
-        if (reserva == null || hotel == null) {
-            System.err.println("Error: La reserva o el GestorHotel son nulos.");
+        if (hotel == null) {
+            System.err.println("Error: El GestorHotel es nulo.");
             return false;
         }
 
         try {
-            Habitacion habitacion = reserva.getHabitacion();
+            Habitacion habitacion = hotel.getHabitaciones().get(nroHabitacion);
 
             // Verificar si la habitacion esta ocupada
             if (habitacion.getEstadoHabitacion() != EstadoHabitacion.OCUPADA) {
@@ -176,6 +214,11 @@ public class Pasajero extends Persona implements iToJSON, IGestionReserva, IGest
             estadiaActiva.setCheckOut(LocalDate.now());
 
             // Actualizar el estado de la habitacion
+            System.out.println("Limpiando habitacion.");
+            habitacion.setEstadoHabitacion(EstadoHabitacion.LIMPIEZA);
+            habitacion.setDisponible(false);
+
+            System.out.println("La habitacion ya esta disponible.");
             habitacion.setEstadoHabitacion(EstadoHabitacion.DISPONIBLE);
             habitacion.setDisponible(true);
 
@@ -189,6 +232,10 @@ public class Pasajero extends Persona implements iToJSON, IGestionReserva, IGest
             System.err.println("Error inesperado en el check-out: " + e.getMessage());
             return false;
         }
+    }
+
+    public void setHotel(GestorHotel hotel) {
+        this.hotel = hotel;
     }
 
     public UsuarioBase getCredenciales() {
