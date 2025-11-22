@@ -264,4 +264,17 @@ public class GestorHotel
         return null; // Si no lo encuentra
     }
 
+    public List<Reserva> buscarReservasPorPasajero(Pasajero pasajero) {
+
+        List<Reserva> resultado = new ArrayList<>();
+
+        for (Reserva r : this.reservas)
+        {
+        // Comparamos por DNI para asegurar identidad
+            if (r.getPasajero().getDni().equals(pasajero.getDni())) {
+            resultado.add(r);
+            }
+        }
+        return resultado;
+}
 }

@@ -114,7 +114,8 @@ public class Main
                 //Si es pasajero
                 else if (usuarioLogueado.getRol()==Rol.PASAJERO)
                 {
-                    menuPasajero(hotel);
+                    Pasajero pasajero = hotel.buscarPasajeroPorUsername(username);
+                    menuPasajero(scanner, hotel, pasajero);
                 }
                 else
                 {
@@ -430,8 +431,7 @@ public class Main
     }
 
     // --- Realizar Reserva (Pasajero)
-    private static void pasajeroRealizarReserva (Scanner scanner, GestorHotel hotel, Pasajero pasajero )
-    {
+    private static void pasajeroRealizarReserva (Scanner scanner, GestorHotel hotel, Pasajero pasajero ) {
         try
         {
             System.out.println("\n--- SOLICITAR NUEVA RESERVA ---");
@@ -487,7 +487,93 @@ public class Main
             }
     }
 
+    // --- Cancelar Reserva (Pasajero)
+    private static void pasajeroCancelarReserva(Scanner scanner, GestorHotel hotel, Pasajero pasajero){
 
+        System.out.println("\n--- MIS RESERVAS ACTIVAS ---");
+
+        List<Reserva> misReservas= hotel.buscarReservasPorPasajero(pasajero);
+
+        if (misReservas.isEmpty())
+        {
+            System.out.println("No hay reservas activas para este pasajero.");
+            return;
+        }
+
+        for (int i=0; i<misReservas.size(); i++)
+        {
+            System.out.println( (i) + ". " + misReservas.get(i).toString());
+        }
+
+        System.out.println("Ingrese el numero de la reserva a cancelar: ");
+        try
+        {
+            int nroReserva = Integer.parseInt(scanner.nextLine());
+            if (nroReserva>=0 && nroReserva<misReservas.size())
+            {
+                Reserva reservaACancelar = misReservas.get(nroReserva);
+
+                boolean exitoCancelar= pasajero.cancelarReserva(reservaACancelar);
+
+                if (exitoCancelar)
+                {
+                    System.out.println("Reserva cancelada correctamente.");
+                }
+                else
+                {
+                    System.out.println("Indice invalido.");
+                }
+            }
+
+        }catch (IllegalArgumentException e)
+        {
+            System.out.println("Error: " + e.getMessage());
+        }
+        catch (Exception e)
+        {
+            System.out.println("Error inesperado al cancelar la reserva: " + e.getMessage());
+        }
+    }
+
+    // --- CheckIn (Pasajero)
+    private static void pasajeroCheckIn (Scanner scanner, GestorHotel hotel, Pasajero pasajero)
+    {
+        System.out.println("\n--- REALIZAR CHECK-IN ---");
+
+        List<Reserva> misReservas= hotel.buscarReservasPorPasajero(pasajero);
+
+        if (misReservas.isEmpty())
+        {
+            System.out.println("No tiene reservas pendientes de ingresar.");
+            return;
+        }
+
+        //Mostrar las reservas que si puede en caso de tener mas de una
+        for (int i=0; i<misReservas.size(); i++)
+        {
+            System.out.println( (i) + ". " + misReservas.get(i).toString());
+        }
+
+        System.out.println("Ingrese el numero de la reserva para el Check-In: ");
+        try
+        {
+            int indiceReserva = Integer.parseInt(scanner.nextLine());
+            if (indiceReserva>=0 && indiceReserva<misReservas.size())
+            {
+                Reserva reservaParaCheckIn = misReservas.get(indiceReserva);
+                pasajero.hacerCheckIn(reservaParaCheckIn);
+            }
+            else
+            {
+                System.out.println("Indice invalido.");
+            }
+        }catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+        }catch (Exception e)
+        {
+            System.out.println("Error inesperado al realizar el Check-In: " + e.getMessage());
+        }
+    }
 
 
 
@@ -527,17 +613,17 @@ public class Main
                     }
                     case 2:
                     {
-                        //realizar reserva;
+                        pasajeroRealizarReserva(scanner, hotel, pasajero);
                         break;
                     }
                     case 3:
                     {
-                        //cancelar reserva;
+                        pasajeroCancelarReserva(scanner, hotel, pasajero);
                         break;
                     }
                     case 4:
                     {
-                        //realizar check-in;
+                        pasajeroCheckIn(scanner, hotel, pasajero);
                         break;
                     }
                     case 5:
