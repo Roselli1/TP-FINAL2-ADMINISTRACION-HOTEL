@@ -191,4 +191,8 @@ public class Recepcionista  extends Persona implements IGestionReserva, IGestion
     public boolean autenticar(String username, String password) throws UsuarioYaExisteException {
         return this.credenciales.autenticar(username, password);
     }
+
+    public UsuarioBase getCredenciales() {
+        return credenciales;
+    }
 }

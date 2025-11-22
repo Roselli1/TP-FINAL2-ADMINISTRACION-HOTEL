@@ -1,6 +1,7 @@
 package Gestores;
 
 import Enums.EstadoHabitacion;
+import Enums.Rol;
 import Exceptions.HabitacionNoDisponibleException;
 import Exceptions.RegistroEstadiaException;
 import Exceptions.ReservaInvalidaException;
@@ -8,7 +9,9 @@ import Exceptions.UsuarioYaExisteException;
 import Modelo.Hotel.Habitacion;
 import Modelo.Hotel.RegistroEstadia;
 import Modelo.Hotel.Reserva;
+import Modelo.Persona.Administrador;
 import Modelo.Persona.Pasajero;
+import Modelo.Persona.Recepcionista;
 import Modelo.Persona.UsuarioBase;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,12 +26,16 @@ public class GestorHotel
     private Map<String, UsuarioBase> usuarios;
     private List<RegistroEstadia> registrosEstadias;
     private List<Pasajero> pasajeros;
+    private List<Recepcionista> recepcionistas;
+    private List<Administrador> administradores;
 
     private GestoraHabitaciones gestoraHabitaciones;
     private GestorReservas gestoraReservas;
     private GestoraUsuarios gestoraUsuarios;
     private GestoraEstadias gestoraEstadias;
     private GestoraPasajeros gestoraPasajeros;
+    private GestoraRecepcionistas gestoraRecepcionistas;
+    private GestoraAdministradores gestoraAdministradores;
 
     // --- CONSTRUCTOR ---
     public GestorHotel()
@@ -38,12 +45,16 @@ public class GestorHotel
         this.usuarios = new HashMap<>();
         this.registrosEstadias = new ArrayList<>();
         this.pasajeros= new ArrayList<>();
+        this.recepcionistas= new ArrayList<>();
+        this.administradores= new ArrayList<>();
 
         this.gestoraHabitaciones= new GestoraHabitaciones("habitaciones");
         this.gestoraReservas= new GestorReservas("reservas");
         this.gestoraUsuarios= new GestoraUsuarios("usuarios");
         this.gestoraEstadias= new GestoraEstadias("registrosEstadias");
         this.gestoraPasajeros= new GestoraPasajeros("pasajeros");
+        this.gestoraRecepcionistas= new GestoraRecepcionistas("recepcionistas");
+        this.gestoraAdministradores= new GestoraAdministradores("administradores");
 
         cargarDatosIniciales();
     }
@@ -84,6 +95,24 @@ public class GestorHotel
         gestoraEstadias.cargarEstadia("registrosEstadias");
         for (RegistroEstadia r : gestoraEstadias.getElementos()) {
             this.registrosEstadias.add(r);
+        }
+
+        //Cargar Recepcionistas
+        gestoraRecepcionistas.cargarRecepcionista("recepcionistas");
+        for (Recepcionista r : gestoraRecepcionistas.getElementos()) {
+            this.recepcionistas.add(r);
+            // Registramos en el sistema de Login
+            this.usuarios.put(r.getCredenciales().getUsername(), r.getCredenciales());
+        }
+
+        //Cargar Administradores
+        gestoraAdministradores.cargarAdministador("administradores");
+        for (Administrador r : gestoraAdministradores.getElementos()) {
+            {
+                this.administradores.add(r);
+                // Registramos en el sistema de Login
+                this.usuarios.put(r.getCredenciales().getUsername(), r.getCredenciales());
+            }
         }
 
 
@@ -129,6 +158,20 @@ public class GestorHotel
         }
         gestoraEstadias.guardar("registrosEstadias");
 
+        // Guardar Recepcionistas
+        gestoraRecepcionistas.getElementos().clear();
+        for (Recepcionista r : recepcionistas) {
+            gestoraRecepcionistas.agregarElemento(r);
+        }
+        gestoraRecepcionistas.guardar("recepcionistas");
+
+        // Guardar Administradores
+        gestoraAdministradores.getElementos().clear();
+        for (Administrador r : administradores) {
+            gestoraAdministradores.agregarElemento(r);
+        }
+        gestoraAdministradores.guardar("administradores");
+
         System.out.println("Backup finalizado correctamente.");
     }
 
@@ -150,6 +193,10 @@ public class GestorHotel
     }
 
     public List<Pasajero> getPasajeros() {return pasajeros;}
+
+    public List<Administrador> getAdministradores() { return administradores; }
+
+    public List<Recepcionista> getRecepcionistas() { return recepcionistas; }
 
 
     // --- METODOS ---
@@ -244,8 +291,7 @@ public class GestorHotel
         }
     }
 
-    public void mostrarHabitacionesDisponibles()
-    {
+    public void mostrarHabitacionesDisponibles() {
         for (Habitacion h : habitaciones.values()) {
             if (h.getEstadoHabitacion() == EstadoHabitacion.DISPONIBLE && h.isDisponible())
             {
@@ -264,6 +310,28 @@ public class GestorHotel
         return null; // Si no lo encuentra
     }
 
+    public Recepcionista buscarReceopcionistaPorUsername(String username) {
+        for (Recepcionista r: recepcionistas)
+        {
+            if (r.getCredenciales().getUsername().equals(username))
+            {
+                return r;
+            }
+        }
+        return null;  // Si no lo encuentra
+    }
+
+    public Administrador buscarAdministradorPorUsername(String username) {
+        for (Administrador a: administradores)
+        {
+            if (a.getCredenciales().getUsername().equals(username))
+            {
+                return a;
+            }
+        }
+        return null; // Si no lo encuentra
+    }
+
     public List<Reserva> buscarReservasPorPasajero(Pasajero pasajero) {
 
         List<Reserva> resultado = new ArrayList<>();
@@ -277,4 +345,21 @@ public class GestorHotel
         }
         return resultado;
 }
+
+    public void agregarStaff(UsuarioBase credenciales, String nombre, String apellido, String dni, String dir, String origen) throws UsuarioYaExisteException {
+        if (usuarios.containsKey(credenciales.getUsername())) {
+            throw new UsuarioYaExisteException("El usuario ya existe.");
+        }
+
+        if (credenciales.getRol() == Rol.ADMINISTRADOR) {
+            Administrador admin = new Administrador(nombre, apellido, dni, dir, origen, this, credenciales.getUsername(), credenciales.getPassword());
+            this.administradores.add(admin);
+            this.usuarios.put(credenciales.getUsername(), credenciales);
+        }
+        else if (credenciales.getRol() == Rol.RECEPCIONISTA) {
+            Recepcionista recep = new Recepcionista(nombre, apellido, dni, dir, origen, this, credenciales.getUsername(), credenciales.getPassword());
+            this.recepcionistas.add(recep);
+            this.usuarios.put(credenciales.getUsername(), credenciales);
+        }
+    }
 }

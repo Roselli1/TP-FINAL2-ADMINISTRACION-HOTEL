@@ -85,5 +85,7 @@ public class Administrador extends Persona implements iToJSON
         return this.credenciales.autenticar(username, password);
     }
 
-
+    public UsuarioBase getCredenciales() {
+        return credenciales;
+    }
 }

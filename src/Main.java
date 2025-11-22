@@ -575,6 +575,28 @@ public class Main
         }
     }
 
+    // --- CheckOut (Pasajero)
+    private static void pasajeroCheckOut(Scanner scanner, GestorHotel hotel, Pasajero pasajero) {
+        try {
+            System.out.println("\n--- REALIZAR CHECK-OUT ---");
+            System.out.println("Ingrese el numero de su habitacion para salir: ");
+
+            int nroHabitacion = Integer.parseInt(scanner.nextLine());
+
+            boolean exitoCheckOut= pasajero.hacerCheckOut(null, nroHabitacion);
+
+            if (exitoCheckOut)
+            {
+                System.out.println("Check-Out exitoso.");
+            }
+        } catch (NumberFormatException e)
+        {
+            System.out.println("Error: " + e.getMessage());
+        } catch (Exception e)
+        {
+            System.out.println("Error en Check-Out: " + e.getMessage());
+        }
+    }
 
 
     /// FALTA TODA LA PARTE DE MENUPASAJERO
@@ -628,7 +650,7 @@ public class Main
                     }
                     case 5:
                     {
-                        //realizar check-out;
+                        pasajeroCheckOut(scanner, hotel, pasajero);
                         break;
                     }
                     case 6:
