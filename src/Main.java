@@ -49,4 +49,62 @@ public class Main
 
         }while (true);
     }
+
+
+    private static void menuAdministrador(Scanner scanner, GestorHotel hotel, UsuarioBase administrador)
+    {
+        int opcion;
+        do
+        {
+            System.out.println("\n--- MENU ADMINISTRADOR ---");
+            System.out.println("1. Realizar Backup del Sistema.");
+            System.out.println("2. Crear Nuevo Usuario.");
+            System.out.println("3. Ver Lista de Habitaciones.");
+            System.out.println("0. Cerrar Sesion.");
+            System.out.print("Elija una opcion: ");
+
+            try
+            {
+                opcion= Integer.parseInt(scanner.nextLine()); //Limpia el buffer
+
+                switch (opcion)
+                {
+                    case 1:
+                    {
+                        hotel.guardarTodosLosDatos(); //El admin lllama al backup
+                        break;
+                    }
+                    case 2:
+                    {
+                        System.out.println("Ingrese el nombre del usuario: ");
+                        String nombreUsuario= scanner.nextLine();
+                        System.out.println("Ingrese el rol del usuario: ");
+                        String rolUsuario= scanner.nextLine();
+                        System.out.println("Ingrese el password del usuario: ");
+                        String passwordUsuario= scanner.nextLine();
+
+                    }
+                    case 3:
+                    {
+                        System.out.println("Listado de habitaciones:");
+                        hotel.listarHabitaciones();
+                    }
+                    case 0:
+                    {
+                        System.out.println("Cerrando sesion...");
+                        break;
+                    }
+                    default:
+                    {
+                        System.out.println("Opcion no valida.");
+                    }
+                }
+            }catch (NumberFormatException e)
+            {
+                System.out.println("Ingrese un numero valido.");
+            }
+
+        }while (opcion!=0);
+
+    }
 }

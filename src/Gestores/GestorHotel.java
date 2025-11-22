@@ -227,5 +227,12 @@ public class GestorHotel
         return true;
     }
 
+    public void listarHabitaciones()
+    {
+        for (Habitacion h : habitaciones.values()) {
+            System.out.println(h.toString());
+        }
+    }
+
 
 }
