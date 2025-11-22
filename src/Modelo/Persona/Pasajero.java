@@ -1,6 +1,7 @@
 package Modelo.Persona;
 
 import Gestores.GestorHotel;
+import Interfaces.IGestionEstadia;
 import Interfaces.IGestionReserva;
 import Interfaces.iToJSON;
 import Modelo.Hotel.RegistroEstadia;
@@ -10,7 +11,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Pasajero extends Persona implements iToJSON, IGestionReserva
+public class Pasajero extends Persona implements iToJSON, IGestionReserva, IGestionEstadia
 {
     //Atributos
     private List<RegistroEstadia> historiaHotel;
@@ -90,6 +91,16 @@ public class Pasajero extends Persona implements iToJSON, IGestionReserva
     //Solicita cancelar una reserva
     @Override
     public boolean cancelarReserva(Reserva reserva) {
+        return false;
+    }
+
+    @Override
+    public boolean hacerCheckIn(Reserva reserva) {
+        return false;
+    }
+
+    @Override
+    public boolean hacerCheckOut(Reserva reserva, int nroHabitacion) {
         return false;
     }
 }
