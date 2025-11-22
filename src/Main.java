@@ -104,12 +104,14 @@ public class Main
                 //Si es administrador
                 if (usuarioLogueado.getRol()== Rol.ADMINISTRADOR)
                 {
-                    menuAdministrador(scanner,hotel,usuarioLogueado);
+                    Administrador admin = hotel.buscarAdministradorPorUsername(username);
+                    menuAdministrador(scanner, hotel, admin);
                 }
                 //Si es recepcionista
                 else if (usuarioLogueado.getRol()==Rol.RECEPCIONISTA)
                 {
-                    menuRecepcionista(scanner,hotel,usuarioLogueado);
+                    Recepcionista recep = hotel.buscarReceopcionistaPorUsername(username);
+                    menuRecepcionista(scanner, hotel, recep);
                 }
                 //Si es pasajero
                 else if (usuarioLogueado.getRol()==Rol.PASAJERO)
@@ -674,7 +676,7 @@ public class Main
     }
 
     // --- Menu Administrador ---
-    private static void menuAdministrador(Scanner scanner, GestorHotel hotel, UsuarioBase admin) {
+    private static void menuAdministrador(Scanner scanner, GestorHotel hotel, Administrador admin) {
         int opcion=-1;
 
         do
@@ -732,11 +734,9 @@ public class Main
 
     // --- Menu Recepcionista ---
     /// FALTA TERMINAR
-    private static void menuRecepcionista(Scanner scanner, GestorHotel hotel, UsuarioBase recepcion) {
+    private static void menuRecepcionista(Scanner scanner, GestorHotel hotel, Recepcionista recepcionista) {
         int opcion=-1;
 
-        //Instancia temporal para acceder a los metodos ya que usuarioBase no tiene acceso a los metodos de gestion
-        Recepcionista recepcionista = new Recepcionista("Staff", "Turno", "000", "Hotel", "Arg", hotel, recepcion.getUsername(), recepcion.getPassword());
 
         do
         {
