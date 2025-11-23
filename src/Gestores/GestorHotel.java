@@ -346,6 +346,12 @@ public class GestorHotel
         return resultado;
 }
 
+    public void agregarHabitacion(Habitacion habitacion) {
+        if (habitacion != null) {
+            this.habitaciones.put(habitacion.getNumero(), habitacion);
+        }
+    }
+
     public void agregarStaff(UsuarioBase credenciales, String nombre, String apellido, String dni, String dir, String origen) throws UsuarioYaExisteException {
         if (usuarios.containsKey(credenciales.getUsername())) {
             throw new UsuarioYaExisteException("El usuario ya existe.");
