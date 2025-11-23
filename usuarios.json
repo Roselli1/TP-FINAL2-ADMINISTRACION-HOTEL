@@ -100,6 +100,11 @@
         "username": "pasajero4"
     },
     {
+        "password": "marcos1",
+        "rol": "Pasajero",
+        "username": "marcos1"
+    },
+    {
         "password": "tomi1",
         "rol": "Administrador",
         "username": "tomi1"
