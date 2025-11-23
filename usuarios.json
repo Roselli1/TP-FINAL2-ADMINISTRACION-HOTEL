@@ -120,6 +120,11 @@
         "username": "admin8"
     },
     {
+        "password": "juan1",
+        "rol": "Recepcionista",
+        "username": "juan1"
+    },
+    {
         "password": "admin1",
         "rol": "Administrador",
         "username": "admin1"

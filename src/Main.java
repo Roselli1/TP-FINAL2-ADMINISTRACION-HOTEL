@@ -383,20 +383,33 @@ public class Main
             String password = scanner.nextLine();
 
             // Ingreso del rol que cumple en el hotel
-            System.out.println("Rol (ADMINISTRADOR/RECEPCIONISTA): ");
-            String rolString = scanner.nextLine().toUpperCase();
-            Rol rol;
+            Rol rol = null;
 
-            try {
-                rol = Rol.valueOf(rolString);
-                if (rol == Rol.PASAJERO) {
-                    System.out.println("Error: No se puede crear un Pasajero desde este menú.");
-                    return;
-                }
-            } catch (IllegalArgumentException e) {
-                System.out.println("Error: Rol no válido. Debe ser ADMINISTRADOR o RECEPCIONISTA.");
-                return;
-            }
+            do {
+
+                    System.out.println("Seleccione el Rol:");
+                    System.out.println("1. ADMINISTRADOR");
+                    System.out.println("2. RECEPCIONISTA");
+                    System.out.print("Opción: ");
+
+                    try {
+                        String input = scanner.nextLine();
+                        int opcionRol = Integer.parseInt(input);
+
+                        switch (opcionRol) {
+                            case 1:
+                                rol = Rol.ADMINISTRADOR;
+                                break;
+                            case 2:
+                                rol = Rol.RECEPCIONISTA;
+                                break;
+                            default:
+                                System.out.println("Opción inválida. Ingrese 1 o 2.");
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Error: Debe ingresar un número.");
+                    }
+                }while (rol == null);
 
             // Crea la instancia apropiada
             UsuarioBase creedenciales= new UsuarioBase(username, password, rol);
@@ -413,8 +426,7 @@ public class Main
     /// METODOS PASAJERO
 
     // --- Ver Historial ---
-    private static void verHistorial(Pasajero pasajero)
-    {
+    private static void verHistorial(Pasajero pasajero) {
         System.out.println("\n--- HISTORIAL DE ESTADIAS ---");
         if (pasajero.getHistoriaHotel().isEmpty())
         {
@@ -534,8 +546,7 @@ public class Main
     }
 
     // --- CheckIn (Pasajero)
-    private static void pasajeroCheckIn (Scanner scanner, GestorHotel hotel, Pasajero pasajero)
-    {
+    private static void pasajeroCheckIn (Scanner scanner, GestorHotel hotel, Pasajero pasajero) {
         System.out.println("\n--- REALIZAR CHECK-IN ---");
 
         List<Reserva> misReservas= hotel.buscarReservasPorPasajero(pasajero);
@@ -597,8 +608,7 @@ public class Main
     }
 
     // --- Iniciar Datos ---
-    private static void inicializarDatos(GestorHotel hotel)
-    {
+    private static void inicializarDatos(GestorHotel hotel) {
         try
         {
             // HABITACIONES (30 habitaciones)
