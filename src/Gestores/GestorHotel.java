@@ -2,6 +2,7 @@ package Gestores;
 
 import Enums.EstadoHabitacion;
 import Enums.Rol;
+import Enums.TipoHabitacion;
 import Exceptions.HabitacionNoDisponibleException;
 import Exceptions.RegistroEstadiaException;
 import Exceptions.ReservaInvalidaException;
@@ -286,14 +287,52 @@ public class GestorHotel
     }
 
     public void listarHabitaciones() {
+        System.out.println("\n--- HABITACIONES SIMPLES ---");
         for (Habitacion h : habitaciones.values()) {
-            System.out.println(h.toString());
+            if (h.getTipoHabitacion()== TipoHabitacion.SIMPLE)
+            {
+                System.out.println(h.toString());
+            }
         }
+
+        System.out.println("\n--- HABITACIONES DOBLES ---");
+        for (Habitacion h : habitaciones.values()) {
+            if (h.getTipoHabitacion()== TipoHabitacion.DOBLE)
+            {
+                System.out.println(h.toString());
+            }
+        }
+
+        System.out.println("\n--- SUITES ---");
+        for (Habitacion h : habitaciones.values()) {
+            if (h.getTipoHabitacion()== TipoHabitacion.SUITE)
+            {
+                System.out.println(h.toString());
+            }
+        }
+
     }
 
     public void mostrarHabitacionesDisponibles() {
+        System.out.println("\n--- HABITACIONES SIMPLES ---");
         for (Habitacion h : habitaciones.values()) {
-            if (h.getEstadoHabitacion() == EstadoHabitacion.DISPONIBLE && h.isDisponible())
+            if (h.getEstadoHabitacion() == EstadoHabitacion.DISPONIBLE && h.isDisponible() && h.getTipoHabitacion() == TipoHabitacion.SIMPLE)
+            {
+                System.out.println(h.toString());
+            }
+        }
+
+        System.out.println("\n--- HABITACIONES DOBLES ---");
+        for (Habitacion h : habitaciones.values()) {
+            if (h.getEstadoHabitacion() == EstadoHabitacion.DISPONIBLE && h.isDisponible() && h.getTipoHabitacion() == TipoHabitacion.DOBLE)
+            {
+                System.out.println(h.toString());
+            }
+        }
+
+        System.out.println("\n--- SUITES ---");
+        for (Habitacion h : habitaciones.values()) {
+            if (h.getEstadoHabitacion() == EstadoHabitacion.DISPONIBLE && h.isDisponible() && h.getTipoHabitacion() == TipoHabitacion.SUITE)
             {
                 System.out.println(h.toString());
             }
