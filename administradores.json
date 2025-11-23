@@ -118,5 +118,17 @@
         "origen": "México",
         "nombre": "Patricia",
         "dni": "41285674"
+    },
+    {
+        "domicilio": "Avenida Jorge Newbery 4750",
+        "apellido": "Roman",
+        "usuario": {
+            "password": "tomi1",
+            "rol": "Administrador",
+            "username": "tomi1"
+        },
+        "origen": "Argentina",
+        "nombre": "Tomas",
+        "dni": "27508363"
     }
 ]}]
