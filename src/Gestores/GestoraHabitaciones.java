@@ -17,7 +17,7 @@ public class GestoraHabitaciones extends GestoraGenerica<Habitacion>
             try
             {
                 //Leer el archivo JSON
-                String jsonString= JsonUtiles.leer(nombreArchivo+ ".json");
+                String jsonString= JsonUtiles.leer(nombreArchivo);
 
                 if (jsonString==null)
                 {

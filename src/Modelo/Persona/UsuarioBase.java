@@ -78,6 +78,6 @@ public class UsuarioBase implements iToJSON
     public UsuarioBase(JSONObject obj) {
         username = obj.getString("username");
         password = obj.getString("password");
-        rol = Rol.valueOf(obj.getString("rol"));
+        rol = Rol.valueOf(obj.getString("rol").toUpperCase());
     }
 }

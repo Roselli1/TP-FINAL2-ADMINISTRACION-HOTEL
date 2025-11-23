@@ -1,0 +1,162 @@
+[{"pasajeros": [
+    {
+        "solicitarReserva": false,
+        "domicilio": "Calle Alsina 1245",
+        "apellido": "Silva",
+        "usuario": {
+            "password": "pasajero1",
+            "rol": "Pasajero",
+            "username": "pasajero1"
+        },
+        "origen": "Argentina",
+        "historiaHotel": [],
+        "telefono": "1145678234",
+        "nombre": "Roberto",
+        "dni": "28745913",
+        "email": "roberto.silva@email.com"
+    },
+    {
+        "solicitarReserva": false,
+        "domicilio": "Av. Jujuy 3456",
+        "apellido": "Mendoza",
+        "usuario": {
+            "password": "pasajero2",
+            "rol": "Pasajero",
+            "username": "pasajero2"
+        },
+        "origen": "España",
+        "historiaHotel": [],
+        "telefono": "1156329847",
+        "nombre": "Ana",
+        "dni": "33926481",
+        "email": "ana.mendoza@email.com"
+    },
+    {
+        "solicitarReserva": false,
+        "domicilio": "Calle Chacabuco 876",
+        "apellido": "Ortiz",
+        "usuario": {
+            "password": "pasajero3",
+            "rol": "Pasajero",
+            "username": "pasajero3"
+        },
+        "origen": "Argentina",
+        "historiaHotel": [],
+        "telefono": "1147852369",
+        "nombre": "Lucas",
+        "dni": "41583726",
+        "email": "lucas.ortiz@email.com"
+    },
+    {
+        "solicitarReserva": false,
+        "domicilio": "Av. Entre Rios 2341",
+        "apellido": "Ruiz",
+        "usuario": {
+            "password": "pasajero4",
+            "rol": "Pasajero",
+            "username": "pasajero4"
+        },
+        "origen": "Uruguay",
+        "historiaHotel": [],
+        "telefono": "1159638412",
+        "nombre": "Martina",
+        "dni": "36214895",
+        "email": "martina.ruiz@email.com"
+    },
+    {
+        "solicitarReserva": false,
+        "domicilio": "Calle Defensa 1567",
+        "apellido": "Diaz",
+        "usuario": {
+            "password": "pasajero5",
+            "rol": "Pasajero",
+            "username": "pasajero5"
+        },
+        "origen": "Argentina",
+        "historiaHotel": [],
+        "telefono": "1143217856",
+        "nombre": "Ezequiel",
+        "dni": "44657182",
+        "email": "ezequiel.diaz@email.com"
+    },
+    {
+        "solicitarReserva": false,
+        "domicilio": "Av. Boedo 4523",
+        "apellido": "Navarro",
+        "usuario": {
+            "password": "pasajero6",
+            "rol": "Pasajero",
+            "username": "pasajero6"
+        },
+        "origen": "Chile",
+        "historiaHotel": [],
+        "telefono": "1152847196",
+        "nombre": "Julia",
+        "dni": "30492817",
+        "email": "julia.navarro@email.com"
+    },
+    {
+        "solicitarReserva": false,
+        "domicilio": "Calle Piedras 2198",
+        "apellido": "Herrera",
+        "usuario": {
+            "password": "pasajero7",
+            "rol": "Pasajero",
+            "username": "pasajero7"
+        },
+        "origen": "Argentina",
+        "historiaHotel": [],
+        "telefono": "1148529637",
+        "nombre": "Facundo",
+        "dni": "42918573",
+        "email": "facundo.herrera@email.com"
+    },
+    {
+        "solicitarReserva": false,
+        "domicilio": "Av. Caseros 3267",
+        "apellido": "Jimenez",
+        "usuario": {
+            "password": "pasajero8",
+            "rol": "Pasajero",
+            "username": "pasajero8"
+        },
+        "origen": "Brasil",
+        "historiaHotel": [],
+        "telefono": "1157418293",
+        "nombre": "Gabriela",
+        "dni": "35847291",
+        "email": "gabriela.jimenez@email.com"
+    },
+    {
+        "solicitarReserva": false,
+        "domicilio": "Calle Balcarce 1789",
+        "apellido": "Blanco",
+        "usuario": {
+            "password": "pasajero9",
+            "rol": "Pasajero",
+            "username": "pasajero9"
+        },
+        "origen": "Paraguay",
+        "historiaHotel": [],
+        "telefono": "1146293581",
+        "nombre": "Ignacio",
+        "dni": "39512748",
+        "email": "ignacio.blanco@email.com"
+    },
+    {
+        "solicitarReserva": false,
+        "domicilio": "Av. San Juan 4012",
+        "apellido": "Rojas",
+        "usuario": {
+            "password": "pasajero10",
+            "rol": "Pasajero",
+            "username": "pasajero10"
+        },
+        "origen": "Argentina",
+        "historiaHotel": [],
+        "telefono": "1154926783",
+        "nombre": "Victoria",
+        "dni": "43786152",
+        "email": "victoria.rojas@email.com"
+    }
+]}]

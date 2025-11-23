@@ -1,0 +1,122 @@
+[{"administradores": [
+    {
+        "domicilio": "Av. Corrientes 1234",
+        "apellido": "Roselli",
+        "usuario": {
+            "password": "admin1",
+            "rol": "Administrador",
+            "username": "admin1"
+        },
+        "origen": "Argentina",
+        "nombre": "Tomas",
+        "dni": "47472036"
+    },
+    {
+        "domicilio": "Calle San Martin 567",
+        "apellido": "Martinez",
+        "usuario": {
+            "password": "admin2",
+            "rol": "Administrador",
+            "username": "admin2"
+        },
+        "origen": "Argentina",
+        "nombre": "Juan",
+        "dni": "38456721"
+    },
+    {
+        "domicilio": "Boulevard Kennedy 890",
+        "apellido": "Gonzalez",
+        "usuario": {
+            "password": "admin3",
+            "rol": "Administrador",
+            "username": "admin3"
+        },
+        "origen": "Chile",
+        "nombre": "Sofia",
+        "dni": "42183945"
+    },
+    {
+        "domicilio": "Pasaje Libertad 2345",
+        "apellido": "Aranda",
+        "usuario": {
+            "password": "admin4",
+            "rol": "Administrador",
+            "username": "admin4"
+        },
+        "origen": "Argentina",
+        "nombre": "Maria",
+        "dni": "35276489"
+    },
+    {
+        "domicilio": "Ruta Nacional 456",
+        "apellido": "Ferreyra",
+        "usuario": {
+            "password": "admin5",
+            "rol": "Administrador",
+            "username": "admin5"
+        },
+        "origen": "Paraguay",
+        "nombre": "Nicolas",
+        "dni": "40912573"
+    },
+    {
+        "domicilio": "Diagonal Norte 678",
+        "apellido": "Lopez",
+        "usuario": {
+            "password": "admin6",
+            "rol": "Administrador",
+            "username": "admin6"
+        },
+        "origen": "Argentina",
+        "nombre": "Claudia",
+        "dni": "33658142"
+    },
+    {
+        "domicilio": "Av. Rivadavia 3210",
+        "apellido": "Benitez",
+        "usuario": {
+            "password": "admin7",
+            "rol": "Administrador",
+            "username": "admin7"
+        },
+        "origen": "Uruguay",
+        "nombre": "Carlos",
+        "dni": "39847256"
+    },
+    {
+        "domicilio": "Calle Florida 1567",
+        "apellido": "Mastromarino",
+        "usuario": {
+            "password": "admin8",
+            "rol": "Administrador",
+            "username": "admin8"
+        },
+        "origen": "Brasil",
+        "nombre": "Lucia",
+        "dni": "44521398"
+    },
+    {
+        "domicilio": "Av. 9 de Julio 4321",
+        "apellido": "Desimone",
+        "usuario": {
+            "password": "admin9",
+            "rol": "Administrador",
+            "username": "admin9"
+        },
+        "origen": "Argentina",
+        "nombre": "Miguel",
+        "dni": "36704825"
+    },
+    {
+        "domicilio": "Calle Lavalle 2890",
+        "apellido": "Campos",
+        "usuario": {
+            "password": "admin10",
+            "rol": "Administrador",
+            "username": "admin10"
+        },
+        "origen": "México",
+        "nombre": "Patricia",
+        "dni": "41285674"
+    }
+]}]

@@ -12,7 +12,7 @@ public class GestorReservas extends GestoraGenerica<Reserva> {
 
     public boolean cargarReservas(String nombreArchivo) {
         try {
-            String jsonString= JsonUtiles.leer(nombreArchivo+ ".json");
+            String jsonString= JsonUtiles.leer(nombreArchivo);
 
             if (jsonString == null) {
                 System.out.println("No se pudo cargar el archivo");

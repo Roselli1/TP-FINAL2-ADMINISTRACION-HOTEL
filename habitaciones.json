@@ -1,0 +1,212 @@
+[{"habitaciones": [
+    {
+        "numero": 201,
+        "estadoHabitacion": "Disponible",
+        "tipoHabitacion": "Doble",
+        "precioPorNoche": 9000,
+        "disponible": true
+    },
+    {
+        "numero": 202,
+        "estadoHabitacion": "Disponible",
+        "tipoHabitacion": "Doble",
+        "precioPorNoche": 9000,
+        "disponible": true
+    },
+    {
+        "numero": 203,
+        "estadoHabitacion": "Disponible",
+        "tipoHabitacion": "Doble",
+        "precioPorNoche": 9000,
+        "disponible": true
+    },
+    {
+        "numero": 204,
+        "estadoHabitacion": "Disponible",
+        "tipoHabitacion": "Doble",
+        "precioPorNoche": 9000,
+        "disponible": true
+    },
+    {
+        "numero": 205,
+        "estadoHabitacion": "Disponible",
+        "tipoHabitacion": "Doble",
+        "precioPorNoche": 9000,
+        "disponible": true
+    },
+    {
+        "numero": 206,
+        "estadoHabitacion": "Disponible",
+        "tipoHabitacion": "Doble",
+        "precioPorNoche": 9000,
+        "disponible": true
+    },
+    {
+        "numero": 207,
+        "estadoHabitacion": "Disponible",
+        "tipoHabitacion": "Doble",
+        "precioPorNoche": 9000,
+        "disponible": true
+    },
+    {
+        "numero": 208,
+        "estadoHabitacion": "Disponible",
+        "tipoHabitacion": "Doble",
+        "precioPorNoche": 9000,
+        "disponible": true
+    },
+    {
+        "numero": 209,
+        "estadoHabitacion": "Disponible",
+        "tipoHabitacion": "Doble",
+        "precioPorNoche": 9000,
+        "disponible": true
+    },
+    {
+        "numero": 210,
+        "estadoHabitacion": "Disponible",
+        "tipoHabitacion": "Doble",
+        "precioPorNoche": 9000,
+        "disponible": true
+    },
+    {
+        "numero": 101,
+        "estadoHabitacion": "Disponible",
+        "tipoHabitacion": "Simple",
+        "precioPorNoche": 5000,
+        "disponible": true
+    },
+    {
+        "numero": 102,
+        "estadoHabitacion": "Disponible",
+        "tipoHabitacion": "Simple",
+        "precioPorNoche": 5000,
+        "disponible": true
+    },
+    {
+        "numero": 103,
+        "estadoHabitacion": "Disponible",
+        "tipoHabitacion": "Simple",
+        "precioPorNoche": 5000,
+        "disponible": true
+    },
+    {
+        "numero": 104,
+        "estadoHabitacion": "Disponible",
+        "tipoHabitacion": "Simple",
+        "precioPorNoche": 5000,
+        "disponible": true
+    },
+    {
+        "numero": 105,
+        "estadoHabitacion": "Disponible",
+        "tipoHabitacion": "Simple",
+        "precioPorNoche": 5000,
+        "disponible": true
+    },
+    {
+        "numero": 106,
+        "estadoHabitacion": "Disponible",
+        "tipoHabitacion": "Simple",
+        "precioPorNoche": 5000,
+        "disponible": true
+    },
+    {
+        "numero": 107,
+        "estadoHabitacion": "Disponible",
+        "tipoHabitacion": "Simple",
+        "precioPorNoche": 5000,
+        "disponible": true
+    },
+    {
+        "numero": 108,
+        "estadoHabitacion": "Disponible",
+        "tipoHabitacion": "Simple",
+        "precioPorNoche": 5000,
+        "disponible": true
+    },
+    {
+        "numero": 109,
+        "estadoHabitacion": "Disponible",
+        "tipoHabitacion": "Simple",
+        "precioPorNoche": 5000,
+        "disponible": true
+    },
+    {
+        "numero": 301,
+        "estadoHabitacion": "Disponible",
+        "tipoHabitacion": "Suite",
+        "precioPorNoche": 15000,
+        "disponible": true
+    },
+    {
+        "numero": 110,
+        "estadoHabitacion": "Disponible",
+        "tipoHabitacion": "Simple",
+        "precioPorNoche": 5000,
+        "disponible": true
+    },
+    {
+        "numero": 302,
+        "estadoHabitacion": "Disponible",
+        "tipoHabitacion": "Suite",
+        "precioPorNoche": 15000,
+        "disponible": true
+    },
+    {
+        "numero": 303,
+        "estadoHabitacion": "Disponible",
+        "tipoHabitacion": "Suite",
+        "precioPorNoche": 15000,
+        "disponible": true
+    },
+    {
+        "numero": 304,
+        "estadoHabitacion": "Disponible",
+        "tipoHabitacion": "Suite",
+        "precioPorNoche": 15000,
+        "disponible": true
+    },
+    {
+        "numero": 305,
+        "estadoHabitacion": "Disponible",
+        "tipoHabitacion": "Suite",
+        "precioPorNoche": 15000,
+        "disponible": true
+    },
+    {
+        "numero": 306,
+        "estadoHabitacion": "Disponible",
+        "tipoHabitacion": "Suite",
+        "precioPorNoche": 15000,
+        "disponible": true
+    },
+    {
+        "numero": 307,
+        "estadoHabitacion": "Disponible",
+        "tipoHabitacion": "Suite",
+        "precioPorNoche": 15000,
+        "disponible": true
+    },
+    {
+        "numero": 308,
+        "estadoHabitacion": "Disponible",
+        "tipoHabitacion": "Suite",
+        "precioPorNoche": 15000,
+        "disponible": true
+    },
+    {
+        "numero": 309,
+        "estadoHabitacion": "Disponible",
+        "tipoHabitacion": "Suite",
+        "precioPorNoche": 15000,
+        "disponible": true
+    },
+    {
+        "numero": 310,
+        "estadoHabitacion": "Disponible",
+        "tipoHabitacion": "Suite",
+        "precioPorNoche": 15000,
+        "disponible": true
+    }
+]}]

@@ -1,0 +1,152 @@
+[{"usuarios": [
+    {
+        "password": "pasajero10",
+        "rol": "Pasajero",
+        "username": "pasajero10"
+    },
+    {
+        "password": "recep1",
+        "rol": "Recepcionista",
+        "username": "recep1"
+    },
+    {
+        "password": "recep2",
+        "rol": "Recepcionista",
+        "username": "recep2"
+    },
+    {
+        "password": "recep9",
+        "rol": "Recepcionista",
+        "username": "recep9"
+    },
+    {
+        "password": "recep10",
+        "rol": "Recepcionista",
+        "username": "recep10"
+    },
+    {
+        "password": "pasajero9",
+        "rol": "Pasajero",
+        "username": "pasajero9"
+    },
+    {
+        "password": "recep7",
+        "rol": "Recepcionista",
+        "username": "recep7"
+    },
+    {
+        "password": "pasajero7",
+        "rol": "Pasajero",
+        "username": "pasajero7"
+    },
+    {
+        "password": "recep8",
+        "rol": "Recepcionista",
+        "username": "recep8"
+    },
+    {
+        "password": "pasajero8",
+        "rol": "Pasajero",
+        "username": "pasajero8"
+    },
+    {
+        "password": "recep5",
+        "rol": "Recepcionista",
+        "username": "recep5"
+    },
+    {
+        "password": "recep6",
+        "rol": "Recepcionista",
+        "username": "recep6"
+    },
+    {
+        "password": "recep3",
+        "rol": "Recepcionista",
+        "username": "recep3"
+    },
+    {
+        "password": "recep4",
+        "rol": "Recepcionista",
+        "username": "recep4"
+    },
+    {
+        "password": "pasajero1",
+        "rol": "Pasajero",
+        "username": "pasajero1"
+    },
+    {
+        "password": "pasajero2",
+        "rol": "Pasajero",
+        "username": "pasajero2"
+    },
+    {
+        "password": "pasajero5",
+        "rol": "Pasajero",
+        "username": "pasajero5"
+    },
+    {
+        "password": "pasajero6",
+        "rol": "Pasajero",
+        "username": "pasajero6"
+    },
+    {
+        "password": "pasajero3",
+        "rol": "Pasajero",
+        "username": "pasajero3"
+    },
+    {
+        "password": "pasajero4",
+        "rol": "Pasajero",
+        "username": "pasajero4"
+    },
+    {
+        "password": "admin9",
+        "rol": "Administrador",
+        "username": "admin9"
+    },
+    {
+        "password": "admin7",
+        "rol": "Administrador",
+        "username": "admin7"
+    },
+    {
+        "password": "admin8",
+        "rol": "Administrador",
+        "username": "admin8"
+    },
+    {
+        "password": "admin1",
+        "rol": "Administrador",
+        "username": "admin1"
+    },
+    {
+        "password": "admin2",
+        "rol": "Administrador",
+        "username": "admin2"
+    },
+    {
+        "password": "admin5",
+        "rol": "Administrador",
+        "username": "admin5"
+    },
+    {
+        "password": "admin10",
+        "rol": "Administrador",
+        "username": "admin10"
+    },
+    {
+        "password": "admin6",
+        "rol": "Administrador",
+        "username": "admin6"
+    },
+    {
+        "password": "admin3",
+        "rol": "Administrador",
+        "username": "admin3"
+    },
+    {
+        "password": "admin4",
+        "rol": "Administrador",
+        "username": "admin4"
+    }
+]}]

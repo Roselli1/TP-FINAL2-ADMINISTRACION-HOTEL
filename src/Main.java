@@ -8,10 +8,7 @@ import Interfaces.iToJSON;
 import Modelo.Hotel.Habitacion;
 import Modelo.Hotel.RegistroEstadia;
 import Modelo.Hotel.Reserva;
-import Modelo.Persona.Administrador;
-import Modelo.Persona.Pasajero;
-import Modelo.Persona.Recepcionista;
-import Modelo.Persona.UsuarioBase;
+import Modelo.Persona.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -34,7 +31,7 @@ public class Main
         }
 
 
-        System.out.println("--- BIENVENIDO AL SISTEMA DE GESTION HOTELERA ---");
+        System.out.println("\n\n\n--- BIENVENIDO AL SISTEMA DE GESTION HOTELERA ---");
         do
         {
             System.out.println("\n--------------------------------");
@@ -622,6 +619,47 @@ public class Main
             {
                 hotel.agregarHabitacion(new Habitacion(i, TipoHabitacion.SUITE, 15000, EstadoHabitacion.DISPONIBLE));
             }
+
+            // --- ADMINISTRADORES ---
+            hotel.agregarStaff(new UsuarioBase("admin1", "admin1", Rol.ADMINISTRADOR), "Tomas", "Roselli", "47472036", "Av. Corrientes 1234", "Argentina");
+            hotel.agregarStaff(new UsuarioBase("admin2", "admin2", Rol.ADMINISTRADOR), "Juan", "Martinez", "38456721", "Calle San Martin 567", "Argentina");
+            hotel.agregarStaff(new UsuarioBase("admin3", "admin3", Rol.ADMINISTRADOR), "Sofia", "Gonzalez", "42183945", "Boulevard Kennedy 890", "Chile");
+            hotel.agregarStaff(new UsuarioBase("admin4", "admin4", Rol.ADMINISTRADOR), "Maria", "Aranda", "35276489", "Pasaje Libertad 2345", "Argentina");
+            hotel.agregarStaff(new UsuarioBase("admin5", "admin5", Rol.ADMINISTRADOR), "Nicolas", "Ferreyra", "40912573", "Ruta Nacional 456", "Paraguay");
+            hotel.agregarStaff(new UsuarioBase("admin6", "admin6", Rol.ADMINISTRADOR), "Claudia", "Lopez", "33658142", "Diagonal Norte 678", "Argentina");
+            hotel.agregarStaff(new UsuarioBase("admin7", "admin7", Rol.ADMINISTRADOR), "Carlos", "Benitez", "39847256", "Av. Rivadavia 3210", "Uruguay");
+            hotel.agregarStaff(new UsuarioBase("admin8", "admin8", Rol.ADMINISTRADOR), "Lucia", "Mastromarino", "44521398", "Calle Florida 1567", "Brasil");
+            hotel.agregarStaff(new UsuarioBase("admin9", "admin9", Rol.ADMINISTRADOR), "Miguel", "Desimone", "36704825", "Av. 9 de Julio 4321", "Argentina");
+            hotel.agregarStaff(new UsuarioBase("admin10", "admin10", Rol.ADMINISTRADOR), "Patricia", "Campos", "41285674", "Calle Lavalle 2890", "México");
+
+            // --- RECEPCIONISTAS ---
+            hotel.agregarStaff(new UsuarioBase("recep1", "recep1", Rol.RECEPCIONISTA), "Andrea", "Molina", "29384756", "Calle Belgrano 1523", "Argentina");
+            hotel.agregarStaff(new UsuarioBase("recep2", "recep2", Rol.RECEPCIONISTA), "Fernando", "Ramirez", "31567892", "Av. Santa Fe 2987", "Colombia");
+            hotel.agregarStaff(new UsuarioBase("recep3", "recep3", Rol.RECEPCIONISTA), "Valentina", "Suarez", "43729158", "Calle Mitre 765", "Argentina");
+            hotel.agregarStaff(new UsuarioBase("recep4", "recep4", Rol.RECEPCIONISTA), "Diego", "Peralta", "37891245", "Paseo Colon 4532", "Perú");
+            hotel.agregarStaff(new UsuarioBase("recep5", "recep5", Rol.RECEPCIONISTA), "Romina", "Castro", "45218973", "Av. Independencia 3456", "Argentina");
+            hotel.agregarStaff(new UsuarioBase("recep6", "recep6", Rol.RECEPCIONISTA), "Gabriel", "Torres", "32654987", "Calle Sarmiento 1890", "Ecuador");
+            hotel.agregarStaff(new UsuarioBase("recep7", "recep7", Rol.RECEPCIONISTA), "Florencia", "Vega", "40573281", "Av. Callao 2134", "Argentina");
+            hotel.agregarStaff(new UsuarioBase("recep8", "recep8", Rol.RECEPCIONISTA), "Matias", "Romero", "34912658", "Calle Tucuman 987", "Bolivia");
+            hotel.agregarStaff(new UsuarioBase("recep9", "recep9", Rol.RECEPCIONISTA), "Camila", "Acosta", "46837512", "Av. Pueyrredon 5678", "Argentina");
+            hotel.agregarStaff(new UsuarioBase("recep10", "recep10", Rol.RECEPCIONISTA), "Sebastian", "Morales", "39165824", "Calle Cordoba 3721", "Venezuela");
+
+            // --- PASAJEROS ---
+            hotel.registrarPasajero(new Pasajero("Roberto", "Silva", "28745913", "Calle Alsina 1245", "Argentina", "1145678234", "roberto.silva@email.com", false, hotel, "pasajero1", "pasajero1"));
+            hotel.registrarPasajero(new Pasajero("Ana", "Mendoza", "33926481", "Av. Jujuy 3456", "España", "1156329847", "ana.mendoza@email.com", false, hotel, "pasajero2", "pasajero2"));
+            hotel.registrarPasajero(new Pasajero("Lucas", "Ortiz", "41583726", "Calle Chacabuco 876", "Argentina", "1147852369", "lucas.ortiz@email.com", false, hotel, "pasajero3", "pasajero3"));
+            hotel.registrarPasajero(new Pasajero("Martina", "Ruiz", "36214895", "Av. Entre Rios 2341", "Uruguay", "1159638412", "martina.ruiz@email.com", false, hotel, "pasajero4", "pasajero4"));
+            hotel.registrarPasajero(new Pasajero("Ezequiel", "Diaz", "44657182", "Calle Defensa 1567", "Argentina", "1143217856", "ezequiel.diaz@email.com", false, hotel, "pasajero5", "pasajero5"));
+            hotel.registrarPasajero(new Pasajero("Julia", "Navarro", "30492817", "Av. Boedo 4523", "Chile", "1152847196", "julia.navarro@email.com", false, hotel, "pasajero6", "pasajero6"));
+            hotel.registrarPasajero(new Pasajero("Facundo", "Herrera", "42918573", "Calle Piedras 2198", "Argentina", "1148529637", "facundo.herrera@email.com", false, hotel, "pasajero7", "pasajero7"));
+            hotel.registrarPasajero(new Pasajero("Gabriela", "Jimenez", "35847291", "Av. Caseros 3267", "Brasil", "1157418293", "gabriela.jimenez@email.com", false, hotel, "pasajero8", "pasajero8"));
+            hotel.registrarPasajero(new Pasajero("Ignacio", "Blanco", "39512748", "Calle Balcarce 1789", "Paraguay", "1146293581", "ignacio.blanco@email.com", false, hotel, "pasajero9", "pasajero9"));
+            hotel.registrarPasajero(new Pasajero("Victoria", "Rojas", "43786152", "Av. San Juan 4012", "Argentina", "1154926783", "victoria.rojas@email.com", false, hotel, "pasajero10", "pasajero10"));
+
+
+
+
+
         } catch (Exception e)
         {
             System.out.println("Error al inicializar los datos: " + e.getMessage());

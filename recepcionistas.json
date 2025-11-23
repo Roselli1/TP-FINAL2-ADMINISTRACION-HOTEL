@@ -1,0 +1,122 @@
+[{"recepcionistas": [
+    {
+        "domicilio": "Calle Belgrano 1523",
+        "apellido": "Molina",
+        "usuario": {
+            "password": "recep1",
+            "rol": "Recepcionista",
+            "username": "recep1"
+        },
+        "origen": "Argentina",
+        "nombre": "Andrea",
+        "dni": "29384756"
+    },
+    {
+        "domicilio": "Av. Santa Fe 2987",
+        "apellido": "Ramirez",
+        "usuario": {
+            "password": "recep2",
+            "rol": "Recepcionista",
+            "username": "recep2"
+        },
+        "origen": "Colombia",
+        "nombre": "Fernando",
+        "dni": "31567892"
+    },
+    {
+        "domicilio": "Calle Mitre 765",
+        "apellido": "Suarez",
+        "usuario": {
+            "password": "recep3",
+            "rol": "Recepcionista",
+            "username": "recep3"
+        },
+        "origen": "Argentina",
+        "nombre": "Valentina",
+        "dni": "43729158"
+    },
+    {
+        "domicilio": "Paseo Colon 4532",
+        "apellido": "Peralta",
+        "usuario": {
+            "password": "recep4",
+            "rol": "Recepcionista",
+            "username": "recep4"
+        },
+        "origen": "Perú",
+        "nombre": "Diego",
+        "dni": "37891245"
+    },
+    {
+        "domicilio": "Av. Independencia 3456",
+        "apellido": "Castro",
+        "usuario": {
+            "password": "recep5",
+            "rol": "Recepcionista",
+            "username": "recep5"
+        },
+        "origen": "Argentina",
+        "nombre": "Romina",
+        "dni": "45218973"
+    },
+    {
+        "domicilio": "Calle Sarmiento 1890",
+        "apellido": "Torres",
+        "usuario": {
+            "password": "recep6",
+            "rol": "Recepcionista",
+            "username": "recep6"
+        },
+        "origen": "Ecuador",
+        "nombre": "Gabriel",
+        "dni": "32654987"
+    },
+    {
+        "domicilio": "Av. Callao 2134",
+        "apellido": "Vega",
+        "usuario": {
+            "password": "recep7",
+            "rol": "Recepcionista",
+            "username": "recep7"
+        },
+        "origen": "Argentina",
+        "nombre": "Florencia",
+        "dni": "40573281"
+    },
+    {
+        "domicilio": "Calle Tucuman 987",
+        "apellido": "Romero",
+        "usuario": {
+            "password": "recep8",
+            "rol": "Recepcionista",
+            "username": "recep8"
+        },
+        "origen": "Bolivia",
+        "nombre": "Matias",
+        "dni": "34912658"
+    },
+    {
+        "domicilio": "Av. Pueyrredon 5678",
+        "apellido": "Acosta",
+        "usuario": {
+            "password": "recep9",
+            "rol": "Recepcionista",
+            "username": "recep9"
+        },
+        "origen": "Argentina",
+        "nombre": "Camila",
+        "dni": "46837512"
+    },
+    {
+        "domicilio": "Calle Cordoba 3721",
+        "apellido": "Morales",
+        "usuario": {
+            "password": "recep10",
+            "rol": "Recepcionista",
+            "username": "recep10"
+        },
+        "origen": "Venezuela",
+        "nombre": "Sebastian",
+        "dni": "39165824"
+    }
+]}]

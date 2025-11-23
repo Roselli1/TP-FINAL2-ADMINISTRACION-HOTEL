@@ -17,7 +17,7 @@ public class GestoraEstadias extends GestoraGenerica<RegistroEstadia>
         try
         {
             //Leer el archivo JSON
-            String jsonString= JsonUtiles.leer(nombreArchivo+ ".json");
+            String jsonString= JsonUtiles.leer(nombreArchivo);
 
             if (jsonString==null)
             {
