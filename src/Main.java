@@ -124,6 +124,10 @@ public class Main
                 else if (usuarioLogueado.getRol()==Rol.PASAJERO)
                 {
                     Pasajero pasajero = hotel.buscarPasajeroPorUsername(username);
+                    if (pasajero !=null)
+                    {
+                        pasajero.setHotel(hotel);
+                    }
                     menuPasajero(scanner, hotel, pasajero);
                 }
                 else
@@ -712,6 +716,11 @@ public class Main
 
     // --- Realizar Reserva (Pasajero)
     private static void pasajeroRealizarReserva (Scanner scanner, GestorHotel hotel, Pasajero pasajero ) {
+        boolean error= false;
+        LocalDate fechaIngreso= null;
+        LocalDate fechaEgreso= null;
+        int nroHabitacion= 0;
+
         try
         {
             System.out.println("\n--- SOLICITAR NUEVA RESERVA ---");
@@ -719,33 +728,82 @@ public class Main
             //mostramos habitaciones disponibles
             hotel.mostrarHabitacionesDisponibles();
 
-            System.out.println("Ingrese el numero de la habitacion que desea reservar: ");
-            int nroHabitacion = Integer.parseInt(scanner.nextLine());
+            do {
+                try {
 
-            Habitacion habitacion = hotel.getHabitaciones().get(nroHabitacion);
-            if (habitacion == null)
-            {
-                System.out.println("Error: La habitacion " + nroHabitacion + " no existe.");
-                return;
-            }
 
-            System.out.println("Ingrese la fecha de ingreso (YYYY-MM-DD): ");
-            LocalDate fechaIngreso = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-            System.out.println("Ingrese la fecha de egreso (YYYY-MM-DD): ");
-            LocalDate fechaEgreso = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                    System.out.println("Ingrese el numero de la habitacion que desea reservar: ");
+                    nroHabitacion = Integer.parseInt(scanner.nextLine().trim());
 
-            if (fechaIngreso.isBefore(LocalDate.now()))
+
+                    Habitacion habitacion = hotel.getHabitaciones().get(nroHabitacion);
+                    if (habitacion == null) {
+                        System.out.println("Error: La habitacion " + nroHabitacion + " no existe.");
+                        error = true;
+                    } else {
+                        error = false;
+                    }
+                }catch (NumberFormatException e)
+                {
+                    System.out.println("Error: Debe ingresar un numero valido.");
+                    error = true;
+                }
+
+            }while (error);
+
+
+
+
+            do
             {
-                System.out.println("Error: La fecha ya paso.");
-                return;
-            }
-            if (!fechaEgreso.isAfter(fechaIngreso))
-            {
-                System.out.println("Error: La fecha de egreso debe ser posterior a la de ingreso.");
-                return;
-            }
+                try {
+                    System.out.println("Ingrese la fecha de ingreso (YYYY-MM-DD): ");
+                    fechaIngreso = LocalDate.parse(scanner.nextLine().trim());
+                    if (fechaIngreso.isBefore(LocalDate.now()))
+                    {
+                        System.out.println("Error: La fecha ya paso.");
+                        error = true;
+                    }
+                    else
+                    {
+                        error = false;
+                    }
+                }catch (Exception e)
+                {
+                    System.out.println("Error de formato.");
+                    error = true;
+                }
+            }while (error);
+
+
+
+            do {
+                try {
+                    System.out.println("Ingrese la fecha de egreso (YYYY-MM-DD): ");
+                    fechaEgreso = LocalDate.parse(scanner.nextLine().trim());
+
+                    if (fechaEgreso.isBefore(LocalDate.now()))
+                    {
+                        System.out.println("Error: La fecha ya paso.");
+                        error = true;
+                    } else if (!fechaEgreso.isAfter(fechaIngreso))
+                    {
+                        System.out.println("Error: La fecha de egreso debe ser posterior a la de ingreso.");
+                        error = true;
+                    }
+                    else
+                    {
+                        error = false;
+                    }
+                }catch (Exception e)
+                {
+                    System.out.println("Error de formato.");
+                    error = true;
+                }
+            }while (error);
 
             //Creamos la reserva
+            Habitacion habitacion = hotel.getHabitaciones().get(nroHabitacion);
             Reserva nuevaReserva = new Reserva(habitacion, pasajero, fechaIngreso, fechaEgreso, true);
 
             boolean exito= pasajero.crearReserva(nuevaReserva, nroHabitacion);
@@ -755,12 +813,9 @@ public class Main
                 System.out.println("Error: No se pudo crear la reserva.");
             }
 
-        }catch (IllegalArgumentException e)
-        {
-            System.out.println("Error: " + e.getMessage());
         } catch (Exception e)
             {
-            System.out.println("Error inesperado al crear la reserva: " + e.getMessage());
+            System.out.println("Error inesperado al crear la reserva. ");
             }
     }
 
@@ -783,21 +838,16 @@ public class Main
         }
 
         System.out.println("Ingrese el numero de la reserva a cancelar: ");
-        try
-        {
+        try {
             int nroReserva = Integer.parseInt(scanner.nextLine());
-            if (nroReserva>=0 && nroReserva<misReservas.size())
-            {
+            if (nroReserva >= 0 && nroReserva < misReservas.size()) {
                 Reserva reservaACancelar = misReservas.get(nroReserva);
 
-                boolean exitoCancelar= pasajero.cancelarReserva(reservaACancelar);
+                boolean exitoCancelar = pasajero.cancelarReserva(reservaACancelar);
 
-                if (exitoCancelar)
-                {
+                if (exitoCancelar) {
                     System.out.println("Reserva cancelada correctamente.");
-                }
-                else
-                {
+                } else {
                     System.out.println("Indice invalido.");
                 }
             }
