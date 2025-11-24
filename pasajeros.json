@@ -9,7 +9,6 @@
             "username": "pasajero1"
         },
         "origen": "Argentina",
-        "historiaHotel": [],
         "telefono": "1145678234",
         "nombre": "Roberto",
         "dni": "28745913",
@@ -25,7 +24,6 @@
             "username": "pasajero2"
         },
         "origen": "España",
-        "historiaHotel": [],
         "telefono": "1156329847",
         "nombre": "Ana",
         "dni": "33926481",
@@ -41,7 +39,6 @@
             "username": "pasajero3"
         },
         "origen": "Argentina",
-        "historiaHotel": [],
         "telefono": "1147852369",
         "nombre": "Lucas",
         "dni": "41583726",
@@ -57,7 +54,6 @@
             "username": "pasajero4"
         },
         "origen": "Uruguay",
-        "historiaHotel": [],
         "telefono": "1159638412",
         "nombre": "Martina",
         "dni": "36214895",
@@ -73,7 +69,6 @@
             "username": "pasajero5"
         },
         "origen": "Argentina",
-        "historiaHotel": [],
         "telefono": "1143217856",
         "nombre": "Ezequiel",
         "dni": "44657182",
@@ -89,7 +84,6 @@
             "username": "pasajero6"
         },
         "origen": "Chile",
-        "historiaHotel": [],
         "telefono": "1152847196",
         "nombre": "Julia",
         "dni": "30492817",
@@ -105,7 +99,6 @@
             "username": "pasajero7"
         },
         "origen": "Argentina",
-        "historiaHotel": [],
         "telefono": "1148529637",
         "nombre": "Facundo",
         "dni": "42918573",
@@ -121,7 +114,6 @@
             "username": "pasajero8"
         },
         "origen": "Brasil",
-        "historiaHotel": [],
         "telefono": "1157418293",
         "nombre": "Gabriela",
         "dni": "35847291",
@@ -137,7 +129,6 @@
             "username": "pasajero9"
         },
         "origen": "Paraguay",
-        "historiaHotel": [],
         "telefono": "1146293581",
         "nombre": "Ignacio",
         "dni": "39512748",
@@ -153,7 +144,6 @@
             "username": "pasajero10"
         },
         "origen": "Argentina",
-        "historiaHotel": [],
         "telefono": "1154926783",
         "nombre": "Victoria",
         "dni": "43786152",
@@ -169,7 +159,6 @@
             "username": "marcos1"
         },
         "origen": "Alemania",
-        "historiaHotel": [],
         "telefono": "2234903038",
         "nombre": "Marcos",
         "dni": "20206536",

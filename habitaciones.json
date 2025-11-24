@@ -141,10 +141,10 @@
     },
     {
         "numero": 110,
-        "estadoHabitacion": "Disponible",
+        "estadoHabitacion": "Ocupada",
         "tipoHabitacion": "Simple",
         "precioPorNoche": 5000,
-        "disponible": true
+        "disponible": false
     },
     {
         "numero": 302,

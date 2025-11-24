@@ -339,6 +339,7 @@ public class GestorHotel
         }
     }
 
+
     public Pasajero buscarPasajeroPorUsername(String username) {
         // Recorremos la lista interna de pasajeros
         for (Pasajero p : pasajeros) {
@@ -369,6 +370,20 @@ public class GestorHotel
             }
         }
         return null; // Si no lo encuentra
+    }
+
+    public void verReservasPasajero(Pasajero pasajero) {
+        boolean tieneReservas = false;
+
+        for (Reserva r : reservas) {
+            if (r.getPasajero().equals(pasajero)) {
+                System.out.println(r.toString());
+                tieneReservas = true;
+            }
+        }
+        if (!tieneReservas) {
+            System.out.println("El pasajero no tiene ninguna reserva registrada.");
+        }
     }
 
     public List<Reserva> buscarReservasPorPasajero(Pasajero pasajero) {

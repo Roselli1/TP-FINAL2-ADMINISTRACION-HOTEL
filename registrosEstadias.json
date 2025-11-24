@@ -1,1 +1,7 @@
-[{"registrosEstadias": []}]
+[{"registrosEstadias": [{
+    "pasajero": "Persona{nombre='Roberto', apellido='Silva', dni='28745913', domicilio='Calle Alsina 1245', origen='Argentina'}",
+    "checkIn": "2025-11-24",
+    "consumos": [],
+    "checkOut": "2025-12-20",
+    "habitacion": "Habitacion{numero=110, tipoHabitacion=Simple, precioPorNoche=5000.0, disponible=false, estadoHabitacion=Ocupada}"
+}]}]

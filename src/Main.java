@@ -1008,12 +1008,13 @@ public class Main
         {
 
             System.out.println("\n--- MENU PASAJERO ---");
-            System.out.println("1. Mis Reservas/ Historial.");
-            System.out.println("2. Solicitar Nueva Reserva.");
-            System.out.println("3. Cancelar Reserva.");
-            System.out.println("4. Realizar Check-In(Ingreso).");
-            System.out.println("5. Realizar Check-Out(Salida).");
-            System.out.println("6. Ver habitaciones disponibles.");
+            System.out.println("1. Historial Estadias.");
+            System.out.println("2. Ver Reservas Pendientes.");
+            System.out.println("3. Solicitar Nueva Reserva.");
+            System.out.println("4. Cancelar Reserva.");
+            System.out.println("5. Realizar Check-In(Ingreso).");
+            System.out.println("6. Realizar Check-Out(Salida).");
+            System.out.println("7. Ver habitaciones disponibles.");
             System.out.println("0. Cerrar Sesion.");
             System.out.print("Elija una opcion: ");
 
@@ -1030,25 +1031,30 @@ public class Main
                     }
                     case 2:
                     {
-                        pasajeroRealizarReserva(scanner, hotel, pasajero);
+                        hotel.verReservasPasajero(pasajero);
                         break;
                     }
                     case 3:
                     {
-                        pasajeroCancelarReserva(scanner, hotel, pasajero);
+                        pasajeroRealizarReserva(scanner, hotel, pasajero);
                         break;
                     }
                     case 4:
                     {
-                        pasajeroCheckIn(scanner, hotel, pasajero);
+                        pasajeroCancelarReserva(scanner, hotel, pasajero);
                         break;
                     }
                     case 5:
                     {
-                        pasajeroCheckOut(scanner, hotel, pasajero);
+                        pasajeroCheckIn(scanner, hotel, pasajero);
                         break;
                     }
                     case 6:
+                    {
+                        pasajeroCheckOut(scanner, hotel, pasajero);
+                        break;
+                    }
+                    case 7:
                     {
                         hotel.mostrarHabitacionesDisponibles();
                         break;

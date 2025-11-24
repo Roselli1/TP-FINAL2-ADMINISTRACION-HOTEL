@@ -68,7 +68,8 @@ public class Pasajero extends Persona implements iToJSON, IGestionReserva, IGest
         json.put("telefono", telefono);
         json.put("email", email);
         json.put("solicitarReserva", solicitarReserva);
-        json.put("historiaHotel", historiaHotel);
+        //json.put("historiaHotel", historiaHotel);
+        // ya se guarda en registroEstadias
         return json;
     }
 
