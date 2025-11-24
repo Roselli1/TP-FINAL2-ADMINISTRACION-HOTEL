@@ -18,7 +18,7 @@ public class Main
 {
     public static void main(String[] args)
     {
-        //Iniciar el gestor de hotel (carga automatica de datos)
+        //Iniciar el gestor de hotel (carga automática de datos)
         GestorHotel hotel= new GestorHotel();
         Scanner scanner= new Scanner(System.in);
         int opcion= -1;
@@ -147,6 +147,8 @@ public class Main
 
     // --- Metodo de RegistrarPasajero ---
     private static void registrarPasajero(Scanner scanner, GestorHotel hotel) {
+        boolean error = false;
+
         try
         {
             System.out.println("--- REGISTRO DE PASAJERO ---");
@@ -156,8 +158,16 @@ public class Main
             System.out.println("Apellido: ");
             String apellido= scanner.nextLine();
 
-            System.out.println("DNI: ");
-            String dni= scanner.nextLine();
+            String dni;
+            do {
+                System.out.println("DNI: ");
+                dni= scanner.nextLine();
+
+                if (!dni.matches("\\d+")){  // "\\d+" significa "uno o más dígitos"
+                    error = true;
+                    System.out.println("Solo puede tener números.");
+                }
+            } while (error);
 
             System.out.println("Direccion: ");
             String direccion= scanner.nextLine();
@@ -171,11 +181,31 @@ public class Main
             System.out.println("Correo: ");
             String correo= scanner.nextLine();
 
-            System.out.println("Username: ");
-            String username= scanner.nextLine();
+            String username;
+            do {
+                System.out.println("Username: ");
+                username= scanner.nextLine();
 
-            System.out.println("Password: ");
-            String password= scanner.nextLine();
+                if (username.contains(" ")){
+                    error = true;
+                    System.out.println("Error: el username no puede contener espacios.");
+                }
+                if (!username.equals(username.toLowerCase())){
+                    error = true;
+                    System.out.println("Error: el username no puede contener mayúsculas.");
+                }
+            } while (error);
+
+            String password;
+            do {
+                System.out.println("Password: ");
+                password= scanner.nextLine();
+
+                if (password.contains(" ")){
+                    error = true;
+                    System.out.println("Error: la contraseña no puede contener espacios.");
+                }
+            }while (error);
 
             //Creamos el usuario pasajero
             Pasajero nuevo= new Pasajero(nombre, apellido, dni, direccion, origen, telefono, correo, false, hotel, username, password);
@@ -336,7 +366,7 @@ public class Main
     }
 
     // --- Check-Out Interactivo ---
-    /// FALTA EL CODIGO
+    /// FALTA PROBARLO
     private static void checkOutInteractivo(Scanner scanner, GestorHotel hotel, Recepcionista recepcionista){
         try
         {
@@ -350,7 +380,7 @@ public class Main
             {
                 System.out.println("Check-Out exitoso.");
             }
-        } catch (NumberFormatException e)
+        } catch (IllegalArgumentException e)
         {
             System.out.println("Ingrese un número válido.");
         } catch (Exception e) {
@@ -361,6 +391,8 @@ public class Main
     // ---Crear Usuario Staff ---
     /// FALTA PROBARLO
     private static void crearNuevoUsuarioStaff(Scanner scanner, GestorHotel hotel){
+        boolean error = false;
+
         try {
             System.out.println("\n--- CREAR NUEVO USUARIO STAFF ---");
 
@@ -369,24 +401,52 @@ public class Main
             String nombre = scanner.nextLine();
             System.out.println("Apellido: ");
             String apellido = scanner.nextLine();
-            System.out.println("DNI: ");
-            String dni = scanner.nextLine();
+            String dni;
+            do {
+                System.out.println("DNI: ");
+                dni= scanner.nextLine();
+
+                if (!dni.matches("\\d+")){  // "\\d+" significa "uno o más dígitos"
+                    error = true;
+                    System.out.println("Solo puede tener números.");
+                }
+            } while (error);
             System.out.println("Dirección: ");
             String direccion = scanner.nextLine();
             System.out.println("Origen: ");
             String origen = scanner.nextLine();
 
             // Ingreso de username y contraseña
-            System.out.println("Username: ");
-            String username = scanner.nextLine();
-            System.out.println("Password: ");
-            String password = scanner.nextLine();
+            String username;
+            do {
+                System.out.println("Username: ");
+                username= scanner.nextLine();
 
-            // Ingreso del rol que cumple en el hotel
+                if (username.contains(" ")){
+                    error = true;
+                    System.out.println("Error: el username no puede contener espacios.");
+                }
+                if (!username.equals(username.toLowerCase())){
+                    error = true;
+                    System.out.println("Error: el username no puede contener mayúsculas.");
+                }
+            } while (error);
+            String password;
+            do {
+                System.out.println("Password: ");
+                password= scanner.nextLine();
+
+                if (password.contains(" ")){
+                    error = true;
+                    System.out.println("Error: la contraseña no puede contener espacios.");
+                }
+            }while (error);
+
             Rol rol = null;
 
             do {
 
+                // Ingreso del rol que cumple en el hotel
                     System.out.println("Seleccione el Rol:");
                     System.out.println("1. ADMINISTRADOR");
                     System.out.println("2. RECEPCIONISTA");
@@ -406,7 +466,7 @@ public class Main
                             default:
                                 System.out.println("Opción inválida. Ingrese 1 o 2.");
                         }
-                    } catch (NumberFormatException e) {
+                    } catch (IllegalArgumentException e) {
                         System.out.println("Error: Debe ingresar un número.");
                     }
                 }while (rol == null);
@@ -598,7 +658,7 @@ public class Main
             {
                 System.out.println("Check-Out exitoso.");
             }
-        } catch (NumberFormatException e)
+        } catch (IllegalArgumentException e)
         {
             System.out.println("Error: " + e.getMessage());
         } catch (Exception e)
