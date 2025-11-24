@@ -92,7 +92,7 @@ public class Main
 
     /// METODOS
 
-    // --- Metodo de Login ---
+    // --- Metodo de Login --- TERMINADO
     private static void iniciarSesion(Scanner scanner, GestorHotel hotel){
         try {
             //Solicitar datos de inicio de sesion
@@ -150,7 +150,7 @@ public class Main
         }
     }
 
-    // --- Metodo de RegistrarPasajero ---
+    // --- Metodo de RegistrarPasajero ---  TERMINADO
     private static void registrarPasajero(Scanner scanner, GestorHotel hotel) {
         boolean error;
 
@@ -514,7 +514,7 @@ public class Main
         }
     }
 
-    // ---Crear Usuario Staff ---
+    // ---Crear Usuario Staff --- TERMINADO
     private static void crearNuevoUsuarioStaff(Scanner scanner, GestorHotel hotel){
         boolean error;
 
@@ -699,7 +699,7 @@ public class Main
 
     /// METODOS PASAJERO
 
-    // --- Ver Historial ---
+    // --- Ver Historial --- TERMINADO
     private static void verHistorial(Pasajero pasajero) {
         System.out.println("\n--- HISTORIAL DE ESTADIAS ---");
         if (pasajero.getHistoriaHotel().isEmpty())
@@ -714,7 +714,7 @@ public class Main
         }
     }
 
-    // --- Realizar Reserva (Pasajero)
+    // --- Realizar Reserva (Pasajero) --- TERMINADO
     private static void pasajeroRealizarReserva (Scanner scanner, GestorHotel hotel, Pasajero pasajero ) {
         boolean error= false;
         LocalDate fechaIngreso= null;
@@ -819,7 +819,7 @@ public class Main
             }
     }
 
-    // --- Cancelar Reserva (Pasajero)
+    // --- Cancelar Reserva (Pasajero) --- TERMINADO
     private static void pasajeroCancelarReserva(Scanner scanner, GestorHotel hotel, Pasajero pasajero){
 
         System.out.println("\n--- MIS RESERVAS ACTIVAS ---");
@@ -876,7 +876,7 @@ public class Main
         }while (error);
     }
 
-    // --- CheckIn (Pasajero)
+    // --- CheckIn (Pasajero) --- TERMINADO
     private static void pasajeroCheckIn (Scanner scanner, GestorHotel hotel, Pasajero pasajero) {
         System.out.println("\n--- REALIZAR CHECK-IN ---");
 
@@ -894,51 +894,65 @@ public class Main
             System.out.println( (i) + ". " + misReservas.get(i).toString());
         }
 
-        System.out.println("Ingrese el numero de la reserva para el Check-In: ");
-        try
-        {
-            int indiceReserva = Integer.parseInt(scanner.nextLine());
-            if (indiceReserva>=0 && indiceReserva<misReservas.size())
-            {
-                Reserva reservaParaCheckIn = misReservas.get(indiceReserva);
-                pasajero.hacerCheckIn(reservaParaCheckIn);
+
+
+        boolean error;
+        int indiceReserva;
+        do {
+            try {
+                System.out.println("Ingrese el numero de la reserva para el Check-In: ");
+                indiceReserva = Integer.parseInt(scanner.nextLine());
+                if (indiceReserva >= 0 && indiceReserva < misReservas.size()) {
+                    Reserva reservaParaCheckIn = misReservas.get(indiceReserva);
+                    pasajero.hacerCheckIn(reservaParaCheckIn);
+                    error = false;
+                } else {
+                    System.out.println("Indice invalido.");
+                    error = true;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Error: Ingrese un numero valido.");
+                error = true;
+            } catch (Exception e) {
+                System.out.println("Error inesperado al realizar el Check-In.");
+                error = true;
             }
-            else
-            {
-                System.out.println("Indice invalido.");
-            }
-        }catch (IllegalArgumentException e) {
-            System.out.println("Error: " + e.getMessage());
-        }catch (Exception e)
-        {
-            System.out.println("Error inesperado al realizar el Check-In: " + e.getMessage());
-        }
+        }while (error);
     }
 
-    // --- CheckOut (Pasajero)
+    // --- CheckOut (Pasajero) --- TERMINADO 
     private static void pasajeroCheckOut(Scanner scanner, GestorHotel hotel, Pasajero pasajero) {
-        try {
+
             System.out.println("\n--- REALIZAR CHECK-OUT ---");
-            System.out.println("Ingrese el numero de su habitacion para salir: ");
+            boolean error;
+            do {
+                try{
+                System.out.println("Ingrese el numero de su habitacion para salir: ");
 
-            int nroHabitacion = Integer.parseInt(scanner.nextLine());
+                int nroHabitacion = Integer.parseInt(scanner.nextLine());
 
-            boolean exitoCheckOut= pasajero.hacerCheckOut(null, nroHabitacion);
+                boolean exitoCheckOut = pasajero.hacerCheckOut(null, nroHabitacion);
 
-            if (exitoCheckOut)
+                if (exitoCheckOut) {
+                    System.out.println("Check-Out exitoso.");
+                    error = false;
+                } else {
+                    System.out.println("Error: No se pudo realizar el Check-Out.");
+                    error = true;
+                }
+            } catch(NumberFormatException e)
             {
-                System.out.println("Check-Out exitoso.");
+                System.out.println("Error: Ingrese un numero valido.");
+                error = true;
+            } catch(Exception e)
+            {
+                System.out.println("Error en Check-Out.");
+                error = true;
             }
-        } catch (IllegalArgumentException e)
-        {
-            System.out.println("Error: " + e.getMessage());
-        } catch (Exception e)
-        {
-            System.out.println("Error en Check-Out: " + e.getMessage());
-        }
+        }while (error);
     }
 
-    // --- Iniciar Datos ---
+    // --- Iniciar Datos --- TERMINADO
     private static void inicializarDatos(GestorHotel hotel) {
         try
         {
@@ -1014,7 +1028,6 @@ public class Main
 
 
     // --- Menu Pasajero --- (Solo puede ver, nada mas)
-    /// FALTA TERMINAR
     private static void menuPasajero(Scanner scanner, GestorHotel hotel, Pasajero pasajero) {
         int opcion=-1;
 
@@ -1088,7 +1101,7 @@ public class Main
         }while (opcion!=0);
     }
 
-    // --- Menu Administrador ---
+    // --- Menu Administrador --- TERMINADO
     private static void menuAdministrador(Scanner scanner, GestorHotel hotel, Administrador admin) {
         int opcion=-1;
 
