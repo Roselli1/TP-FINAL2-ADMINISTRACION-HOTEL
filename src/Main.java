@@ -147,7 +147,7 @@ public class Main
 
     // --- Metodo de RegistrarPasajero ---
     private static void registrarPasajero(Scanner scanner, GestorHotel hotel) {
-        boolean error = false;
+        boolean error;
 
         try
         {
@@ -166,6 +166,8 @@ public class Main
                 if (!dni.matches("\\d+")){  // "\\d+" significa "uno o más dígitos"
                     error = true;
                     System.out.println("Solo puede tener números.");
+                }else {
+                    error = false;
                 }
             } while (error);
 
@@ -189,10 +191,14 @@ public class Main
                 if (username.contains(" ")){
                     error = true;
                     System.out.println("Error: el username no puede contener espacios.");
+                }else {
+                    error = false;
                 }
                 if (!username.equals(username.toLowerCase())){
                     error = true;
                     System.out.println("Error: el username no puede contener mayúsculas.");
+                }else {
+                    error = false;
                 }
             } while (error);
 
@@ -204,6 +210,8 @@ public class Main
                 if (password.contains(" ")){
                     error = true;
                     System.out.println("Error: la contraseña no puede contener espacios.");
+                }else {
+                    error = false;
                 }
             }while (error);
 
@@ -391,7 +399,7 @@ public class Main
     // ---Crear Usuario Staff ---
     /// FALTA PROBARLO
     private static void crearNuevoUsuarioStaff(Scanner scanner, GestorHotel hotel){
-        boolean error = false;
+        boolean error;
 
         try {
             System.out.println("\n--- CREAR NUEVO USUARIO STAFF ---");
@@ -409,6 +417,8 @@ public class Main
                 if (!dni.matches("\\d+")){  // "\\d+" significa "uno o más dígitos"
                     error = true;
                     System.out.println("Solo puede tener números.");
+                }else {
+                    error = false;
                 }
             } while (error);
             System.out.println("Dirección: ");
@@ -425,10 +435,14 @@ public class Main
                 if (username.contains(" ")){
                     error = true;
                     System.out.println("Error: el username no puede contener espacios.");
+                }else {
+                    error = false;
                 }
                 if (!username.equals(username.toLowerCase())){
                     error = true;
                     System.out.println("Error: el username no puede contener mayúsculas.");
+                }else {
+                    error = false;
                 }
             } while (error);
             String password;
@@ -439,6 +453,8 @@ public class Main
                 if (password.contains(" ")){
                     error = true;
                     System.out.println("Error: la contraseña no puede contener espacios.");
+                }else {
+                    error = false;
                 }
             }while (error);
 
