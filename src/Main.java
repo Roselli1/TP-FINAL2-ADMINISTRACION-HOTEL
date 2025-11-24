@@ -837,29 +837,43 @@ public class Main
             System.out.println( (i) + ". " + misReservas.get(i).toString());
         }
 
-        System.out.println("Ingrese el numero de la reserva a cancelar: ");
-        try {
-            int nroReserva = Integer.parseInt(scanner.nextLine());
-            if (nroReserva >= 0 && nroReserva < misReservas.size()) {
-                Reserva reservaACancelar = misReservas.get(nroReserva);
+        boolean error;
+        do {
+            error= false;
 
-                boolean exitoCancelar = pasajero.cancelarReserva(reservaACancelar);
+            System.out.println("\n--- CANCELAR RESERVA ---");
+            System.out.println("Ingrese el numero de la reserva a cancelar: ");
+            System.out.println("-1. Volver al menu anterior");
+            try {
 
-                if (exitoCancelar) {
-                    System.out.println("Reserva cancelada correctamente.");
-                } else {
-                    System.out.println("Indice invalido.");
+                int nroReserva = Integer.parseInt(scanner.nextLine());
+
+                if (nroReserva == -1) return;
+
+                if (nroReserva >= 0 && nroReserva < misReservas.size()) {
+                    Reserva reservaACancelar = misReservas.get(nroReserva);
+
+                    boolean exitoCancelar = pasajero.cancelarReserva(reservaACancelar);
+
+                    if (exitoCancelar) {
+                        System.out.println("Reserva cancelada correctamente.");
+                    } else {
+                        System.out.println("No se pudo cancelar la reserva.");
+                    }
+                } else
+                {
+                    System.out.println("No se pudo cancelar la reserva. Indice invalido.");
+                    error = true;
                 }
-            }
 
-        }catch (IllegalArgumentException e)
-        {
-            System.out.println("Error: " + e.getMessage());
-        }
-        catch (Exception e)
-        {
-            System.out.println("Error inesperado al cancelar la reserva: " + e.getMessage());
-        }
+            } catch (IllegalArgumentException e) {
+                System.out.println("Error: " + e.getMessage());
+                error = true;
+            } catch (Exception e) {
+                System.out.println("Error inesperado al cancelar la reserva: " + e.getMessage());
+                error = true;
+            }
+        }while (error);
     }
 
     // --- CheckIn (Pasajero)
