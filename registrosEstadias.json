@@ -3,5 +3,5 @@
     "checkIn": "2025-11-24",
     "consumos": [],
     "checkOut": "2025-12-20",
-    "habitacion": "Habitacion{numero=110, tipoHabitacion=Simple, precioPorNoche=5000.0, disponible=false, estadoHabitacion=Ocupada}"
+    "habitacion": "Habitacion{numero=310, tipoHabitacion=Suite, precioPorNoche=15000.0, disponible=false, estadoHabitacion=Ocupada}"
 }]}]

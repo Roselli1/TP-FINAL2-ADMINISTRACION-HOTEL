@@ -339,6 +339,15 @@ public class GestorHotel
         }
     }
 
+    public RegistroEstadia buscarEstadiaActivaPorPasajero(Pasajero pasajero) {
+        for (RegistroEstadia reg : registrosEstadias) {
+            // Coincide el DNI y NO tiene fecha de salida (sigue ahí)
+            if (reg.getPasajero().getDni().equals(pasajero.getDni()) && reg.getCheckOut() == null) {
+                return reg;
+            }
+        }
+        return null; // No está hospedado actualmente
+    }
 
     public Pasajero buscarPasajeroPorUsername(String username) {
         // Recorremos la lista interna de pasajeros

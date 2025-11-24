@@ -699,18 +699,23 @@ public class Main
 
     /// METODOS PASAJERO
 
-    // --- Ver Historial --- TERMINADO
-    private static void verHistorial(Pasajero pasajero) {
+    // --- Ver Historial --- ARREGLAR NOSE POORQUE NO SE GUARDA, ANDA EN EL MOMENTO DE EJECUCION PERO AL MOMENTO DE VOLVER A INGRESAR NO VUELVE A ANDAR.
+    private static void verHistorial(Pasajero pasajero, GestorHotel hotel) {
         System.out.println("\n--- HISTORIAL DE ESTADIAS ---");
-        if (pasajero.getHistoriaHotel().isEmpty())
-        {
-            System.out.println("El pasajero no tiene estadias registradas.");
-        } else
-        {
-            for (RegistroEstadia registroEstadia: pasajero.getHistoriaHotel() )
-            {
-                System.out.println(registroEstadia.toString());
+
+        boolean tieneHistorial = false;
+
+        // Buscamos en la lista GLOBAL del hotel todas las estadías de este pasajero
+        for (RegistroEstadia r : hotel.getRegistrosEstadias()) {
+            // Comparamos por DNI para encontrar las suyas
+            if (r.getPasajero().getDni().equals(pasajero.getDni())) {
+                System.out.println(r.toString());
+                tieneHistorial = true;
             }
+        }
+
+        if (!tieneHistorial) {
+            System.out.println("No tienes estadías registradas en el sistema.");
         }
     }
 
@@ -920,7 +925,7 @@ public class Main
         }while (error);
     }
 
-    // --- CheckOut (Pasajero) --- TERMINADO 
+    // --- CheckOut (Pasajero) --- TERMINADO
     private static void pasajeroCheckOut(Scanner scanner, GestorHotel hotel, Pasajero pasajero) {
 
             System.out.println("\n--- REALIZAR CHECK-OUT ---");
@@ -1024,6 +1029,19 @@ public class Main
         /// como minimo si son mas mejor
     }
 
+    private static void verEstadiaActiva(GestorHotel hotel, Pasajero pasajero) {
+        System.out.println("\n--- MI ESTADÍA ACTUAL ---");
+
+        RegistroEstadia activa = hotel.buscarEstadiaActivaPorPasajero(pasajero);
+
+        if (activa != null) {
+            System.out.println("Actualmente estás hospedado:");
+            System.out.println(activa.toString());
+        } else {
+            System.out.println("No tienes ninguna estadía en curso en este momento.");
+        }
+    }
+
 
 
 
@@ -1042,6 +1060,7 @@ public class Main
             System.out.println("5. Realizar Check-In(Ingreso).");
             System.out.println("6. Realizar Check-Out(Salida).");
             System.out.println("7. Ver habitaciones disponibles.");
+            System.out.println("8. Ver estadia actual.");
             System.out.println("0. Cerrar Sesion.");
             System.out.print("Elija una opcion: ");
 
@@ -1053,7 +1072,7 @@ public class Main
                 {
                     case 1:
                     {
-                        verHistorial(pasajero);
+                        verHistorial(pasajero, hotel);
                         break;
                     }
                     case 2:
@@ -1084,6 +1103,11 @@ public class Main
                     case 7:
                     {
                         hotel.mostrarHabitacionesDisponibles();
+                        break;
+                    }
+                    case 8:
+                    {
+                        verEstadiaActiva(hotel, pasajero);
                         break;
                     }
                     case 0:

@@ -148,20 +148,5 @@
         "nombre": "Victoria",
         "dni": "43786152",
         "email": "victoria.rojas@email.com"
-    },
-    {
-        "solicitarReserva": false,
-        "domicilio": "dada",
-        "apellido": "German",
-        "usuario": {
-            "password": "marcos1",
-            "rol": "Pasajero",
-            "username": "marcos1"
-        },
-        "origen": "Alemania",
-        "telefono": "2234903038",
-        "nombre": "Marcos",
-        "dni": "20206536",
-        "email": "marcos@gmail.com"
     }
 ]}]

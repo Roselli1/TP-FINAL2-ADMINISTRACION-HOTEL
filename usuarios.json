@@ -100,16 +100,6 @@
         "username": "pasajero4"
     },
     {
-        "password": "marcos1",
-        "rol": "Pasajero",
-        "username": "marcos1"
-    },
-    {
-        "password": "tomi1",
-        "rol": "Administrador",
-        "username": "tomi1"
-    },
-    {
         "password": "admin9",
         "rol": "Administrador",
         "username": "admin9"
@@ -123,11 +113,6 @@
         "password": "admin8",
         "rol": "Administrador",
         "username": "admin8"
-    },
-    {
-        "password": "juan1",
-        "rol": "Recepcionista",
-        "username": "juan1"
     },
     {
         "password": "admin1",

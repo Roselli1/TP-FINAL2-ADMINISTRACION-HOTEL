@@ -118,17 +118,5 @@
         "origen": "Venezuela",
         "nombre": "Sebastian",
         "dni": "39165824"
-    },
-    {
-        "domicilio": "casa juan",
-        "apellido": "Ma",
-        "usuario": {
-            "password": "juan1",
-            "rol": "Recepcionista",
-            "username": "juan1"
-        },
-        "origen": "Argentina",
-        "nombre": "Juan",
-        "dni": "40400500"
     }
 ]}]
