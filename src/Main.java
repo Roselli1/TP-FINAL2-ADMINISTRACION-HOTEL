@@ -142,7 +142,7 @@ public class Main
         }
         catch (Exception e)
         {
-            System.out.println("Error en el sistema: " + e.getMessage());
+            System.out.println("Error en el sistema. ");
         }
     }
 
@@ -153,16 +153,56 @@ public class Main
         try
         {
             System.out.println("--- REGISTRO DE PASAJERO ---");
-            System.out.println("Nombre: ");
-            String nombre= scanner.nextLine();
+            String nombre;
+            do {
+                System.out.println("Nombre: ");
+                nombre = scanner.nextLine().toLowerCase();
 
-            System.out.println("Apellido: ");
-            String apellido= scanner.nextLine();
+                if (nombre.isEmpty())
+                    {
+                        System.out.println("No puede estar vacio");
+                        error = true;
+                    }
+                else if (!nombre.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$"))
+                    {
+                        System.out.println("Solo se permiten letras.");
+                        error = true;
+                    }
+                else
+                    {
+                        error = false;
+                    }
+                }while (error);
+
+
+            String apellido;
+            do {
+                    System.out.println("Apellido: ");
+                    apellido = scanner.nextLine().toLowerCase();
+
+                if (apellido.isEmpty())
+                {
+                    System.out.println("No puede estar vacio");
+                    error = true;
+                }
+                else if (!apellido.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$"))
+                {
+                    System.out.println("Solo se permiten letras.");
+                    error = true;
+                }
+                else
+                {
+                    error = false;
+                }
+                }while (error);
+
+
+
 
             String dni;
             do {
                 System.out.println("DNI: ");
-                dni= scanner.nextLine();
+                 dni = scanner.nextLine().trim(); //por si escribe algun espacio sin querer
 
                 if (!dni.matches("\\d+")){  // "\\d+" significa "uno o más dígitos"
                     error = true;
@@ -172,46 +212,54 @@ public class Main
                 }
             } while (error);
 
+
+
+
             System.out.println("Direccion: ");
-            String direccion= scanner.nextLine();
+            String direccion= scanner.nextLine().toLowerCase();
 
             System.out.println("Origen");
-            String origen= scanner.nextLine();
+            String origen= scanner.nextLine().toLowerCase();
 
             System.out.println("Telefono: ");
-            String telefono= scanner.nextLine();
+            String telefono= scanner.nextLine().toLowerCase();
 
             System.out.println("Correo: ");
-            String correo= scanner.nextLine();
+            String correo= scanner.nextLine().toLowerCase();
 
             String username;
             do {
                 System.out.println("Username: ");
-                username= scanner.nextLine();
+                username= scanner.nextLine().trim().toLowerCase();
 
-                if (username.contains(" ")){
+                if (username.isEmpty()) {
+                    System.out.println("Error: No puede estar vacío.");
                     error = true;
-                    System.out.println("Error: el username no puede contener espacios.");
-                }else {
-                    error = false;
                 }
-                if (!username.equals(username.toLowerCase())){
+                else if (!username.matches("^[a-zA-Z0-9ñÑ]+$"))
+                {
+                    System.out.println("Error: Solo se permiten letras y números (sin espacios).");
                     error = true;
-                    System.out.println("Error: el username no puede contener mayúsculas.");
-                }else {
+                }else
+                {
                     error = false;
                 }
             } while (error);
+
 
             String password;
             do {
                 System.out.println("Password: ");
                 password= scanner.nextLine();
 
-                if (password.contains(" ")){
+                if (password.isEmpty()) {
+                    System.out.println("Error: La contraseña no puede estar vacía.");
+                    error = true;
+                } else if (password.contains(" ")){
                     error = true;
                     System.out.println("Error: la contraseña no puede contener espacios.");
-                }else {
+                }else
+                {
                     error = false;
                 }
             }while (error);
@@ -222,13 +270,14 @@ public class Main
             //Lo registramos en el hotel
             hotel.registrarPasajero(nuevo);
             System.out.println("Registro exitoso. Ahora puede iniciar sesion.");
+            System.out.println("Su nombre de usuario es:" + username + "y su contrasenia: "+ password);
 
         }catch (UsuarioYaExisteException e)
         {
             System.out.println(" El usuario ya existe.");
         }catch (Exception e)
         {
-            System.out.println("Error al registrarse en el sistema: " + e.getMessage());
+            System.out.println("Error al registrarse en el sistema. ");
         }
     }
 
