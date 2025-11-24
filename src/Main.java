@@ -11,6 +11,7 @@ import Modelo.Hotel.Reserva;
 import Modelo.Persona.*;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
 
@@ -536,9 +537,9 @@ public class Main
             }
 
             System.out.println("Ingrese la fecha de ingreso (YYYY-MM-DD): ");
-            LocalDate fechaIngreso = LocalDate.parse(scanner.nextLine());
+            LocalDate fechaIngreso = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             System.out.println("Ingrese la fecha de egreso (YYYY-MM-DD): ");
-            LocalDate fechaEgreso = LocalDate.parse(scanner.nextLine());
+            LocalDate fechaEgreso = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
             if (fechaIngreso.isBefore(LocalDate.now()))
             {
@@ -556,10 +557,7 @@ public class Main
 
             boolean exito= pasajero.crearReserva(nuevaReserva, nroHabitacion);
 
-            if (exito)
-            {
-                //Ya se imprime directo del metodo crearReserva
-            } else
+            if (!exito)
             {
                 System.out.println("Error: No se pudo crear la reserva.");
             }

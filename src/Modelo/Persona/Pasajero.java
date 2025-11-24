@@ -108,11 +108,9 @@ public class Pasajero extends Persona implements iToJSON, IGestionReserva, IGest
             }
             return resultado;
 
-        } catch (ReservaInvalidaException e) {
+        } catch (ReservaInvalidaException | HabitacionNoDisponibleException e) {
             throw new RuntimeException(e);
-        } catch (HabitacionNoDisponibleException e) {
-            throw new RuntimeException(e);
-        }catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Error al crear la reserva: " + e.getMessage());
             return false;
         }
