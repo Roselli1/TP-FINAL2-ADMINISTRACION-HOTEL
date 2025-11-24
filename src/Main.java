@@ -156,7 +156,7 @@ public class Main
             String nombre;
             do {
                 System.out.println("Nombre: ");
-                nombre = scanner.nextLine().toLowerCase();
+                nombre = scanner.nextLine().toLowerCase().trim();
 
                 if (nombre.isEmpty())
                     {
@@ -178,7 +178,7 @@ public class Main
             String apellido;
             do {
                     System.out.println("Apellido: ");
-                    apellido = scanner.nextLine().toLowerCase();
+                    apellido = scanner.nextLine().toLowerCase().trim();
 
                 if (apellido.isEmpty())
                 {
@@ -202,9 +202,13 @@ public class Main
             String dni;
             do {
                 System.out.println("DNI: ");
-                 dni = scanner.nextLine().trim(); //por si escribe algun espacio sin querer
+                dni = scanner.nextLine().trim(); //por si escribe algun espacio sin querer
+                if(dni.isEmpty())
+                {
+                    System.out.println("No puede estar vacio.");
+                    error = true;
 
-                if (!dni.matches("\\d+")){  // "\\d+" significa "uno o más dígitos"
+                }else if (!dni.matches("\\d+")){  // "\\d+" significa "uno o más dígitos"
                     error = true;
                     System.out.println("Solo puede tener números.");
                 }else {
@@ -213,19 +217,79 @@ public class Main
             } while (error);
 
 
+            String direccion;
+            do
+            {
+                System.out.println("Direccion: ");
+                 direccion = scanner.nextLine().toLowerCase().trim();
+                 if (direccion.isEmpty())
+                 {
+                     System.out.println("No puede estar vacio.");
+                     error = true;
+                 }else
+                 {
+                     error = false;
+                 }
+            }while (error);
+
+            String origen;
+            do {
 
 
-            System.out.println("Direccion: ");
-            String direccion= scanner.nextLine().toLowerCase();
+                System.out.println("Origen");
+                 origen = scanner.nextLine().toLowerCase().trim();
+                 if (origen.isEmpty())
+                 {
+                     System.out.println("No puede estar vacio.");
+                     error = true;
+                 } else
+                 {
+                     error = false;
+                 }
+            }while (error);
 
-            System.out.println("Origen");
-            String origen= scanner.nextLine().toLowerCase();
 
-            System.out.println("Telefono: ");
-            String telefono= scanner.nextLine().toLowerCase();
+            String telefono;
+            do {
+                System.out.println("Telefono: ");
+                 telefono = scanner.nextLine().toLowerCase().trim();
 
-            System.out.println("Correo: ");
-            String correo= scanner.nextLine().toLowerCase();
+                 if (telefono.isEmpty())
+                 {
+                     System.out.println("No puede estar vacio.");
+                     error = true;
+
+                 } else if (!telefono.matches("\\d+"))
+                 {
+                     System.out.println("Solo puede tener numeros");
+                     error = true;
+                 }
+                 else
+                 {
+                     error = false;
+                 }
+                }while (error);
+
+            String correo;
+            do {
+
+                System.out.println("Correo: ");
+                correo = scanner.nextLine().toLowerCase().trim();
+                if (correo.isEmpty())
+                {
+                    System.out.println("No puede estar vacio.");
+                    error = true;
+                }else if (correo.contains(" ")) { // <--- ESTA ES LA CLAVE
+                    System.out.println("El correo no puede contener espacios.");
+                    error = true;
+                }
+                else
+                {
+                    error = false;
+                }
+            }while (error);
+
+
 
             String username;
             do {
