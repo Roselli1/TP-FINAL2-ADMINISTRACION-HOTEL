@@ -6,14 +6,18 @@ import org.json.JSONObject;
 import java.time.LocalDate;
 
 public class Servicio implements iToJSON {
+    private int nroServicio;
     private String descripcion;
     private double precio;
-    private LocalDate fecha;
 
-    public Servicio(String descripcion, double precio, LocalDate fecha) {
+    public Servicio(int nroServicio, String descripcion, double precio) {
+        this.nroServicio = nroServicio;
         this.descripcion = descripcion;
         this.precio = precio;
-        this.fecha = fecha;
+    }
+
+    public int getNroServicio() {
+        return nroServicio;
     }
 
     public String getDescripcion() {
@@ -24,9 +28,6 @@ public class Servicio implements iToJSON {
         return precio;
     }
 
-    public LocalDate getFecha() {
-        return fecha;
-    }
 
     @Override
     public JSONObject toJSON() {
@@ -34,7 +35,6 @@ public class Servicio implements iToJSON {
 
         json.put("descripcion", descripcion);
         json.put("precio", precio);
-        json.put("fecha", fecha);
 
         return json;
     }
@@ -42,6 +42,12 @@ public class Servicio implements iToJSON {
     public Servicio(JSONObject obj) {
         this.descripcion = obj.getString("descripcion");
         this.precio = obj.getDouble("precio");
-        this.fecha = LocalDate.parse(obj.getString("fecha"));
+    }
+
+    @Override
+    public String toString() {
+        return "Servicio N°: " + nroServicio +
+                " | Descripción: " + descripcion +
+                " | Precio: $" + precio;
     }
 }

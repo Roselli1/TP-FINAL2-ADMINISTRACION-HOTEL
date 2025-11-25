@@ -10,6 +10,7 @@ import Exceptions.UsuarioYaExisteException;
 import Modelo.Hotel.Habitacion;
 import Modelo.Hotel.RegistroEstadia;
 import Modelo.Hotel.Reserva;
+import Modelo.Hotel.Servicio;
 import Modelo.Persona.Administrador;
 import Modelo.Persona.Pasajero;
 import Modelo.Persona.Recepcionista;
@@ -29,6 +30,7 @@ public class GestorHotel
     private List<Pasajero> pasajeros;
     private List<Recepcionista> recepcionistas;
     private List<Administrador> administradores;
+    private List<Servicio> servicios;
 
     private GestoraHabitaciones gestoraHabitaciones;
     private GestorReservas gestoraReservas;
@@ -37,6 +39,7 @@ public class GestorHotel
     private GestoraPasajeros gestoraPasajeros;
     private GestoraRecepcionistas gestoraRecepcionistas;
     private GestoraAdministradores gestoraAdministradores;
+    private GestorServicios gestorServicios;
 
     // --- CONSTRUCTOR ---
     public GestorHotel()
@@ -48,6 +51,7 @@ public class GestorHotel
         this.pasajeros= new ArrayList<>();
         this.recepcionistas= new ArrayList<>();
         this.administradores= new ArrayList<>();
+        this.servicios= new ArrayList<>();
 
         this.gestoraHabitaciones= new GestoraHabitaciones("habitaciones");
         this.gestoraReservas= new GestorReservas("reservas");
@@ -56,6 +60,7 @@ public class GestorHotel
         this.gestoraPasajeros= new GestoraPasajeros("pasajeros");
         this.gestoraRecepcionistas= new GestoraRecepcionistas("recepcionistas");
         this.gestoraAdministradores= new GestoraAdministradores("administradores");
+        this.gestorServicios= new GestorServicios("servicios");
 
         cargarDatosIniciales();
     }
@@ -116,6 +121,12 @@ public class GestorHotel
             }
         }
 
+        //Cargar servicios
+        gestorServicios.cargarServicio("servicios");
+        for (Servicio s : gestorServicios.getElementos()) {
+            this.servicios.add(s);
+        }
+
 
             System.out.println("----- Carga finalizada -----");
     }
@@ -173,6 +184,13 @@ public class GestorHotel
         }
         gestoraAdministradores.guardar("administradores");
 
+        // Guardar Servicios
+        gestoraPasajeros.getElementos().clear();
+        for (Servicio s : servicios) {
+            gestorServicios.agregarElemento(s);
+        }
+        gestorServicios.guardar("servicios");
+
         System.out.println("Backup finalizado correctamente.");
     }
 
@@ -198,6 +216,8 @@ public class GestorHotel
     public List<Administrador> getAdministradores() { return administradores; }
 
     public List<Recepcionista> getRecepcionistas() { return recepcionistas; }
+
+    public List<Servicio> getServicios() { return servicios; }
 
 
     // --- METODOS ---
@@ -430,5 +450,18 @@ public class GestorHotel
             this.recepcionistas.add(recep);
             this.usuarios.put(credenciales.getUsername(), credenciales);
         }
+    }
+
+    public void agregarServicio(Servicio servicio) {
+        this.servicios.add(servicio);
+    }
+
+    public Servicio buscarServicio(int nroServicio) {
+        for (Servicio s: servicios){
+            if (s.getNroServicio() == nroServicio) {
+                return s;
+            }
+        }
+        return null;
     }
 }

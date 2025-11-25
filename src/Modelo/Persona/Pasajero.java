@@ -10,6 +10,7 @@ import Interfaces.iToJSON;
 import Modelo.Hotel.Habitacion;
 import Modelo.Hotel.RegistroEstadia;
 import Modelo.Hotel.Reserva;
+import Modelo.Hotel.Servicio;
 import org.json.JSONObject;
 
 import java.time.LocalDate;
@@ -54,10 +55,32 @@ public class Pasajero extends Persona implements iToJSON, IGestionReserva, IGest
         return historiaHotel;
     }
 
-    /// AGREGAR METODOS
+    /// METODOS
 
     public void agregarHistoriaHotel(RegistroEstadia estadia){
         this.historiaHotel.add(estadia);
+    }
+
+    public void solicitarServicio(int nroServicio) {
+        if (this.hotel == null) {
+            System.err.println("Error: El GestorHotel es nulo.");
+            return;
+        }
+
+        RegistroEstadia estadiaActiva = hotel.buscarEstadiaActivaPorPasajero(this); //
+
+        if (estadiaActiva == null) {
+            System.out.println("Error: No tiene una estadía en curso para solicitar servicios.");
+            return;
+        }
+
+        Servicio servicio = hotel.buscarServicio(nroServicio);
+        if (servicio == null) {
+            System.out.println("Error: el servicio que quiere no existe.");
+            return;
+        }
+
+        estadiaActiva.agregarConsumo(servicio);
     }
 
     @Override
@@ -92,8 +115,6 @@ public class Pasajero extends Persona implements iToJSON, IGestionReserva, IGest
     {
         return this.credenciales.getUsername();
     }
-
-    /// FALTA DESARROLLAR METODOS
 
     //Solicita una reserva
     @Override
@@ -246,6 +267,7 @@ public class Pasajero extends Persona implements iToJSON, IGestionReserva, IGest
     }
 
     public UsuarioBase getCredenciales() {
-    return this.credenciales;}
+        return this.credenciales;
+    }
 }
 

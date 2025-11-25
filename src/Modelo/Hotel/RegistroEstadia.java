@@ -78,6 +78,12 @@ public class RegistroEstadia implements iToJSON {
         return json;
     }
 
+    public void agregarConsumo(Servicio servicio) {
+        if (servicio != null) {
+            this.consumos.add(servicio);
+        }
+    }
+
     public RegistroEstadia(JSONObject obj) {
         pasajero = new Pasajero(obj.getJSONObject("pasajero"));
         habitacion = new Habitacion(obj.getJSONObject("habitacion"));

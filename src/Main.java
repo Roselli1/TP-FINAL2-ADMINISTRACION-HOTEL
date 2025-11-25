@@ -8,6 +8,7 @@ import Interfaces.iToJSON;
 import Modelo.Hotel.Habitacion;
 import Modelo.Hotel.RegistroEstadia;
 import Modelo.Hotel.Reserva;
+import Modelo.Hotel.Servicio;
 import Modelo.Persona.*;
 
 import java.time.LocalDate;
@@ -1109,6 +1110,28 @@ public class Main
         }while (error);
     }
 
+    // --- Solicitar Servicio ---
+    private static void pasajeroSolicitarServicio(Scanner scanner, GestorHotel hotel, Pasajero pasajero) {
+        System.out.println("\n--- SOLICITAR SERVICIO ADICIONAL ---");
+
+        boolean error;
+        int nroServicio;
+
+        RegistroEstadia estadiaActiva = hotel.buscarEstadiaActivaPorPasajero(pasajero);
+        if (estadiaActiva == null) {
+            System.out.println("Error: Debe tener un Check-In activo para solicitar servicios.");
+            return;
+        }
+
+        for (Servicio s : hotel.getServicios()){
+            System.out.println(s.toString());
+        }
+        System.out.print("Ingrese el número del servicio que quiere: ");
+        nroServicio = scanner.nextInt();
+
+        pasajero.solicitarServicio(nroServicio);
+    }
+
     // --- Iniciar Datos --- TERMINADO
     private static void inicializarDatos(GestorHotel hotel) {
         try
@@ -1171,8 +1194,6 @@ public class Main
             hotel.registrarPasajero(new Pasajero("Ignacio", "Blanco", "39512748", "Calle Balcarce 1789", "Paraguay", "1146293581", "ignacio.blanco@email.com", false, hotel, "pasajero9", "pasajero9"));
             hotel.registrarPasajero(new Pasajero("Victoria", "Rojas", "43786152", "Av. San Juan 4012", "Argentina", "1154926783", "victoria.rojas@email.com", false, hotel, "pasajero10", "pasajero10"));
 
-
-
             Habitacion h101 = hotel.getHabitaciones().get(101);
             if(h101 != null) {
                 h101.setEstadoHabitacion(EstadoHabitacion.OCUPADA);
@@ -1203,6 +1224,10 @@ public class Main
                 hotel.agregarRegistro(r3);
             }
 
+            hotel.agregarServicio(new Servicio(1,"Lavanderia",300));
+            hotel.agregarServicio(new Servicio(2,"Comida a la habitacion",300));
+            hotel.agregarServicio(new Servicio(3,"Spa & Jacuzzi",250));
+            hotel.agregarServicio(new Servicio(4,"Bebida de la heladera",150));
 
         } catch (Exception e)
         {
@@ -1243,6 +1268,7 @@ public class Main
             System.out.println("6. Realizar Check-Out(Salida).");
             System.out.println("7. Ver habitaciones disponibles.");
             System.out.println("8. Ver estadia actual.");
+            System.out.println("9. Solicitar servicio.");
             System.out.println("0. Cerrar Sesion.");
             System.out.print("Elija una opcion: ");
 
@@ -1290,6 +1316,11 @@ public class Main
                     case 8:
                     {
                         verEstadiaActiva(hotel, pasajero);
+                        break;
+                    }
+                    case 9 :
+                    {
+                        pasajeroSolicitarServicio(scanner, hotel, pasajero);
                         break;
                     }
                     case 0:
