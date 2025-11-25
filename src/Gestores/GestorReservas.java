@@ -1,6 +1,5 @@
 package Gestores;
 
-import Modelo.Hotel.Habitacion;
 import Modelo.Hotel.Reserva;
 import org.json.JSONArray;
 import org.json.JSONObject;

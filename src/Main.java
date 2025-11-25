@@ -531,7 +531,6 @@ public class Main
     }
 
     // --- Check-In Interactivo --- TERMINADO
-    /// FALTA PROBARLO
         private static void checkInInteractivo(Scanner scanner, GestorHotel hotel, Recepcionista recepcionista){
             System.out.println("\n--- REALIZAR CHECK-IN ---");
 
@@ -602,7 +601,6 @@ public class Main
     }
 
     // --- Check-Out Interactivo --- TERMINADO
-    /// FALTA PROBARLO
     private static void checkOutInteractivo(Scanner scanner, GestorHotel hotel, Recepcionista recepcionista) {
 
 
@@ -1210,9 +1208,6 @@ public class Main
         {
             System.out.println("Error al inicializar los datos.");
         }
-
-        /// FALTA CREAR 10 ADMIN, 10 RECEPCIONISTAS Y 10 PASAJEROS
-        /// como minimo si son mas mejor
     }
 
     // --- Ver Estadia Activa --- TERMINADO
@@ -1369,8 +1364,7 @@ public class Main
 
     }
 
-    // --- Menu Recepcionista ---
-    /// FALTA TERMINAR
+    // --- Menu Recepcionista --- TERMINADO
     private static void menuRecepcionista(Scanner scanner, GestorHotel hotel, Recepcionista recepcionista) {
         int opcion=-1;
 
