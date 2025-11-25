@@ -33,6 +33,7 @@ public class Servicio implements iToJSON {
     public JSONObject toJSON() {
         JSONObject json = new JSONObject();
 
+        json.put("nroServicio", nroServicio);
         json.put("descripcion", descripcion);
         json.put("precio", precio);
 
@@ -40,6 +41,7 @@ public class Servicio implements iToJSON {
     }
 
     public Servicio(JSONObject obj) {
+        this.nroServicio = obj.getInt("nroServicio");
         this.descripcion = obj.getString("descripcion");
         this.precio = obj.getDouble("precio");
     }
