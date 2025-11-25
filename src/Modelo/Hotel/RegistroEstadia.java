@@ -2,6 +2,7 @@ package Modelo.Hotel;
 
 import Interfaces.iToJSON;
 import Modelo.Persona.Pasajero;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.time.LocalDate;
@@ -62,11 +63,20 @@ public class RegistroEstadia implements iToJSON {
     public JSONObject toJSON() {
         JSONObject json = new JSONObject();
 
-        json.put("pasajero", pasajero);
-        json.put("habitacion", habitacion);
-        json.put("checkIn", checkIn);
-        json.put("checkOut", checkOut);
-        json.put("consumos", consumos);
+        json.put("pasajero", pasajero.toJSON());
+        json.put("habitacion", habitacion.toJSON());
+        json.put("checkIn", checkIn.toString());
+        if (checkOut != null) {
+            json.put("checkOut", checkOut);
+        }else
+        {
+            json.put("checkOut", JSONObject.NULL);
+        }
+        JSONArray arrayConsumos = new JSONArray();
+        for (Servicio s : consumos) {
+            arrayConsumos.put(s.toJSON());
+        }
+        json.put("consumos", arrayConsumos);
 
         return json;
     }
@@ -75,7 +85,20 @@ public class RegistroEstadia implements iToJSON {
         pasajero = new Pasajero(obj.getJSONObject("pasajero"));
         habitacion = new Habitacion(obj.getJSONObject("habitacion"));
         checkIn = LocalDate.parse(obj.getString("checkIn"));
-        checkOut = LocalDate.parse(obj.getString("checkOut"));
-        consumos = (List<Servicio>) obj.get("consumos");
+        if (obj.has("checkOut") && !obj.isNull("checkOut")) {
+            checkOut = LocalDate.parse(obj.getString("checkOut"));
+        } else {
+            checkOut = null;
+        }
+
+        // Recuperamos la lista de consumos iterando (sin castear a la fuerza)
+        consumos = new ArrayList<>();
+        JSONArray arrConsumos = obj.optJSONArray("consumos");
+        if (arrConsumos != null) {
+            for (int i = 0; i < arrConsumos.length(); i++) {
+                JSONObject jsonServicio = arrConsumos.getJSONObject(i);
+                consumos.add(new Servicio(jsonServicio)); // Asume que Servicio tiene este constructor
+            }
+        }
     }
 }

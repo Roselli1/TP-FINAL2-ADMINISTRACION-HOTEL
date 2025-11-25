@@ -88,4 +88,8 @@ public class Administrador extends Persona implements iToJSON
     public UsuarioBase getCredenciales() {
         return credenciales;
     }
+
+    public void setHotel(GestorHotel hotel) {
+        this.hotel = hotel;
+    }
 }

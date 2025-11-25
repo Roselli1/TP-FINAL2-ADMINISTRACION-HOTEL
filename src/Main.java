@@ -112,12 +112,14 @@ public class Main
                 if (usuarioLogueado.getRol()== Rol.ADMINISTRADOR)
                 {
                     Administrador admin = hotel.buscarAdministradorPorUsername(username);
+                    admin.setHotel(hotel);
                     menuAdministrador(scanner, hotel, admin);
                 }
                 //Si es recepcionista
                 else if (usuarioLogueado.getRol()==Rol.RECEPCIONISTA)
                 {
                     Recepcionista recep = hotel.buscarReceopcionistaPorUsername(username);
+                    recep.setHotel(hotel);
                     menuRecepcionista(scanner, hotel, recep);
                 }
                 //Si es pasajero
@@ -350,7 +352,6 @@ public class Main
     }
 
     // --- Metodo Realizar Reserva Interactivo --- TERMINADO
-    /// FALTA PROBARLO
     private static void realizarReservaInteractivo(Scanner scanner, GestorHotel hotel, Recepcionista recepcionista){
 
         boolean error = false;
@@ -751,7 +752,7 @@ public class Main
 
     /// METODOS PASAJERO
 
-    // --- Ver Historial --- ARREGLAR NOSE POORQUE NO SE GUARDA, ANDA EN EL MOMENTO DE EJECUCION PERO AL MOMENTO DE VOLVER A INGRESAR NO VUELVE A ANDAR.
+    // --- Ver Historial --- TERMINADO NO TOCAR
     private static void verHistorial(Pasajero pasajero, GestorHotel hotel) {
         System.out.println("\n--- HISTORIAL DE ESTADIAS ---");
 

@@ -1,7 +1,27 @@
 [{"registrosEstadias": [{
-    "pasajero": "Persona{nombre='Roberto', apellido='Silva', dni='28745913', domicilio='Calle Alsina 1245', origen='Argentina'}",
-    "checkIn": "2025-11-24",
+    "pasajero": {
+        "solicitarReserva": false,
+        "domicilio": "Calle Alsina 1245",
+        "apellido": "Silva",
+        "usuario": {
+            "password": "pasajero1",
+            "rol": "Pasajero",
+            "username": "pasajero1"
+        },
+        "origen": "Argentina",
+        "telefono": "1145678234",
+        "nombre": "Roberto",
+        "dni": "28745913",
+        "email": "roberto.silva@email.com"
+    },
+    "checkIn": "2025-11-25",
     "consumos": [],
     "checkOut": "2025-12-20",
-    "habitacion": "Habitacion{numero=310, tipoHabitacion=Suite, precioPorNoche=15000.0, disponible=false, estadoHabitacion=Ocupada}"
+    "habitacion": {
+        "numero": 310,
+        "estadoHabitacion": "Ocupada",
+        "tipoHabitacion": "Suite",
+        "precioPorNoche": 15000,
+        "disponible": false
+    }
 }]}]

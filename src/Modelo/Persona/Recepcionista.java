@@ -195,4 +195,8 @@ public class Recepcionista  extends Persona implements IGestionReserva, IGestion
     public UsuarioBase getCredenciales() {
         return credenciales;
     }
+
+    public void setHotel(GestorHotel hotel) {
+        this.hotel = hotel;
+    }
 }

@@ -24,7 +24,7 @@ public class Reserva implements iToJSON
         this.fechaEgreso = fechaEgreso;
         this.estado = estado;
         this.nroReserva = contador++;
-        this.precioPorDia = 5000;
+        this.precioPorDia = (long) habitacion.getPrecioPorNoche();
     }
     //Getters
     public Habitacion getHabitacion() {
@@ -87,10 +87,10 @@ public class Reserva implements iToJSON
         JSONObject json = new JSONObject();
 
         json.put("nroReserva", nroReserva);
-        json.put("habitacion", habitacion);
-        json.put("pasajero", pasajero);
-        json.put("fechaIngreso", fechaIngreso);
-        json.put("fechaEgreso", fechaEgreso);
+        json.put("habitacion", habitacion.toJSON());
+        json.put("pasajero", pasajero.toJSON());
+        json.put("fechaIngreso", fechaIngreso.toString());
+        json.put("fechaEgreso", fechaEgreso.toString());
         json.put("estado", estado);
         json.put("precioPorDia", precioPorDia);
 
@@ -99,6 +99,11 @@ public class Reserva implements iToJSON
 
     public Reserva(JSONObject obj) {
         this.nroReserva = obj.getInt("nroReserva");
+
+        if (this.nroReserva >= contador) {
+            contador = this.nroReserva + 1;
+        }
+
         this.habitacion = new Habitacion(obj.getJSONObject("habitacion"));
         this.pasajero = new Pasajero(obj.getJSONObject("pasajero"));
         this.fechaIngreso = LocalDate.parse(obj.getString("fechaIngreso"));
