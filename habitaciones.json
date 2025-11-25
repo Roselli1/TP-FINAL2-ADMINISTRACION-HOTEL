@@ -8,10 +8,10 @@
     },
     {
         "numero": 202,
-        "estadoHabitacion": "Disponible",
+        "estadoHabitacion": "Ocupada",
         "tipoHabitacion": "Doble",
         "precioPorNoche": 9000,
-        "disponible": true
+        "disponible": false
     },
     {
         "numero": 203,
