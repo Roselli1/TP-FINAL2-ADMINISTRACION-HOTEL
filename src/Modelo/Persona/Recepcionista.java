@@ -149,7 +149,12 @@ public class Recepcionista  extends Persona implements IGestionReserva, IGestion
 
         try
         {
-            Habitacion habitacion = reserva.getHabitacion();
+            //cambio reserva porq en el main es null y puede tirar error
+            Habitacion habitacion = hotel.getHabitaciones().get(nroHabitacion);
+
+            if (habitacion == null) {
+                throw new CheckOutException("La habitación " + nroHabitacion + " no existe.");
+            }
 
             //Verificar si la habitacion esta ocupada
             if (habitacion.getEstadoHabitacion() != EstadoHabitacion.OCUPADA)

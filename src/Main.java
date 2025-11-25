@@ -530,63 +530,117 @@ public class Main
         }
     }
 
-    // --- Check-In Interactivo ---
+    // --- Check-In Interactivo --- TERMINADO
     /// FALTA PROBARLO
         private static void checkInInteractivo(Scanner scanner, GestorHotel hotel, Recepcionista recepcionista){
-        try {
             System.out.println("\n--- REALIZAR CHECK-IN ---");
 
-            // Recibe el número de la reserva
-            System.out.println("Ingrese el número de la reserva para Check-In: ");
-            int nroReserva = scanner.nextInt();
+            if (hotel.getReservas().isEmpty()) {
+                System.out.println("⚠️ No hay reservas activas en el sistema para hacer Check-In.");
+                return; // Salimos si no hay nada que procesar
+            }
 
-            // Busca la reserva en el hotel
-            Reserva reservaParaCheckIn = null;
+            System.out.println("Listado de Reservas Pendientes:");
             for (Reserva r : hotel.getReservas()) {
-                if (r.getNroReserva() == nroReserva) {
-                    reservaParaCheckIn = r;
-                    break;
+                System.out.println(r.toString());
+            }
+
+            boolean error;
+
+            // Recibe el número de la reserva
+            do {
+
+                error = false;
+                try {
+                    System.out.println("Ingrese el número de la reserva para Check-In: ");
+                    System.out.println("-1. Para volver al menu anterior.");
+                    int nroReserva = Integer.parseInt(scanner.nextLine().trim());
+
+
+                    if (nroReserva == -1) return;
+
+
+                    // Busca la reserva en el hotel
+                    Reserva reservaParaCheckIn = null;
+                    for (Reserva r : hotel.getReservas()) {
+                        if (r.getNroReserva() == nroReserva) {
+                            reservaParaCheckIn = r;
+                            break;
+                        }
+                    }
+
+
+                    // Si existe hace el check-in, sino muestra un mensaje de error
+
+                    if (reservaParaCheckIn != null) {
+                        boolean check = recepcionista.hacerCheckIn(reservaParaCheckIn);
+
+                        if (check)
+                        {
+                            System.out.println("Check-In exitoso.");
+                        } else
+                        {
+                            System.out.println("Error: No se pudo realizar el Check-In.");
+                            error = true;
+                        }
+                        }
+                    else
+                    {
+                        System.out.println("Error: No se encontró una reserva activa con el número " + nroReserva + ".");
+                        error = true;
+                    }
+
+
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Error: Ingrese un número válido para la reserva.");
+                    error = true;
+                } catch (Exception e) {
+                    System.out.println("Error inesperado durante el Check-In: " + e.getMessage());
+                    error = true;
                 }
-            }
-
-            // Si existe hace el check-in, sino muestra un mensaje de error
-            boolean check = false;
-            if (reservaParaCheckIn != null) {
-                check = recepcionista.hacerCheckIn(reservaParaCheckIn);
-            } else {
-                System.out.println("Error: No se encontró una reserva activa con el número " + nroReserva + ".");
-            }
-
-            if (check) System.out.println("Check-In realizado con éxito.");
-
-        } catch (IllegalArgumentException e) {
-            System.out.println("Error: Ingrese un número válido para la reserva.");
-        } catch (Exception e) {
-            System.out.println("Error inesperado durante el Check-In: " + e.getMessage());
-        }
+            }while (error);
     }
 
-    // --- Check-Out Interactivo ---
+    // --- Check-Out Interactivo --- TERMINADO
     /// FALTA PROBARLO
-    private static void checkOutInteractivo(Scanner scanner, GestorHotel hotel, Recepcionista recepcionista){
-        try
+    private static void checkOutInteractivo(Scanner scanner, GestorHotel hotel, Recepcionista recepcionista) {
+
+
+        System.out.println("\n--- REALIZAR CHECK-OUT ---");
+        boolean error;
+
+        do
         {
-            System.out.println("\n--- REALIZAR CHECK-OUT ---");
-            System.out.println("Ingrese el número de habitación a liberar: ");
-            int nroHabitacion = Integer.parseInt(scanner.nextLine());
+            error = false;
+            try {
+                System.out.println("Ingrese el número de habitación a liberar: ");
+                System.out.println("-1. Para volver al menu anterior.");
+                int nroHabitacion = Integer.parseInt(scanner.nextLine().trim());
 
-            boolean checkOutExitoso= recepcionista.hacerCheckOut(null, nroHabitacion);
+                if (nroHabitacion == -1) return;
 
-            if (checkOutExitoso)
+                boolean checkOutExitoso = recepcionista.hacerCheckOut(null, nroHabitacion);
+
+                if (checkOutExitoso)
+                {
+                    System.out.println("Check-Out exitoso.");
+                }
+                else
+                {
+                    System.out.println("Error: No se pudo realizar el Check-Out.");
+                    error = true;
+                }
+
+            } catch(NumberFormatException e)
             {
-                System.out.println("Check-Out exitoso.");
+                System.out.println("Ingrese un número válido.");
+                error = true;
+            } catch(Exception e)
+            {
+                System.out.println("Error en Check-Out: " + e.getMessage());
+                error = true;
             }
-        } catch (IllegalArgumentException e)
-        {
-            System.out.println("Ingrese un número válido.");
-        } catch (Exception e) {
-            System.out.println("Error en Check-Out: " + e.getMessage());
-        }
+        }while (error);
     }
 
     // ---Crear Usuario Staff --- TERMINADO
