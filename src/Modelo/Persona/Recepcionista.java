@@ -122,7 +122,8 @@ public class Recepcionista  extends Persona implements IGestionReserva, IGestion
             habitacion.setDisponible(false);
 
             //crear un RegistroEstadia con la info de la reserva
-            RegistroEstadia registroEstadia =  new RegistroEstadia(pasajero, habitacion, LocalDate.now(), reserva.getFechaEgreso());
+            // Le pasas NULL, para indicar que la estadía está ABIERTA
+            RegistroEstadia registroEstadia = new RegistroEstadia(pasajero, habitacion, LocalDate.now(), null);
 
             //guarda el registro en el historial del pasjero
             pasajero.agregarHistoriaHotel( registroEstadia);
