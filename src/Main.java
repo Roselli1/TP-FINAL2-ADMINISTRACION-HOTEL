@@ -1127,7 +1127,7 @@ public class Main
             System.out.println(s.toString());
         }
         try {
-            System.out.print("Ingrese el número del servicio que quiere: ");
+            System.out.print("\nIngrese el número del servicio que quiere: ");
             nroServicio = Integer.parseInt(scanner.nextLine().trim());
 
             pasajero.solicitarServicio(nroServicio);
