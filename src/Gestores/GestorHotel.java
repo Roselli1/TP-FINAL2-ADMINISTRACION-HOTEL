@@ -185,7 +185,7 @@ public class GestorHotel
         gestoraAdministradores.guardar("administradores");
 
         // Guardar Servicios
-        gestoraPasajeros.getElementos().clear();
+        gestorServicios.getElementos().clear();
         for (Servicio s : servicios) {
             gestorServicios.agregarElemento(s);
         }

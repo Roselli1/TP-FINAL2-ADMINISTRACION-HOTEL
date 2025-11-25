@@ -1126,10 +1126,17 @@ public class Main
         for (Servicio s : hotel.getServicios()){
             System.out.println(s.toString());
         }
-        System.out.print("Ingrese el número del servicio que quiere: ");
-        nroServicio = scanner.nextInt();
+        try {
+            System.out.print("Ingrese el número del servicio que quiere: ");
+            nroServicio = Integer.parseInt(scanner.nextLine().trim());
 
-        pasajero.solicitarServicio(nroServicio);
+            pasajero.solicitarServicio(nroServicio);
+
+        } catch (NumberFormatException e) {
+            System.out.println("Error: Ingrese un número válido para el servicio.");
+        } catch (Exception e){
+            System.out.println("Error: hubo un fallo en el sistema.");
+        }
     }
 
     // --- Iniciar Datos --- TERMINADO

@@ -1,6 +1,5 @@
 package Gestores;
 
-import Modelo.Hotel.Reserva;
 import Modelo.Hotel.Servicio;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -24,6 +23,7 @@ public class GestorServicios extends GestoraGenerica<Servicio> {
             JSONObject jsonGestora = arrayPrincipal.getJSONObject(0);
 
             JSONArray jsonServicios = jsonGestora.getJSONArray(super.nombreJson);
+
 
             for (int i=0;i< jsonServicios.length(); i++)
             {
