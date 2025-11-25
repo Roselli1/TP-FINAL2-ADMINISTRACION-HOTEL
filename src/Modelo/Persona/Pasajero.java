@@ -166,7 +166,7 @@ public class Pasajero extends Persona implements iToJSON, IGestionReserva, IGest
             habitacion.setDisponible(false);
 
             //crear un RegistroEstadia con la info de la reserva
-            RegistroEstadia registroEstadia = new RegistroEstadia(this, habitacion, LocalDate.now(), reserva.getFechaEgreso());
+            RegistroEstadia registroEstadia = new RegistroEstadia(this, habitacion, LocalDate.now(), null);
 
             //guarda el registro en el historial del pasajero
             this.agregarHistoriaHotel(registroEstadia);

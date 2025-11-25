@@ -71,7 +71,7 @@
     },
     {
         "numero": 101,
-        "estadoHabitacion": "Disponible",
+        "estadoHabitacion": "Reservada",
         "tipoHabitacion": "Simple",
         "precioPorNoche": 5000,
         "disponible": true
@@ -190,10 +190,10 @@
     },
     {
         "numero": 308,
-        "estadoHabitacion": "Disponible",
+        "estadoHabitacion": "Ocupada",
         "tipoHabitacion": "Suite",
         "precioPorNoche": 15000,
-        "disponible": true
+        "disponible": false
     },
     {
         "numero": 309,

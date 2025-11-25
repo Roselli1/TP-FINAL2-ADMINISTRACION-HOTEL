@@ -1,27 +1,56 @@
-[{"registrosEstadias": [{
-    "pasajero": {
-        "solicitarReserva": false,
-        "domicilio": "Calle Alsina 1245",
-        "apellido": "Silva",
-        "usuario": {
-            "password": "pasajero1",
-            "rol": "Pasajero",
-            "username": "pasajero1"
+[{"registrosEstadias": [
+    {
+        "pasajero": {
+            "solicitarReserva": false,
+            "domicilio": "Calle Alsina 1245",
+            "apellido": "Silva",
+            "usuario": {
+                "password": "pasajero1",
+                "rol": "Pasajero",
+                "username": "pasajero1"
+            },
+            "origen": "Argentina",
+            "telefono": "1145678234",
+            "nombre": "Roberto",
+            "dni": "28745913",
+            "email": "roberto.silva@email.com"
         },
-        "origen": "Argentina",
-        "telefono": "1145678234",
-        "nombre": "Roberto",
-        "dni": "28745913",
-        "email": "roberto.silva@email.com"
+        "checkIn": "2025-11-25",
+        "consumos": [],
+        "checkOut": "2025-12-20",
+        "habitacion": {
+            "numero": 310,
+            "estadoHabitacion": "Ocupada",
+            "tipoHabitacion": "Suite",
+            "precioPorNoche": 15000,
+            "disponible": false
+        }
     },
-    "checkIn": "2025-11-25",
-    "consumos": [],
-    "checkOut": "2025-12-20",
-    "habitacion": {
-        "numero": 310,
-        "estadoHabitacion": "Ocupada",
-        "tipoHabitacion": "Suite",
-        "precioPorNoche": 15000,
-        "disponible": false
+    {
+        "pasajero": {
+            "solicitarReserva": false,
+            "domicilio": "Calle Alsina 1245",
+            "apellido": "Silva",
+            "usuario": {
+                "password": "pasajero1",
+                "rol": "Pasajero",
+                "username": "pasajero1"
+            },
+            "origen": "Argentina",
+            "telefono": "1145678234",
+            "nombre": "Roberto",
+            "dni": "28745913",
+            "email": "roberto.silva@email.com"
+        },
+        "checkIn": "2025-11-25",
+        "consumos": [],
+        "checkOut": "2025-11-29",
+        "habitacion": {
+            "numero": 308,
+            "estadoHabitacion": "Ocupada",
+            "tipoHabitacion": "Suite",
+            "precioPorNoche": 15000,
+            "disponible": false
+        }
     }
-}]}]
+]}]
