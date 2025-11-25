@@ -454,44 +454,66 @@ public class Main
             }
     }
 
-    // --- Metodo Cancelar Reserva Interactivo ---
-    /// FALTA PROBARLO
+    // --- Metodo Cancelar Reserva Interactivo --- TERMINADO
     private static void cancelarReservaInteractivo(Scanner scanner, GestorHotel hotel, Recepcionista recepcionista){
-        try {
+
             System.out.println("\n--- CANCELAR RESERVA ---");
+            verReservasActivas(hotel);
 
-            // Recibe el número de reserva a cancelar
-            System.out.println("Ingrese el número de la reserva a cancelar: ");
-            int nroReserva = scanner.nextInt();
+            // Si no hay reservas salimos para no quedar en bucle
+            if (hotel.getReservas().isEmpty()) return;
 
-            // Busca la reserva
-            Reserva reservaACancelar = null;
-            for (Reserva r : hotel.getReservas()) {
-                if (r.getNroReserva() == nroReserva) {
-                    reservaACancelar = r;
-                    break;
+            boolean error;
+            do {
+                error = false;
+                try {
+
+                    // Recibe el número de reserva a cancelar
+                    System.out.println("Ingrese el número de la reserva a cancelar: ");
+                    System.out.println("-1. Para volver al menu anterior.");
+                    int nroReserva = Integer.parseInt(scanner.nextLine().trim());
+
+                    if (nroReserva == -1) return;
+
+                    // Busca la reserva
+                    Reserva reservaACancelar = null;
+                    for (Reserva r : hotel.getReservas()) {
+                        if (r.getNroReserva() == nroReserva) {
+                            reservaACancelar = r;
+                            break;
+                        }
+                    }
+
+
+                    if (reservaACancelar != null) {
+                        boolean check = recepcionista.cancelarReserva(reservaACancelar);
+
+                        if (check)
+                        {
+                            System.out.println("Reserva cancelada exitosamente.");
+                        }else
+                        {
+                            System.out.println("Error al cancelar la reserva.");
+                            error = true;
+                        }
+                    } else
+                    {
+                        System.out.println("No se encontro una reserva con el nro: " + nroReserva + ".");
+                        error = true;
+                    }
+
+
+                } catch (NumberFormatException e) {
+                    System.out.println("Error: Ingrese un número válido para la reserva.");
+                    error = true;
+                } catch (Exception e) {
+                    System.out.println("Error inesperado al cancelar la reserva. ");
+                    error = true;
                 }
-            }
-
-            // Si la encuentra la cancela, sino muestra mensaje de error
-            boolean check = false;
-            if (reservaACancelar != null) {
-                check = recepcionista.cancelarReserva(reservaACancelar);
-            } else {
-                System.out.println("Error: No se encontró una reserva activa con el número " + nroReserva + ".");
-            }
-
-            if (check) System.out.println("Reserva cancelada con éxito.");
-
-        } catch (IllegalArgumentException e) {
-            System.out.println("Error: Ingrese un número válido para la reserva.");
-        } catch (Exception e) {
-            System.out.println("Error inesperado al cancelar la reserva: " + e.getMessage());
-        }
+            }while (error);
     }
 
-    // --- Metodo Ver Reservas Existentes ---
-    /// FALTA PROBARLO
+    // --- Metodo Ver Reservas Existentes --- TERMINADO
     private static void verReservasActivas(GestorHotel hotel){
         List<Reserva> reservas = hotel.getReservas();
         System.out.println("\n--- RESERVAS ACTIVAS ---");
@@ -978,7 +1000,7 @@ public class Main
         }while (error);
     }
 
-    // --- CheckOut (Pasajero) --- TERMINADO
+    // --- CheckOut (Pasajero) --- TERMINADO PROBAR
     private static void pasajeroCheckOut(Scanner scanner, GestorHotel hotel, Pasajero pasajero) {
 
             System.out.println("\n--- REALIZAR CHECK-OUT ---");
@@ -1088,6 +1110,7 @@ public class Main
         /// como minimo si son mas mejor
     }
 
+    // --- Ver Estadia Activa --- TERMINADO
     private static void verEstadiaActiva(GestorHotel hotel, Pasajero pasajero) {
         System.out.println("\n--- MI ESTADÍA ACTUAL ---");
 

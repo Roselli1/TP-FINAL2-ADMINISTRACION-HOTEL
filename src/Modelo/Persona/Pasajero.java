@@ -233,6 +233,14 @@ public class Pasajero extends Persona implements iToJSON, IGestionReserva, IGest
         }
     }
 
+    @Override
+    public String toString() {
+        return "Pasajero: " + getNombre() + " " + getApellido() +
+                " | DNI: " + getDni() +
+                " | Email: " + email;
+    }
+
+    
     public void setHotel(GestorHotel hotel) {
         this.hotel = hotel;
     }

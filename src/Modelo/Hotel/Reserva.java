@@ -71,15 +71,12 @@ public class Reserva implements iToJSON
 
     @Override
     public String toString() {
-        return "Reserva{" +
-                "habitación=" + habitacion +
-                ", pasajero=" + pasajero +
-                ", fechaIngreso=" + fechaIngreso +
-                ", fechaEgreso=" + fechaEgreso +
-                ", nroReserva=" + nroReserva +
-                ", estado=" + estado +
-                ", precioPorDia=" + precioPorDia +
-                '}';
+        // Formato limpio y directo
+        return "Reserva N°: " + nroReserva +
+                " | Habitación: " + habitacion.getNumero() +
+                " (" + habitacion.getTipoHabitacion() + ")" +
+                " | Fechas: " + fechaIngreso + " al " + fechaEgreso +
+                " | Estado: " + (estado ? "Activa" : "Cancelada");
     }
 
     @Override

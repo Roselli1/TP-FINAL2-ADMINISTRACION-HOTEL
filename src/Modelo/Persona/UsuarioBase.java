@@ -46,11 +46,7 @@ public class UsuarioBase implements iToJSON
 
     @Override
     public String toString() {
-        return "UsuarioBase{" +
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", rol=" + rol +
-                '}';
+        return "Usuario: " + username + " (" + rol + ")"+ " | Password: " + password;
     }
 
     @Override

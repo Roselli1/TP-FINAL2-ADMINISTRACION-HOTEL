@@ -50,13 +50,10 @@ public class RegistroEstadia implements iToJSON {
 
     @Override
     public String toString() {
-        return "RegistroEstadia{" +
-                "pasajero=" + pasajero +
-                ", habitacion=" + habitacion +
-                ", checkIn=" + checkIn +
-                ", checkOut=" + checkOut +
-                ", consumos=" + consumos +
-                '}';
+        return "Estadía | Hab: " + habitacion.getNumero() +
+                " | Pasajero: " + pasajero.getNombre() + " " + pasajero.getApellido() +
+                " | Entrada: " + checkIn +
+                " | Salida: " + (checkOut != null ? checkOut : "En curso");
     }
 
     @Override
