@@ -1,17 +1,17 @@
 [{"habitaciones": [
     {
         "numero": 201,
-        "estadoHabitacion": "Disponible",
-        "tipoHabitacion": "Doble",
-        "precioPorNoche": 9000,
-        "disponible": true
-    },
-    {
-        "numero": 202,
         "estadoHabitacion": "Ocupada",
         "tipoHabitacion": "Doble",
         "precioPorNoche": 9000,
         "disponible": false
+    },
+    {
+        "numero": 202,
+        "estadoHabitacion": "Disponible",
+        "tipoHabitacion": "Doble",
+        "precioPorNoche": 9000,
+        "disponible": true
     },
     {
         "numero": 203,
@@ -71,10 +71,10 @@
     },
     {
         "numero": 101,
-        "estadoHabitacion": "Reservada",
+        "estadoHabitacion": "Ocupada",
         "tipoHabitacion": "Simple",
         "precioPorNoche": 5000,
-        "disponible": true
+        "disponible": false
     },
     {
         "numero": 102,
@@ -134,10 +134,10 @@
     },
     {
         "numero": 301,
-        "estadoHabitacion": "Disponible",
+        "estadoHabitacion": "Ocupada",
         "tipoHabitacion": "Suite",
         "precioPorNoche": 15000,
-        "disponible": true
+        "disponible": false
     },
     {
         "numero": 110,
@@ -190,10 +190,10 @@
     },
     {
         "numero": 308,
-        "estadoHabitacion": "Ocupada",
+        "estadoHabitacion": "Disponible",
         "tipoHabitacion": "Suite",
         "precioPorNoche": 15000,
-        "disponible": false
+        "disponible": true
     },
     {
         "numero": 309,
@@ -204,9 +204,9 @@
     },
     {
         "numero": 310,
-        "estadoHabitacion": "Ocupada",
+        "estadoHabitacion": "Disponible",
         "tipoHabitacion": "Suite",
         "precioPorNoche": 15000,
-        "disponible": false
+        "disponible": true
     }
 ]}]

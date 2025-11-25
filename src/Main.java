@@ -609,6 +609,18 @@ public class Main
         System.out.println("\n--- REALIZAR CHECK-OUT ---");
         boolean error;
 
+        boolean hayOcupadas = false;
+        for (Habitacion h : hotel.getHabitaciones().values()) {
+            if (h.getEstadoHabitacion() == EstadoHabitacion.OCUPADA) {
+                System.out.println(h.toString());
+                hayOcupadas = true;
+            }
+        }
+
+        if (!hayOcupadas) {
+            System.out.println("No hay habitaciones ocupadas para liberar.");
+            return;
+        }
         do
         {
             error = false;
@@ -637,7 +649,7 @@ public class Main
                 error = true;
             } catch(Exception e)
             {
-                System.out.println("Error en Check-Out: " + e.getMessage());
+                System.out.println("Error en Check-Out.");
                 error = true;
             }
         }while (error);
@@ -1058,24 +1070,31 @@ public class Main
     private static void pasajeroCheckOut(Scanner scanner, GestorHotel hotel, Pasajero pasajero) {
 
             System.out.println("\n--- REALIZAR CHECK-OUT ---");
+
+        RegistroEstadia estadiaActual = hotel.buscarEstadiaActivaPorPasajero(pasajero);
+        if (estadiaActual == null)
+        {
+            System.out.println("No tiene ninguna habitacion ocupada");
+            return;
+        }
+
+        System.out.println("Actualmente estás ocupando la Habitación N°: " + estadiaActual.getHabitacion().getNumero());
+
             boolean error;
             do {
+                error = false;
                 try{
-                System.out.println("Ingrese el numero de su habitacion para salir: ");
-                int nroHabitacion = Integer.parseInt(scanner.nextLine());
+                    System.out.println("Ingrese el numero de su habitacion para salir: ");
+                    System.out.println("-1. Para volver al menu anterior.");
 
-                Reserva reservaOut = null;
-                for (Reserva r : hotel.getReservas()){
-                    if (r.getHabitacion().getNumero() == nroHabitacion) {
-                        reservaOut = r;
-                    }
-                }
+                    int nroHabitacion = Integer.parseInt(scanner.nextLine());
 
-                boolean exitoCheckOut = pasajero.hacerCheckOut(reservaOut, nroHabitacion);
+                    if (nroHabitacion == -1) return;
+
+                boolean exitoCheckOut = pasajero.hacerCheckOut(null, nroHabitacion);
 
                 if (exitoCheckOut) {
                     System.out.println("Check-Out exitoso.");
-                    error = false;
                 } else {
                     System.out.println("Error: No se pudo realizar el Check-Out.");
                     error = true;
@@ -1140,9 +1159,12 @@ public class Main
             hotel.agregarStaff(new UsuarioBase("recep10", "recep10", Rol.RECEPCIONISTA), "Sebastian", "Morales", "39165824", "Calle Cordoba 3721", "Venezuela");
 
             // --- PASAJEROS ---
-            hotel.registrarPasajero(new Pasajero("Roberto", "Silva", "28745913", "Calle Alsina 1245", "Argentina", "1145678234", "roberto.silva@email.com", false, hotel, "pasajero1", "pasajero1"));
-            hotel.registrarPasajero(new Pasajero("Ana", "Mendoza", "33926481", "Av. Jujuy 3456", "España", "1156329847", "ana.mendoza@email.com", false, hotel, "pasajero2", "pasajero2"));
-            hotel.registrarPasajero(new Pasajero("Lucas", "Ortiz", "41583726", "Calle Chacabuco 876", "Argentina", "1147852369", "lucas.ortiz@email.com", false, hotel, "pasajero3", "pasajero3"));
+            Pasajero p1 = new Pasajero("Roberto", "Silva", "28745913", "Calle Alsina 1245", "Argentina", "1145678234", "roberto.silva@email.com", false, hotel, "pasajero1", "pasajero1");
+            hotel.registrarPasajero(p1);
+            Pasajero p2 = new Pasajero("Ana", "Mendoza", "33926481", "Av. Jujuy 3456", "España", "1156329847", "ana.mendoza@email.com", false, hotel, "pasajero2", "pasajero2");
+            hotel.registrarPasajero(p2);
+            Pasajero p3 = new Pasajero("Lucas", "Ortiz", "41583726", "Calle Chacabuco 876", "Argentina", "1147852369", "lucas.ortiz@email.com", false, hotel, "pasajero3", "pasajero3");
+            hotel.registrarPasajero(p3);
             hotel.registrarPasajero(new Pasajero("Martina", "Ruiz", "36214895", "Av. Entre Rios 2341", "Uruguay", "1159638412", "martina.ruiz@email.com", false, hotel, "pasajero4", "pasajero4"));
             hotel.registrarPasajero(new Pasajero("Ezequiel", "Diaz", "44657182", "Calle Defensa 1567", "Argentina", "1143217856", "ezequiel.diaz@email.com", false, hotel, "pasajero5", "pasajero5"));
             hotel.registrarPasajero(new Pasajero("Julia", "Navarro", "30492817", "Av. Boedo 4523", "Chile", "1152847196", "julia.navarro@email.com", false, hotel, "pasajero6", "pasajero6"));
@@ -1153,11 +1175,40 @@ public class Main
 
 
 
+            Habitacion h101 = hotel.getHabitaciones().get(101);
+            if(h101 != null) {
+                h101.setEstadoHabitacion(EstadoHabitacion.OCUPADA);
+                h101.setDisponible(false);
+                // CheckIn ayer, CheckOut NULL (Sigue ahí)
+                RegistroEstadia r1 = new RegistroEstadia(p1, h101, LocalDate.now().minusDays(1), null);
+                hotel.agregarRegistro(r1);
+                // p1.agregarHistoriaHotel(r1); // Opcional si ya no lo guardamos en JSON
+            }
+
+            // CASO 2: Ana (p2) en Habitación 201
+            Habitacion h201 = hotel.getHabitaciones().get(201);
+            if(h201 != null) {
+                h201.setEstadoHabitacion(EstadoHabitacion.OCUPADA);
+                h201.setDisponible(false);
+                // CheckIn hace 3 días, CheckOut NULL
+                RegistroEstadia r2 = new RegistroEstadia(p2, h201, LocalDate.now().minusDays(3), null);
+                hotel.agregarRegistro(r2);
+            }
+
+            // CASO 3: Lucas (p3) en Habitación 301
+            Habitacion h301 = hotel.getHabitaciones().get(301);
+            if(h301 != null) {
+                h301.setEstadoHabitacion(EstadoHabitacion.OCUPADA);
+                h301.setDisponible(false);
+                // CheckIn hoy, CheckOut NULL
+                RegistroEstadia r3 = new RegistroEstadia(p3, h301, LocalDate.now(), null);
+                hotel.agregarRegistro(r3);
+            }
 
 
         } catch (Exception e)
         {
-            System.out.println("Error al inicializar los datos: " + e.getMessage());
+            System.out.println("Error al inicializar los datos.");
         }
 
         /// FALTA CREAR 10 ADMIN, 10 RECEPCIONISTAS Y 10 PASAJEROS

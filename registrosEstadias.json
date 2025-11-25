@@ -15,68 +15,68 @@
             "dni": "28745913",
             "email": "roberto.silva@email.com"
         },
-        "checkIn": "2025-11-25",
+        "checkIn": "2025-11-24",
         "consumos": [],
-        "checkOut": "2025-12-20",
+        "checkOut": null,
         "habitacion": {
-            "numero": 310,
+            "numero": 101,
             "estadoHabitacion": "Ocupada",
-            "tipoHabitacion": "Suite",
-            "precioPorNoche": 15000,
+            "tipoHabitacion": "Simple",
+            "precioPorNoche": 5000,
             "disponible": false
         }
     },
     {
         "pasajero": {
             "solicitarReserva": false,
-            "domicilio": "Calle Alsina 1245",
-            "apellido": "Silva",
+            "domicilio": "Av. Jujuy 3456",
+            "apellido": "Mendoza",
             "usuario": {
-                "password": "pasajero1",
+                "password": "pasajero2",
                 "rol": "Pasajero",
-                "username": "pasajero1"
+                "username": "pasajero2"
             },
-            "origen": "Argentina",
-            "telefono": "1145678234",
-            "nombre": "Roberto",
-            "dni": "28745913",
-            "email": "roberto.silva@email.com"
+            "origen": "España",
+            "telefono": "1156329847",
+            "nombre": "Ana",
+            "dni": "33926481",
+            "email": "ana.mendoza@email.com"
         },
-        "checkIn": "2025-11-25",
+        "checkIn": "2025-11-22",
         "consumos": [],
-        "checkOut": "2025-11-29",
+        "checkOut": null,
         "habitacion": {
-            "numero": 308,
+            "numero": 201,
             "estadoHabitacion": "Ocupada",
-            "tipoHabitacion": "Suite",
-            "precioPorNoche": 15000,
+            "tipoHabitacion": "Doble",
+            "precioPorNoche": 9000,
             "disponible": false
         }
     },
     {
         "pasajero": {
             "solicitarReserva": false,
-            "domicilio": "Calle Alsina 1245",
-            "apellido": "Silva",
+            "domicilio": "Calle Chacabuco 876",
+            "apellido": "Ortiz",
             "usuario": {
-                "password": "pasajero1",
+                "password": "pasajero3",
                 "rol": "Pasajero",
-                "username": "pasajero1"
+                "username": "pasajero3"
             },
             "origen": "Argentina",
-            "telefono": "1145678234",
-            "nombre": "Roberto",
-            "dni": "28745913",
-            "email": "roberto.silva@email.com"
+            "telefono": "1147852369",
+            "nombre": "Lucas",
+            "dni": "41583726",
+            "email": "lucas.ortiz@email.com"
         },
         "checkIn": "2025-11-25",
         "consumos": [],
         "checkOut": null,
         "habitacion": {
-            "numero": 202,
+            "numero": 301,
             "estadoHabitacion": "Ocupada",
-            "tipoHabitacion": "Doble",
-            "precioPorNoche": 9000,
+            "tipoHabitacion": "Suite",
+            "precioPorNoche": 15000,
             "disponible": false
         }
     }
