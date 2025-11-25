@@ -212,7 +212,7 @@ public class Main
                 dni = scanner.nextLine().trim(); //por si escribe algun espacio sin querer
                 if(dni.isEmpty())
                 {
-                    System.out.println("No puede estar vacio.");
+                    System.out.println("No puede estar vacío.");
                     error = true;
 
                 }else if (!dni.matches("\\d+")){  // "\\d+" significa "uno o más dígitos"
@@ -1065,7 +1065,7 @@ public class Main
         }while (error);
     }
 
-    // --- CheckOut (Pasajero) --- TERMINADO PROBAR
+    // --- CheckOut (Pasajero) --- TERMINADO
     private static void pasajeroCheckOut(Scanner scanner, GestorHotel hotel, Pasajero pasajero) {
 
             System.out.println("\n--- REALIZAR CHECK-OUT ---");
@@ -1110,11 +1110,10 @@ public class Main
         }while (error);
     }
 
-    // --- Solicitar Servicio ---
+    // --- Solicitar Servicio --- TERMINADO
     private static void pasajeroSolicitarServicio(Scanner scanner, GestorHotel hotel, Pasajero pasajero) {
         System.out.println("\n--- SOLICITAR SERVICIO ADICIONAL ---");
 
-        boolean error;
         int nroServicio;
 
         RegistroEstadia estadiaActiva = hotel.buscarEstadiaActivaPorPasajero(pasajero);
@@ -1231,6 +1230,7 @@ public class Main
                 hotel.agregarRegistro(r3);
             }
 
+            // Servicios
             hotel.agregarServicio(new Servicio(1,"Lavanderia",300));
             hotel.agregarServicio(new Servicio(2,"Comida a la habitacion",300));
             hotel.agregarServicio(new Servicio(3,"Spa & Jacuzzi",250));

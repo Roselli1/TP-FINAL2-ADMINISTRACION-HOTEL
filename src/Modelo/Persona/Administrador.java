@@ -3,9 +3,7 @@ package Modelo.Persona;
 import Enums.Rol;
 import Exceptions.UsuarioYaExisteException;
 import Gestores.GestorHotel;
-import Gestores.JsonUtiles;
 import Interfaces.iToJSON;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class Administrador extends Persona implements iToJSON
@@ -34,10 +32,6 @@ public class Administrador extends Persona implements iToJSON
 
         return json;
     }
-
-    /// ACA PODEMOS PONER 2 EXCEPTION Usuario y Contrasenia
-    /// pero que si la contrasenia esta bn y el usuario mal diga q usuario/contrasenia incorrecta algo asi
-
 
 
     //Metodos
@@ -71,13 +65,6 @@ public class Administrador extends Persona implements iToJSON
         }
 
         return true;
-    }
-
-
-    public void asignarPermisos(UsuarioBase usuario)
-    {
-        if (usuario == null) return; ///PODEMOS AGREGAR EXCEPTION
-
     }
 
 
