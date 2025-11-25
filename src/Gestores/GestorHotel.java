@@ -126,6 +126,12 @@ public class GestorHotel
         for (Servicio s : gestorServicios.getElementos()) {
             this.servicios.add(s);
         }
+        if (this.servicios.isEmpty()) {
+            this.servicios.add(new Servicio(1,"Lavanderia",300));
+            this.servicios.add(new Servicio(2,"Comida a la habitacion",300));
+            this.servicios.add(new Servicio(3,"Spa & Jacuzzi",250));
+            this.servicios.add(new Servicio(4,"Bebida de la heladera",150));
+        }
 
 
             System.out.println("----- Carga finalizada -----");
@@ -453,7 +459,9 @@ public class GestorHotel
     }
 
     public void agregarServicio(Servicio servicio) {
-        this.servicios.add(servicio);
+        if (servicio != null) {
+            this.servicios.add(servicio);
+        }
     }
 
     public Servicio buscarServicio(int nroServicio) {

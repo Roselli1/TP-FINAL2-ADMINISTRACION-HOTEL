@@ -1,1 +1,22 @@
-[{"servicios": []}]
+[{"servicios": [
+    {
+        "descripcion": "Lavanderia",
+        "precio": 300,
+        "nroServicio": 1
+    },
+    {
+        "descripcion": "Comida a la habitacion",
+        "precio": 300,
+        "nroServicio": 2
+    },
+    {
+        "descripcion": "Spa & Jacuzzi",
+        "precio": 250,
+        "nroServicio": 3
+    },
+    {
+        "descripcion": "Bebida de la heladera",
+        "precio": 150,
+        "nroServicio": 4
+    }
+]}]

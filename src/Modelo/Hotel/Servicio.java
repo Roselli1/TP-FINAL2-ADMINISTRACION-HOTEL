@@ -3,8 +3,6 @@ package Modelo.Hotel;
 import Interfaces.iToJSON;
 import org.json.JSONObject;
 
-import java.time.LocalDate;
-
 public class Servicio implements iToJSON {
     private int nroServicio;
     private String descripcion;

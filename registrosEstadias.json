@@ -16,7 +16,11 @@
             "email": "roberto.silva@email.com"
         },
         "checkIn": "2025-11-24",
-        "consumos": [],
+        "consumos": [{
+            "descripcion": "Spa & Jacuzzi",
+            "precio": 250,
+            "nroServicio": 3
+        }],
         "checkOut": null,
         "habitacion": {
             "numero": 101,

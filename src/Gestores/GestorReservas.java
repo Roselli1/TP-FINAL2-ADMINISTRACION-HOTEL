@@ -24,6 +24,8 @@ public class GestorReservas extends GestoraGenerica<Reserva> {
 
             JSONArray jsonReservas= jsonGestora.getJSONArray(super.nombreJson);
 
+            super.getElementos().clear();
+
             for (int i=0;  i< jsonReservas.length(); i++)
             {
                 JSONObject jsonHabitacion =  jsonReservas.getJSONObject(i);
