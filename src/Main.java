@@ -349,53 +349,105 @@ public class Main
         }
     }
 
-    // --- Metodo Realizar Reserva Interactivo ---
+    // --- Metodo Realizar Reserva Interactivo --- TERMINADO
     /// FALTA PROBARLO
     private static void realizarReservaInteractivo(Scanner scanner, GestorHotel hotel, Recepcionista recepcionista){
+
+        boolean error = false;
+        int nroHabitacion = 0;
+        Habitacion habitacion = null;
+        Pasajero pasajero = null;
+        LocalDate fechaIngreso = null;
+        LocalDate fechaEgreso = null;
+
         try {
             System.out.println("\n--- CREAR RESERVA ---");
+            hotel.mostrarHabitacionesDisponibles();
 
+            do
+            {
             // Obtiene la habitacion a reservar
             System.out.println("Ingrese el número de habitación deseado: ");
-            int nroHabitacion = scanner.nextInt();
-            Habitacion habitacion = hotel.getHabitaciones().get(nroHabitacion);
+            try {
 
-            if (habitacion == null) {
-                System.out.println("Error: La habitación " + nroHabitacion + " no existe.");
-                return;
-            }
+                nroHabitacion = Integer.parseInt(scanner.nextLine().trim());
+                habitacion = hotel.getHabitaciones().get(nroHabitacion);
 
-            // Busca al pasajero que quiere realizar la reserva
-            System.out.println("Ingrese el username del pasajero para la reserva: ");
-            String usernamePasajero = scanner.nextLine();
-            Pasajero pasajero= hotel.buscarPasajeroPorUsername(usernamePasajero);
+                if (habitacion == null) {
+                    System.out.println("Error: La habitación " + nroHabitacion + " no existe.");
+                    error = true;
+                } else {
+                    error = false;
+                }
+            } catch (NumberFormatException e)
+                    {
+                    System.out.println("Ingrese un numero valido.");
+                    error = true;
+                    }
+            }while (error);
 
-            if (pasajero == null){
-                System.out.println("Error pasajero no encontrado.");
-                return;
-            }
+            do {
 
-            // Fechas de ingreso y egreso
-            System.out.println("Ingrese la fecha de ingreso (YYYY-MM-DD): ");
-            LocalDate fechaIngreso = LocalDate.parse(scanner.nextLine());
-            System.out.println("Ingrese la fecha de egreso (YYYY-MM-DD): ");
-            LocalDate fechaEgreso = LocalDate.parse(scanner.nextLine());
+                // Busca al pasajero que quiere realizar la reserva
+                System.out.println("Ingrese el username del pasajero para la reserva: ");
+                String usernamePasajero = scanner.nextLine().trim().toLowerCase();
+                pasajero = hotel.buscarPasajeroPorUsername(usernamePasajero);
 
-            // Validaciones de fechas
-            if (fechaIngreso.isBefore(LocalDate.now()) || fechaEgreso.isBefore(fechaIngreso) || fechaIngreso.isEqual(fechaEgreso)) {
-                System.out.println("Error: Las fechas de reserva son inválidas. Verifique que la fecha de ingreso sea futura y la de egreso posterior a la de ingreso.");
-                return;
-            }
+                if (pasajero == null) {
+                    System.out.println("Error pasajero no encontrado.");
+                    error = true;
+                } else {
+                    error = false;
+                }
+            }while (error);
+
+            do {
+                try {
+                    // Fechas de ingreso y egreso
+                    System.out.println("Ingrese la fecha de ingreso (YYYY-MM-DD): ");
+                    fechaIngreso = LocalDate.parse(scanner.nextLine().trim());
+
+                    if (fechaIngreso.isBefore(LocalDate.now())) {
+                        System.out.println("Error: La fecha de ingreso debe ser posterior a la fecha actual.");
+                        error = true;
+                    } else {
+                        error = false;
+                    }
+                } catch (Exception e) {
+                    System.out.println("Error de formato (Use: YYYY-MM-DD).");
+                    error = true;
+                }
+            }while (error);
+
+
+
+                do {
+                    try {
+
+                        System.out.println("Ingrese la fecha de egreso (YYYY-MM-DD): ");
+                        fechaEgreso = LocalDate.parse(scanner.nextLine().trim());
+
+                        if (!fechaEgreso.isAfter(fechaIngreso)) {
+                            System.out.println("Error: La fecha de egreso debe ser posterior a la fecha de ingreso.");
+                            error = true;
+                        } else {
+                            error = false;
+                        }
+                    }catch (Exception e)
+                    {
+                        System.out.println("Error de formato (Use: YYYY-MM-DD).");
+                        error = true;
+                    }
+                }while (error);
+
 
             // Crea la reserva
-            boolean check = false;
             Reserva nuevaReserva = new Reserva(habitacion, pasajero, fechaIngreso, fechaEgreso, true);
-            check = recepcionista.crearReserva(nuevaReserva, nroHabitacion);
+            boolean check = recepcionista.crearReserva(nuevaReserva, nroHabitacion);
 
             if (check) System.out.println("Reserva creada con éxito.");
 
-        } catch (IllegalArgumentException e) {
-            System.out.println("Error: Ingrese un número válido.");
+
         } catch (Exception e) {
             System.out.println("Error inesperado al crear la reserva: " + e.getMessage());
             }
