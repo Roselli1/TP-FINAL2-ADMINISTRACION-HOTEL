@@ -985,10 +985,16 @@ public class Main
             do {
                 try{
                 System.out.println("Ingrese el numero de su habitacion para salir: ");
-
                 int nroHabitacion = Integer.parseInt(scanner.nextLine());
 
-                boolean exitoCheckOut = pasajero.hacerCheckOut(null, nroHabitacion);
+                Reserva reservaOut = null;
+                for (Reserva r : hotel.getReservas()){
+                    if (r.getHabitacion().getNumero() == nroHabitacion) {
+                        reservaOut = r;
+                    }
+                }
+
+                boolean exitoCheckOut = pasajero.hacerCheckOut(reservaOut, nroHabitacion);
 
                 if (exitoCheckOut) {
                     System.out.println("Check-Out exitoso.");
